@@ -52,14 +52,14 @@ public class BillListFragment extends CustomBaseFragment implements DialogInterf
 
         // TODO: 2016. 1. 16. db에서 데이터 읽어오기
         billList.add(new Bill(1L, 5000L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(2L, 100000L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(3L, 5200L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), false));
-        billList.add(new Bill(4L, 3200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(5L, 3200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(6L, 12300L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(7L, 3240L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(8L, 5200L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), false));
-        billList.add(new Bill(9L, 5200L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), false));
+        billList.add(new Bill(2L, 100000L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
+        billList.add(new Bill(3L, 5200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), false));
+        billList.add(new Bill(4L, 3200L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
+        billList.add(new Bill(5L, 3200L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
+        billList.add(new Bill(6L, 12300L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
+        billList.add(new Bill(7L, 3240L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
+        billList.add(new Bill(8L, 5200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), false));
+        billList.add(new Bill(9L, 5200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), false));
 
         billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
         listViewBill.setAdapter(billListAdapter);

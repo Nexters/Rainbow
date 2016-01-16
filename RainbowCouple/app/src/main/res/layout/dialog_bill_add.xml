@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -24,14 +25,14 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
             android:layout_marginTop="10dp">
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/textViewNewBillAmount"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/color_bill_text_partner"
                 android:gravity="left|center_vertical"
@@ -41,37 +42,20 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
             android:layout_marginTop="10dp">
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/textViewNewBillComment"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/color_bill_text_partner"
                 android:gravity="left|center_vertical"
                android:hint="내용"/>
 
         </android.support.design.widget.TextInputLayout>
-        <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="0.3"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-            <!--android:textColor="@color/color_bill_text_partner"-->
-            <!--android:hint=""-->
-            <!--android:gravity="left|center_vertical"/>-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/textViewPartnerBillComment"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="0.3"-->
-            <!--android:hint="적절한 내용의 코멘트를 입력 해 주세요."-->
-            <!--android:textColor="@color/color_bill_text_default"-->
-            <!--android:gravity="left|center_vertical"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"
