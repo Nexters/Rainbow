@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_transparent">#00000000</color>
+
+    <color name="color_bill_background">#FFD2D9DF</color>
+    <color name="color_bill_background_white">#FFFFFFFF</color>
+    <color name="color_bill_background_border">#FF5A89AA</color>
+    <color name="color_bill_text_default">#FF73726A</color>
+    <color name="color_bill_date">#FF73726A</color>
+    <color name="color_bill_text_white">#FFFFFFFF</color>
+    <color name="color_bill_text_my">#FFF58676</color>
+    <color name="color_bill_text_partner">#FF32689B</color>
+</resources>

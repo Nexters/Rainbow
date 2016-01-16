@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
+        android:id="@+id/listViewBill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:dividerHeight="0dp"
+        android:divider="@color/color_transparent"/>
+    <TextView
+        android:id="@+id/textViewBillEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="#ffffffff"
+        android:gravity="center"
+        android:text="@string/empty_bill"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+</LinearLayout>
