@@ -1,18 +1,20 @@
 package com.nexters.rainbow.rainbowcouple.bill.add;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
 import com.nexters.rainbow.rainbowcouple.R;
+import com.nexters.rainbow.rainbowcouple.bill.Bill;
+import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
+import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
+import com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,11 +22,15 @@ import butterknife.OnClick;
 
 public class BillAddDialog extends DialogFragment {
 
-    @Bind(R.id.textViewNewBillAmount) AppCompatEditText textViewBillAmount;
-    @Bind(R.id.textViewNewBillComment) AppCompatEditText textViewBillComment;
+    @Bind(R.id.editTextNewBillAmount) AppCompatEditText editTextBillAmount;
+    @Bind(R.id.editTextNewBillComment) AppCompatEditText editTextBillComment;
 
     private View rootView;
-    private DialogInterface.OnDismissListener dismissListener;
+
+    private AddDialogDismissCallback dismissCallback = null;
+    public interface AddDialogDismissCallback {
+        void saveNewBill(Bill bill);
+    }
 
     public static BillAddDialog newInstance() {
         return new BillAddDialog();
@@ -50,13 +56,34 @@ public class BillAddDialog extends DialogFragment {
         return rootView;
     }
 
-// TODO: 2016. 1. 16. DB에 데이터 저장.. snackbar는 테스트 용 .
     @OnClick(R.id.btnBillSave)
     void onClickConfirmButton() {
-        if (dismissListener != null) {
-            dismissListener.onDismiss(getDialog());
+        if (dismissCallback == null) {
+            dismiss();
         }
+
+        if(!isValidInput()) {
+            return;
+        }
+
+        Bill bill = new Bill(Long.parseLong(editTextBillAmount.getString()),
+                            editTextBillComment.getString(),
+                            TimeUtils.getToday(),
+                            true);
+        dismissCallback.saveNewBill(bill);
+
         dismiss();
+    }
+
+    private boolean isValidInput() {
+        // TODO: 2016. 1. 16. 내용 입력이 반드시 필요한가?
+        if (StringUtils.isEmpty(editTextBillAmount.getString())
+            || StringUtils.isEmpty(editTextBillComment.getString())) {
+            // TODO: 2016. 1. 16. 입력 요청 이벤트 주고 return 할 것
+            return false;
+        }
+
+        return true;
     }
 
     @OnClick(R.id.btnBillCancel)
@@ -65,12 +92,7 @@ public class BillAddDialog extends DialogFragment {
         super.dismiss();
     }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-    }
-
-    public void setDismissListener(DialogInterface.OnDismissListener dismissListener) {
-        this.dismissListener = dismissListener;
+    public void setDismissCallback(AddDialogDismissCallback dismissCallback) {
+        this.dismissCallback = dismissCallback;
     }
 }

@@ -1,14 +1,23 @@
 package com.nexters.rainbow.rainbowcouple.bill;
 
+import java.util.Date;
+
 public class Bill {
 
     private Long billId;
     private Long budget;
     private String comment;
-    private Long createdAt;
+    private Date createdAt;
     private boolean isMyBill;
 
-    public Bill(Long billId, Long budget, String comment, Long createdAt, boolean isMyBill) {
+    public Bill(Long budget, String comment, Date createdAt, boolean isMyBill) {
+        this.budget = budget;
+        this.comment = comment;
+        this.createdAt = createdAt;
+        this.isMyBill = isMyBill;
+    }
+
+    public Bill(Long billId, Long budget, String comment, Date createdAt, boolean isMyBill) {
         this.billId = billId;
         this.budget = budget;
         this.comment = comment;
@@ -40,11 +49,11 @@ public class Bill {
         this.comment = comment;
     }
 
-    public Long getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Long createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 

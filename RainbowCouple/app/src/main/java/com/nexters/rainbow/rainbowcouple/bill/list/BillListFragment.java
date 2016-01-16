@@ -1,6 +1,5 @@
 package com.nexters.rainbow.rainbowcouple.bill.list;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,14 +17,13 @@ import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BillListFragment extends CustomBaseFragment implements DialogInterface.OnDismissListener {
+public class BillListFragment extends CustomBaseFragment implements BillAddDialog.AddDialogDismissCallback {
 
     private final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
     private final String TAG_BILL_ADD_DIALOG = "bill_list_fragment";
@@ -35,7 +33,7 @@ public class BillListFragment extends CustomBaseFragment implements DialogInterf
     private BillListAdapter billListAdapter;
 
     // TODO: 2016. 1. 16. listView loadNewData는 디비에 저장된 데이터 읽어오는 것으로
-    @Bind(R.id.listViewBill) EndlessListView listViewBill;
+    @Bind(R.id.listViewBill) EndlessListView billListView;
     @Bind(R.id.textViewBillEmpty) TextView emptyTextView;
     @Bind(R.id.actionBtnAddBill) FloatingActionButton actionBtnAddBill;
 
@@ -51,19 +49,19 @@ public class BillListFragment extends CustomBaseFragment implements DialogInterf
         setFragmentTag(TAG_BILL_LIST_FRAGMENT);
 
         // TODO: 2016. 1. 16. db에서 데이터 읽어오기
-        billList.add(new Bill(1L, 5000L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(2L, 100000L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(3L, 5200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), false));
-        billList.add(new Bill(4L, 3200L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(5L, 3200L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(6L, 12300L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(7L, 3240L, "테스트용 데이터", TimeUtils.getDateTime(new Date()), true));
-        billList.add(new Bill(8L, 5200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), false));
-        billList.add(new Bill(9L, 5200L, "테스트용 너의 데이터", TimeUtils.getDateTime(new Date()), false));
+        billList.add(new Bill(1L, 5000L, "테스트용 데이터", TimeUtils.getToday(), true));
+        billList.add(new Bill(2L, 100000L, "테스트용 데이터", TimeUtils.getToday(), true));
+        billList.add(new Bill(3L, 5200L, "테스트용 너의 데이터", TimeUtils.getToday(), false));
+        billList.add(new Bill(4L, 3200L, "테스트용 데이터", TimeUtils.getToday(), true));
+        billList.add(new Bill(5L, 3200L, "테스트용 데이터", TimeUtils.getToday(), true));
+        billList.add(new Bill(6L, 12300L, "테스트용 데이터", TimeUtils.getToday(), true));
+        billList.add(new Bill(7L, 3240L, "테스트용 데이터", TimeUtils.getToday(), true));
+        billList.add(new Bill(8L, 5200L, "테스트용 너의 데이터", TimeUtils.getToday(), false));
+        billList.add(new Bill(9L, 5200L, "테스트용 너의 데이터", TimeUtils.getToday(), false));
 
         billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
-        listViewBill.setAdapter(billListAdapter);
-        listViewBill.setEmptyView(emptyTextView);
+        billListView.setAdapter(billListAdapter);
+        billListView.setEmptyView(emptyTextView);
 
         return rootView;
     }
@@ -83,13 +81,17 @@ public class BillListFragment extends CustomBaseFragment implements DialogInterf
     @OnClick(R.id.actionBtnAddBill)
     public void showBillAddDialog() {
         BillAddDialog billAddDialog = BillAddDialog.newInstance();
-        billAddDialog.setDismissListener(this);
+        billAddDialog.setDismissCallback(this);
         billAddDialog.show(getFragmentManager(), TAG_BILL_ADD_DIALOG);
     }
 
-    /* add dialog가 dismiss될 때 */
+    // TODO: 2016. 1. 16. api로 서버에 저장 할 것. DB에 따로 저장하지는 않음..
+    // TODO: 2016. 1. 16. listView 자체 저장 하고 DB는 fragment 다시 불러올 때 서버와 동기화 한 후 가져올 것
     @Override
-    public void onDismiss(DialogInterface dialog) {
+    public void saveNewBill(Bill bill) {
+        billListAdapter.addData(0, bill);
+        billListView.setSelection(0);
+
         Snackbar.make(actionBtnAddBill, "새로운 지출 내역이 저장되었습니다.", Snackbar.LENGTH_SHORT).show();
     }
 }
