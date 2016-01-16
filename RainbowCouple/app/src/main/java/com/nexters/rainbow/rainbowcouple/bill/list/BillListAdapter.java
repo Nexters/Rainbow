@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nexters.rainbow.rainbowcouple.R;
+import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.common.utils.CollectionUtils;
 
 import java.text.DateFormat;
@@ -20,6 +21,7 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+// TODO: 2016. 1. 16. 자주 쓰이게 된다면 CustomBaseAdapter로 변경 고려
 public class BillListAdapter extends BaseAdapter {
 
     private Context context;
@@ -28,7 +30,7 @@ public class BillListAdapter extends BaseAdapter {
     private List<Bill> dataList;
     private int layoutResourceId;
 
-    private final String FORMAT_BILL_BUDGET = "₩,d";
+    private final String FORMAT_BILL_BUDGET = "₩%,d";
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
 
     public BillListAdapter(Context context, int layoutResourceId) {

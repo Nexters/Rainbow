@@ -1,4 +1,4 @@
-package com.nexters.rainbow.rainbowcouple.bill.list;
+package com.nexters.rainbow.rainbowcouple.bill;
 
 public class Bill {
 

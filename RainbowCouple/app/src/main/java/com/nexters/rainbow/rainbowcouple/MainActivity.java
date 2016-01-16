@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TODO: 2016. 1. 16. 최초 접속 시 api로 데이터 가져온 뒤 db에 저장하는 (동기화) 작업 필요
+        // TODO: 2016. 1. 16. 내부 DB에 마지막으로 저장된 bill Id와 비교 해서 저장 할 것. (idea?)
         /* 임시 테스트용 첫 화면. 리스트 뷰 */
         BillListFragment fragment = BillListFragment.newInstance();
         getSupportFragmentManager()
@@ -30,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return (item.getItemId() == R.id.action_settings) ? Boolean.TRUE : super.onOptionsItemSelected(item);
     }
 }

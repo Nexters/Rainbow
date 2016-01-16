@@ -4,5 +4,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="empty_bill">지출 내역이 없습니다.</string>
+    <string name="dialog_Save">저장</string>
+    <string name="dialog_Cancel">취소</string>
+    <string name="dialog_OK">확인</string>
+
+    <string name="string_empty_bill">지출 내역이 없습니다.</string>
+    <string name="string_bill_add_new_bill">새로운 기록 입력</string>
+
 </resources>

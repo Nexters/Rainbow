@@ -16,9 +16,9 @@ public class EndlessListView extends ListView implements AbsListView.OnScrollLis
     private boolean isLoading = false;
     private boolean isLastPage = false;
 
-    private requestNextDataCallback requestNextDataCallback = null;
+    private RequestNextDataCallback requestNextDataCallback = null;
 
-    public interface requestNextDataCallback {
+    public interface RequestNextDataCallback {
         void loadNextData();
     }
 
@@ -83,7 +83,7 @@ public class EndlessListView extends ListView implements AbsListView.OnScrollLis
         return nextPageNumber;
     }
 
-    public void setRequestNextDataCallback(requestNextDataCallback requestNextDataCallback) {
+    public void setRequestNextDataCallback(RequestNextDataCallback requestNextDataCallback) {
         this.requestNextDataCallback = requestNextDataCallback;
     }
 }

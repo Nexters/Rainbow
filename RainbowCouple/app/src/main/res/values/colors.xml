@@ -5,6 +5,7 @@
     <color name="color_bill_background">#FFD2D9DF</color>
     <color name="color_bill_background_white">#FFFFFFFF</color>
     <color name="color_bill_background_border">#FF5A89AA</color>
+    <color name="color_bill_background_tint">#FF8ACCCB</color>
     <color name="color_bill_text_default">#FF73726A</color>
     <color name="color_bill_date">#FF73726A</color>
     <color name="color_bill_text_white">#FFFFFFFF</color>
