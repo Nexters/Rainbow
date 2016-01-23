@@ -6,13 +6,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.nexters.rainbow.rainbowcouple.bill.list.BillListFragment;
+import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static boolean DEBUG = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DEBUG = DebugLog.isDebugMode(this);
 
         // TODO: 2016. 1. 16. 최초 접속 시 api로 데이터 가져온 뒤 db에 저장하는 (동기화) 작업 필요
         // TODO: 2016. 1. 16. 내부 DB에 마지막으로 저장된 bill Id와 비교 해서 저장 할 것. (idea?)
