@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
-import com.nexters.rainbow.rainbowcouple.common.CustomBaseFragment;
+import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 
@@ -23,7 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BillListFragment extends CustomBaseFragment implements BillAddDialog.AddDialogDismissCallback {
+public class BillListFragment extends BaseFragment implements BillAddDialog.AddDialogDismissCallback {
 
     private final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
     private final String TAG_BILL_ADD_DIALOG = "bill_list_fragment";

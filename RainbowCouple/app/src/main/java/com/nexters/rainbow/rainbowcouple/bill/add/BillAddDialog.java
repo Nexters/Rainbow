@@ -28,6 +28,7 @@ public class BillAddDialog extends DialogFragment {
     private View rootView;
 
     private AddDialogDismissCallback dismissCallback = null;
+
     public interface AddDialogDismissCallback {
         void saveNewBill(Bill bill);
     }
@@ -61,29 +62,16 @@ public class BillAddDialog extends DialogFragment {
         if (dismissCallback == null) {
             dismiss();
         }
-
-        if(!isValidInput()) {
+        if (!isValidInput()) {
             return;
         }
 
-        Bill bill = new Bill(Long.parseLong(editTextBillAmount.getString()),
-                            editTextBillComment.getString(),
-                            TimeUtils.getToday(),
-                            true);
-        dismissCallback.saveNewBill(bill);
+        dismissCallback.saveNewBill(new Bill(Long.parseLong(editTextBillAmount.getString()),
+                editTextBillComment.getString(),
+                TimeUtils.getToday(),
+                true));
 
         dismiss();
-    }
-
-    private boolean isValidInput() {
-        // TODO: 2016. 1. 16. 내용 입력이 반드시 필요한가?
-        if (StringUtils.isEmpty(editTextBillAmount.getString())
-            || StringUtils.isEmpty(editTextBillComment.getString())) {
-            // TODO: 2016. 1. 16. 입력 요청 이벤트 주고 return 할 것
-            return false;
-        }
-
-        return true;
     }
 
     @OnClick(R.id.btnBillCancel)
@@ -94,5 +82,15 @@ public class BillAddDialog extends DialogFragment {
 
     public void setDismissCallback(AddDialogDismissCallback dismissCallback) {
         this.dismissCallback = dismissCallback;
+    }
+
+    private boolean isValidInput() {
+        // TODO: 2016. 1. 16. 내용 입력이 반드시 필요한가?
+        if (StringUtils.isEmpty(editTextBillAmount.getString())
+                || StringUtils.isEmpty(editTextBillComment.getString())) {
+            // TODO: 2016. 1. 16. 입력 요청 이벤트 주고 return 할 것
+            return false;
+        }
+        return true;
     }
 }

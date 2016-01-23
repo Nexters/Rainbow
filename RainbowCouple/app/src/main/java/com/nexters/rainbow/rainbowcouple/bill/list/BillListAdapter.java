@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
-import com.nexters.rainbow.rainbowcouple.common.CustomBaseAdapter;
+import com.nexters.rainbow.rainbowcouple.common.BaseAdapter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,7 +17,7 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class BillListAdapter extends CustomBaseAdapter<Bill, BillListAdapter.BillItemViewHolder> {
+public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemViewHolder> {
 
     private final String FORMAT_BILL_BUDGET = "₩%,d";
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);

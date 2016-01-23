@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.nexters.rainbow.rainbowcouple.common.utils.CollectionUtils;
 
@@ -16,18 +15,18 @@ import java.util.List;
  * @param <H> ViewHolder
  * CustomListView를 보다 쉽게 만들기 위한 BaseAdapter
  */
-public abstract class CustomBaseAdapter<D, H> extends BaseAdapter {
+public abstract class BaseAdapter<D, H> extends android.widget.BaseAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
     private List<D> dataList;
     private int layoutResource;
 
-    public CustomBaseAdapter(Context context, int layoutResourceId) {
+    public BaseAdapter(Context context, int layoutResourceId) {
         this(context, layoutResourceId, new ArrayList<D>());
     }
 
-    public CustomBaseAdapter(Context context, int layoutResourceId, List<D> dataList) {
+    public BaseAdapter(Context context, int layoutResourceId, List<D> dataList) {
         this.context = context;
         this.layoutResource = layoutResourceId;
         this.dataList = dataList;

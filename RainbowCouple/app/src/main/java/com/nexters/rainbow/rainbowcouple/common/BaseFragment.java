@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 /**
  * fragment tag 관리용으로 만든 BaseFragment
  */
-public class CustomBaseFragment extends Fragment {
+public class BaseFragment extends Fragment {
 
     private String tag;
 
