@@ -9,4 +9,9 @@
 
     <string name="string_empty_bill">지출 내역이 없습니다.</string>
     <string name="string_bill_add_new_bill">새로운 기록 입력</string>
+
+    <string name="activity_sign_in">로그인</string>
+    <string name="activity_sign_up">회원가입</string>
+    <string name="activity_login_id">example@email.com</string>
+    <string name="activity_login_password">password</string>
 </resources>

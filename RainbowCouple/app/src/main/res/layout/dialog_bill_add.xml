@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="320dp"
+    android:layout_height="340dp">
 
     <LinearLayout
         android:id="@+id/layoutPartnerBill"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:padding="10dp"
         android:weightSum="1"
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@color/color_bill_background_tint"
             android:text="@string/string_bill_add_new_bill"
@@ -26,8 +26,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:layout_marginTop="10dp">
+            android:layout_weight="0.25"
+            android:layout_marginTop="5dp">
 
             <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
                 android:id="@+id/editTextNewBillAmount"
@@ -43,8 +43,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:layout_marginTop="10dp">
+            android:layout_weight="0.25"
+            android:layout_marginTop="5dp">
 
             <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
                 android:id="@+id/editTextNewBillCategory"
@@ -53,15 +53,14 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/color_bill_text_partner"
                 android:gravity="left|center_vertical"
-                android:digits="0123456789"
                 android:hint="Category"/>
 
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:layout_marginTop="10dp">
+            android:layout_weight="0.25"
+            android:layout_marginTop="5dp">
 
             <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
                 android:id="@+id/editTextNewBillComment"
@@ -77,7 +76,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:weightSum="1"
             android:orientation="horizontal">
 
