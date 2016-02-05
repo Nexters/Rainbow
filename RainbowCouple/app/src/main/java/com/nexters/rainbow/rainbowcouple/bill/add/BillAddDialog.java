@@ -23,6 +23,7 @@ import butterknife.OnClick;
 public class BillAddDialog extends DialogFragment {
 
     @Bind(R.id.editTextNewBillAmount) AppCompatEditText editTextBillAmount;
+    @Bind(R.id.editTextNewBillCategory) AppCompatEditText editTextBillCategory;
     @Bind(R.id.editTextNewBillComment) AppCompatEditText editTextBillComment;
 
     private View rootView;
@@ -67,9 +68,9 @@ public class BillAddDialog extends DialogFragment {
         }
 
         dismissCallback.saveNewBill(new Bill(Long.parseLong(editTextBillAmount.getString()),
+                editTextBillCategory.getString(),
                 editTextBillComment.getString(),
-                TimeUtils.getToday(),
-                true));
+                TimeUtils.getToday()));
 
         dismiss();
     }

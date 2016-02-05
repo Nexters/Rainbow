@@ -6,23 +6,23 @@ public class Bill {
 
     private Long billId;
     private Long budget;
+    private String category;
     private String comment;
     private Date createdAt;
-    private boolean isMyBill;
 
-    public Bill(Long budget, String comment, Date createdAt, boolean isMyBill) {
+    public Bill(Long budget, String cateogry, String comment, Date createdAt) {
         this.budget = budget;
+        this.category = cateogry;
         this.comment = comment;
         this.createdAt = createdAt;
-        this.isMyBill = isMyBill;
     }
 
-    public Bill(Long billId, Long budget, String comment, Date createdAt, boolean isMyBill) {
+    public Bill(Long billId, Long budget, String category, String comment, Date createdAt) {
         this.billId = billId;
         this.budget = budget;
+        this.category = category;
         this.comment = comment;
         this.createdAt = createdAt;
-        this.isMyBill = isMyBill;
     }
 
     public Long getBillId() {
@@ -41,6 +41,10 @@ public class Bill {
         this.budget = budget;
     }
 
+    public String getCategory() { return category; }
+
+    public void setCategory(String category) { this.category = category; }
+
     public String getComment() {
         return comment;
     }
@@ -57,11 +61,4 @@ public class Bill {
         this.createdAt = createdAt;
     }
 
-    public boolean isMyBill() {
-        return isMyBill;
-    }
-
-    public void setIsMyBill(boolean isMyBill) {
-        this.isMyBill = isMyBill;
-    }
 }

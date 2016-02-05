@@ -40,7 +40,23 @@
                 android:hint="사용 금액"/>
 
         </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:layout_marginTop="10dp">
 
+            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
+                android:id="@+id/editTextNewBillCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/color_bill_text_partner"
+                android:gravity="left|center_vertical"
+                android:digits="0123456789"
+                android:hint="Category"/>
+
+        </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
