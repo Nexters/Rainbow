@@ -8,8 +8,6 @@ import android.view.MenuItem;
 import com.nexters.rainbow.rainbowcouple.bill.list.BillListFragment;
 import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
 
-import butterknife.OnPageChange;
-
 public class MainActivity extends AppCompatActivity {
 
     public static boolean DEBUG = true;
