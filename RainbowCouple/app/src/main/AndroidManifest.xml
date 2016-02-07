@@ -24,6 +24,9 @@
             android:theme="@style/NoTitleTheme"/>
         <activity
             android:name=".login.SignUpActivity"/>
+
+        <activity
+            android:name=".graph.GraphActivity"/>
     </application>
 
 </manifest>

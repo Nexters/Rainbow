@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import com.nexters.rainbow.rainbowcouple.bill.list.BillListFragment;
 import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
 
+import butterknife.OnPageChange;
+
 public class MainActivity extends AppCompatActivity {
 
     public static boolean DEBUG = true;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.contentPanel, fragment, fragment.getFragmentTag()).commitAllowingStateLoss();
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

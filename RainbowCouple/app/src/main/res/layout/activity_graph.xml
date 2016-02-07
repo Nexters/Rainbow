@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFFFFF">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -33,66 +33,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="2">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Sun"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Mon"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Tue"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Wed"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Thur"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Fri"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Sat"
-                android:textSize="12sp"/>
-        </LinearLayout>
+        android:layout_weight="3">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,7 +54,7 @@
                     android:textSize="16sp"
                     android:textColor="#FFFFFF"
                     android:layout_height="wrap_content"
-                    android:text="24"/>
+                    android:text="1"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -117,7 +62,7 @@
                     android:textSize="16sp"
                     android:textColor="#FFFFFF"
                     android:layout_height="wrap_content"
-                    android:text="25"/>
+                    android:text="2"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -125,7 +70,7 @@
                     android:textSize="16sp"
                     android:textColor="#FFFFFF"
                     android:layout_height="wrap_content"
-                    android:text="26"/>
+                    android:text="3"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -133,7 +78,7 @@
                     android:textSize="16sp"
                     android:textColor="#FFFFFF"
                     android:layout_height="wrap_content"
-                    android:text="27"/>
+                    android:text="4"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -141,55 +86,43 @@
                     android:textSize="16sp"
                     android:textColor="#FFFFFF"
                     android:layout_height="wrap_content"
-                    android:text="28"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="29"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="30"/>
+                    android:text="5"/>
             </LinearLayout>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:gravity="center_vertical"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:background="#666666">
-                <TextView
-                    android:id="@+id/today"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1/29 Fri"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:id="@+id/total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Today's Total"
-                    android:layout_below="@id/today"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="68,800"
-                    android:textColor="#FFFFFF"
-                    android:textSize="24sp"/>
-            </RelativeLayout>
+                android:background="#666666"
+                android:padding="12dp">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/chart1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="bottom">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:text="Total"
+                        android:layout_margin="1dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:textColor="#FFFFFF"
+                        android:text="198,800"
+                        android:layout_margin="1dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
 
@@ -197,11 +130,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
-            android:id="@+id/listViewBill"
+            android:id="@+id/listViewGraph"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
@@ -241,13 +174,13 @@
             android:background="#EFEFEF"
             android:textSize="12sp"/>
         <Button
-            android:id="@+id/btnGraph"
+            android:id="@+id/btnExit"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Graph"
+            android:text="X"
             android:background="#EFEFEF"
-            android:textSize="12sp"/>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 

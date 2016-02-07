@@ -1,5 +1,6 @@
 package com.nexters.rainbow.rainbowcouple.bill.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.nexters.rainbow.rainbowcouple.MainActivity;
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
+import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,5 +97,11 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         billListView.setSelection(0);
 
         Snackbar.make(actionBtnAddBill, "새로운 지출 내역이 저장되었습니다.", Snackbar.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.btnGraph)
+    void openGraph() {
+        Intent graphActivity = new Intent(getActivity(), GraphActivity.class);
+        startActivity(graphActivity);
     }
 }
