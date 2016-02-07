@@ -19,7 +19,7 @@ public class BaseActivity extends FragmentActivity {
         this.progressDialog = DialogManager.makeProgressDialog(this, Messages.PROGRESS_LOADING_MESSAGE);
     }
 
-    protected <T> Observable<T> bindProgressDialog(Observable<T> observable) {
+    protected <T> Observable<T> bind(Observable<T> observable) {
         return observable
                 .doOnSubscribe(new Action0() {
                     @Override

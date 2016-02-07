@@ -32,7 +32,7 @@ public class BaseFragment extends Fragment {
         this.tag = fragmentTag;
     }
 
-    protected <T> Observable<T> bindProgressDialog(Observable<T> observable) {
+    protected <T> Observable<T> bind(Observable<T> observable) {
         return observable
                 .doOnSubscribe(new Action0() {
                     @Override
