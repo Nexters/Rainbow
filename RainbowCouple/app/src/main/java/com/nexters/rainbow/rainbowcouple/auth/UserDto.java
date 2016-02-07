@@ -1,4 +1,4 @@
-package com.nexters.rainbow.rainbowcouple.login;
+package com.nexters.rainbow.rainbowcouple.auth;
 
 import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.group.Group;
@@ -7,6 +7,7 @@ public class UserDto {
     private String rs;
     private String userId;
     private String userName;
+    private String password;
     private Group group;
 
     public String getRs() {
@@ -31,6 +32,14 @@ public class UserDto {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Group getGroup() {

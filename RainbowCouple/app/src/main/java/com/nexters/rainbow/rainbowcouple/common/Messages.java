@@ -13,4 +13,12 @@ public abstract class Messages {
         public static final String EMPTY_LOGIN_PASSWORD = "로그인 패스워드를 입력 해 주세요.";
     }
 
+    public static abstract class SignUpError {
+        public static final String INVALID_ID = "ID를 올바른 형식으로 입력 해 주세요.";
+        public static final String INVALID_PASSWORD_SIZE = "패스워드는 6자리 이상 입력 해 주세요.";
+        public static final String EMPTY_USER_ID = "ID를 입력 해 주세요.";
+        public static final String EMPTY_USER_PASSWORD = "패스워드를 입력 해 주세요.";
+        public static final String EMPTY_USER_NAME = "이름을 입력 해 주세요.";
+    }
+
 }

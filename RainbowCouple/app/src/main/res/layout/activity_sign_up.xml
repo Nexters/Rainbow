@@ -16,7 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4"
+        android:layout_weight="0.45"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -27,7 +27,7 @@
             android:layout_marginRight="20dp">
 
             <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextUserId"
+                android:id="@+id/editTextSignUpUserId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -44,7 +44,7 @@
             android:layout_marginRight="20dp">
 
             <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextUserName"
+                android:id="@+id/editTextSignUpUserName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -61,7 +61,7 @@
             android:layout_marginRight="20dp">
 
             <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextUserPassword"
+                android:id="@+id/editTextSignUpUserPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -76,17 +76,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"/>
+        android:layout_weight="0.05"/>
 
-        <Button
-            android:id="@+id/btnSignUpApply"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
-            android:background="@color/color_bill_background_tint"
-            android:text="Sign Up"/>
+    <Button
+        android:id="@+id/btnSignUpApply"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:background="@color/color_bill_background_tint"
+        android:text="Sign Up"/>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.nexters.rainbow.rainbowcouple.login;
+package com.nexters.rainbow.rainbowcouple.auth;
 
 import android.app.Activity;
 import android.os.Bundle;

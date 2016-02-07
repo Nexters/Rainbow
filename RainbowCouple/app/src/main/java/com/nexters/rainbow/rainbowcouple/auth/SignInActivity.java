@@ -1,4 +1,4 @@
-package com.nexters.rainbow.rainbowcouple.login;
+package com.nexters.rainbow.rainbowcouple.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,12 +41,12 @@ public class SignInActivity extends BaseActivity {
 
     @OnClick(R.id.btnSignIn)
     public void signIn() {
-        String userId = editTextUserId.getString();
-        String password = editTextPassword.getString();
-
-        if (checkLoginValidation(userId, password)) {
+        if (hasEmptyField()) {
             return;
         }
+
+        String userId = editTextUserId.getString();
+        String password = editTextPassword.getString();
 
         AuthApi authApi = NetworkManager.getInstance().getAdapter().create(AuthApi.class);
         Observable<Response<UserDto>> authObservable = authApi.login(userId, password);
@@ -86,13 +86,13 @@ public class SignInActivity extends BaseActivity {
         DialogManager.showAlertDialog(this, message);
     }
 
-    private boolean checkLoginValidation(String userId, String password) {
-        if (StringUtils.isEmpty(userId)) {
+    private boolean hasEmptyField() {
+        if (StringUtils.isEmpty(editTextUserId.getString())) {
             DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_ID);
             return true;
         }
 
-        if (StringUtils.isEmpty(password)) {
+        if (StringUtils.isEmpty(editTextPassword.getString())) {
             DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_PASSWORD);
             return true;
         }

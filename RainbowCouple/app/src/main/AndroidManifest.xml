@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".login.SignInActivity"
+            android:name=".auth.SignInActivity"
             android:label="@string/app_name"
             android:theme="@style/NoTitleTheme">
             <intent-filter>
@@ -35,7 +35,7 @@
             android:theme="@style/NoTitleTheme"/>
 
         <activity
-            android:name=".login.SignUpActivity"/>
+            android:name=".auth.SignUpActivity"/>
 
         <activity
             android:name=".graph.GraphActivity"/>

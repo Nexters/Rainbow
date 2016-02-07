@@ -28,4 +28,15 @@ public class Response<T> {
     public void setResult(T result) {
         this.result = result;
     }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("errorCode : ")
+                .append(errorCode)
+                .append("\nerrorMessage")
+                .append(errorMessage)
+                .append("\n")
+                .append(result);
+        return builder.toString();
+    }
 }

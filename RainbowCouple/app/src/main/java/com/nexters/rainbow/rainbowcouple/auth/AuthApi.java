@@ -1,4 +1,4 @@
-package com.nexters.rainbow.rainbowcouple.login;
+package com.nexters.rainbow.rainbowcouple.auth;
 
 import com.nexters.rainbow.rainbowcouple.common.Response;
 
@@ -14,6 +14,6 @@ public interface AuthApi {
     @POST("/rainbow/login")
     Observable<Response<UserDto>> login(@Field("user_id") String userId, @Field("password") String password);
 
-    @POST("/rainbow/join") String signUp(@Body SignUpForm signUpForm);
+    @POST("/rainbow/join") Observable<Response> signUp(@Body SignUpForm signUpForm);
 
 }
