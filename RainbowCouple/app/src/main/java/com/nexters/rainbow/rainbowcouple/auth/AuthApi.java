@@ -1,6 +1,6 @@
 package com.nexters.rainbow.rainbowcouple.auth;
 
-import com.nexters.rainbow.rainbowcouple.common.Response;
+import com.nexters.rainbow.rainbowcouple.auth.signup.SignUpForm;
 
 import retrofit.http.Body;
 import retrofit.http.Field;
@@ -12,8 +12,8 @@ public interface AuthApi {
 
     @FormUrlEncoded
     @POST("/rainbow/login")
-    Observable<Response<UserDto>> login(@Field("user_id") String userId, @Field("password") String password);
+    Observable<UserDto> login(@Field("user_id") String userId, @Field("password") String password);
 
-    @POST("/rainbow/join") Observable<Response> signUp(@Body SignUpForm signUpForm);
+    @POST("/rainbow/join") Observable<UserDto> signUp(@Body SignUpForm signUpForm);
 
 }

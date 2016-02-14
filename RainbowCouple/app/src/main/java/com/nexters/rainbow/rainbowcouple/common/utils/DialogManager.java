@@ -10,7 +10,7 @@ import static android.content.DialogInterface.OnClickListener;
 
 public class DialogManager {
 
-    private Builder alertDialog;
+    private static final String MESSAGE_OK = "확인";
 
     private AlertConfirmCallback alertConfirmCallback = null;
     public interface AlertConfirmCallback {
@@ -21,12 +21,20 @@ public class DialogManager {
     public static void showAlertDialog(Context context, String message) {
         Builder dialogBuilder = new Builder(context);
         dialogBuilder.setMessage(message);
-        dialogBuilder.setPositiveButton("확인", new OnClickListener() {
+        dialogBuilder.setPositiveButton(MESSAGE_OK, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
+        dialogBuilder.show();
+    }
+
+    public static void showAlertDialog(Context context, String title, String message, DialogInterface.OnClickListener listener) {
+        Builder dialogBuilder = new Builder(context);
+        dialogBuilder.setTitle(title);
+        dialogBuilder.setMessage(message);
+        dialogBuilder.setPositiveButton(MESSAGE_OK, listener);
         dialogBuilder.show();
     }
 

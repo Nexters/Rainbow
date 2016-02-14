@@ -1,92 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1">
+    tools:context=".SignUpManageActivity">
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/signUpContentPanel"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="회원가입"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:layout_height="match_parent"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.45"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextSignUpUserId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:hint="@string/activity_login_id"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextSignUpUserName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:hint="이름"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextSignUpUserPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:password="true"
-                android:hint="@string/activity_login_password"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"/>
-
-    <Button
-        android:id="@+id/btnSignUpApply"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:background="@color/color_bill_background_tint"
-        android:text="Sign Up"/>
-
-</LinearLayout>
+</RelativeLayout>

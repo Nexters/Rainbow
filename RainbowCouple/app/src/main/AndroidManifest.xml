@@ -35,7 +35,7 @@
             android:theme="@style/NoTitleTheme"/>
 
         <activity
-            android:name=".auth.SignUpActivity"/>
+            android:name=".auth.signup.SignUpManageActivity"/>
 
         <activity
             android:name=".graph.GraphActivity"/>

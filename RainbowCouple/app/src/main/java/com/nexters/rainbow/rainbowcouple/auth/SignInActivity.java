@@ -8,12 +8,13 @@ import com.nexters.rainbow.rainbowcouple.MainActivity;
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.common.BaseActivity;
 import com.nexters.rainbow.rainbowcouple.common.Messages;
-import com.nexters.rainbow.rainbowcouple.common.Response;
+import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
+import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
-import com.nexters.rainbow.rainbowcouple.common.utils.NetworkManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText;
+import com.nexters.rainbow.rainbowcouple.auth.signup.SignUpManageActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,6 +37,8 @@ public class SignInActivity extends BaseActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sign_in);
 
+        DebugLog.DEBUG = DebugLog.isDebugMode(this);
+
         ButterKnife.bind(this);
     }
 
@@ -49,42 +52,24 @@ public class SignInActivity extends BaseActivity {
         String password = editTextPassword.getString();
 
         AuthApi authApi = NetworkManager.getApi(AuthApi.class);
-        Observable<Response<UserDto>> authObservable = authApi.login(userId, password);
-
-        bind(authObservable).subscribe(new Action1<Response<UserDto>>() {
+        Observable<UserDto> authObservable = authApi.login(userId, password);
+        bind(authObservable).subscribe(new Action1<UserDto>() {
             @Override
-            public void call(Response<UserDto> response) {
-                DebugLog.d(response.getResult().toString());
-                processLogin(response);
+            public void call(UserDto userDto) {
+                DebugLog.d(userDto.toString());
+                processLogin();
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                DialogManager.showAlertDialog(getApplicationContext(), throwable.getMessage());
-                DebugLog.e(throwable.getMessage());
+                new ExceptionHandler(SignInActivity.this).handle(throwable);
             }
         });
     }
 
-    private void processLogin(Response<UserDto> response) {
-        String message;
-        switch (response.getErrorCode()) {
-            case 0:
-                //TODO : session에 유저 정보 넣기 ?
-                Intent mainActivity = new Intent(SignInActivity.this, MainActivity.class);
-                startActivity(mainActivity);
-                return;
-            case 2:
-                message = Messages.LoginError.INVALID_SESSION;
-                break;
-            case 6:
-                message = Messages.LoginError.INVALID_ID_PASSWORD;
-                break;
-            default:
-                message = Messages.BAD_REQUEST;
-                break;
-        }
-        DialogManager.showAlertDialog(this, message);
+    private void processLogin() {
+        Intent mainActivity = new Intent(SignInActivity.this, MainActivity.class);
+        startActivity(mainActivity);
     }
 
     private boolean hasEmptyField() {
@@ -102,7 +87,7 @@ public class SignInActivity extends BaseActivity {
 
     @OnClick(R.id.btnSignUp)
     public void startSignUpActivity() {
-        Intent signUpActivity = new Intent(SignInActivity.this, SignUpActivity.class);
+        Intent signUpActivity = new Intent(SignInActivity.this, SignUpManageActivity.class);
         startActivity(signUpActivity);
     }
 }

@@ -1,6 +1,8 @@
-package com.nexters.rainbow.rainbowcouple.common.utils;
+package com.nexters.rainbow.rainbowcouple.common.network;
 
 import com.nexters.rainbow.rainbowcouple.common.Constants;
+import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
+import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 
 import retrofit.Profiler;
 import retrofit.RestAdapter;

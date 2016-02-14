@@ -1,9 +1,8 @@
-package com.nexters.rainbow.rainbowcouple.common;
+package com.nexters.rainbow.rainbowcouple.common.network;
 
-public class Response<T> {
+public class ErrorResponse {
     private int errorCode;
     private String errorMessage;
-    private T result;
 
     public int getErrorCode() {
         return errorCode;
@@ -21,22 +20,12 @@ public class Response<T> {
         this.errorMessage = errorMessage;
     }
 
-    public T getResult() {
-        return result;
-    }
-
-    public void setResult(T result) {
-        this.result = result;
-    }
-
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("errorCode : ")
                 .append(errorCode)
                 .append("\nerrorMessage")
-                .append(errorMessage)
-                .append("\n")
-                .append(result);
+                .append(errorMessage);
         return builder.toString();
     }
 }

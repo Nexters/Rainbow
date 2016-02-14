@@ -5,34 +5,45 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
-import com.nexters.rainbow.rainbowcouple.MainActivity;
-
 public class DebugLog {
+
+    public static boolean DEBUG = true;
+
     private static final String TAG = "rainbow";
 
-    /** Log Level Error **/
+    /**
+     * Log Level Error
+     **/
     public static void e(String message) {
-        if (MainActivity.DEBUG) Log.e(TAG, buildLogMessage(message));
+        if (DEBUG) Log.e(TAG, buildLogMessage(message));
     }
 
-    /** Log Level Warning **/
+    /**
+     * Log Level Warning
+     **/
     public static void w(String message) {
-        if (MainActivity.DEBUG)Log.w(TAG, buildLogMessage(message));
+        if (DEBUG) Log.w(TAG, buildLogMessage(message));
     }
 
-    /** Log Level Information **/
+    /**
+     * Log Level Information
+     **/
     public static void i(String message) {
-        if (MainActivity.DEBUG)Log.i(TAG, buildLogMessage(message));
+        if (DEBUG) Log.i(TAG, buildLogMessage(message));
     }
 
-    /** Log Level Debug **/
+    /**
+     * Log Level Debug
+     **/
     public static void d(String message) {
-        if (MainActivity.DEBUG)Log.d(TAG, buildLogMessage(message));
+        if (DEBUG) Log.d(TAG, buildLogMessage(message));
     }
 
-    /** Log Level Verbose **/
+    /**
+     * Log Level Verbose
+     **/
     public static void v(String message) {
-        if (MainActivity.DEBUG)Log.v(TAG, buildLogMessage(message));
+        if (DEBUG) Log.v(TAG, buildLogMessage(message));
     }
 
     public static String buildLogMessage(String message) {

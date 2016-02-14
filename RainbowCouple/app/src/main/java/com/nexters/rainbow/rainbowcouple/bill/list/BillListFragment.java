@@ -2,9 +2,7 @@ package com.nexters.rainbow.rainbowcouple.bill.list;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,19 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.nexters.rainbow.rainbowcouple.MainActivity;
 import com.nexters.rainbow.rainbowcouple.R;
-import com.nexters.rainbow.rainbowcouple.auth.AuthApi;
-import com.nexters.rainbow.rainbowcouple.auth.UserDto;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
-import com.nexters.rainbow.rainbowcouple.common.Response;
+import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
-import com.nexters.rainbow.rainbowcouple.common.utils.NetworkManager;
-import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
 
@@ -39,8 +32,7 @@ import rx.functions.Action1;
 
 public class BillListFragment extends BaseFragment implements BillAddDialog.AddDialogDismissCallback {
 
-    private final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
-    private final String TAG_BILL_ADD_DIALOG = "bill_list_fragment";
+    private static final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
 
     private View rootView;
     private List<Bill> billList = new ArrayList<>();
@@ -52,7 +44,9 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     @Bind(R.id.actionBtnAddBill) Button actionBtnAddBill;
 
     public static BillListFragment newInstance() {
-        return new BillListFragment();
+        BillListFragment fragment = new BillListFragment();
+        fragment.setFragmentTag(TAG_BILL_LIST_FRAGMENT);
+        return fragment;
     }
 
     @Override
@@ -63,14 +57,14 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         setFragmentTag(TAG_BILL_LIST_FRAGMENT);
 
         BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<Response<List<Bill>>> billObservable = billApi.viewBill(
+        Observable<List<Bill>> billObservable = billApi.viewBill(
                 "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_", "1", "2016", "2", "9"
         );
-        bind(billObservable).subscribe(new Action1<Response<List<Bill>>>() {
+        bind(billObservable).subscribe(new Action1<List<Bill>>() {
             @Override
-            public void call(Response<List<Bill>> listResponse) {
-                DebugLog.d(listResponse.getResult().toString());
-                billList.addAll(listResponse.getResult());
+            public void call(List<Bill> billList) {
+                DebugLog.d(billList.toString());
+                BillListFragment.this.billList.addAll(billList);
             }
         }, new Action1<Throwable>() {
             @Override
@@ -103,7 +97,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     public void showBillAddDialog() {
         BillAddDialog billAddDialog = BillAddDialog.newInstance();
         billAddDialog.setDismissCallback(this);
-        billAddDialog.show(getFragmentManager(), TAG_BILL_ADD_DIALOG);
+        billAddDialog.show(getFragmentManager(), billAddDialog.getFragmentTag());
     }
 
     // TODO: 2016. 1. 16. api로 서버에 저장 할 것. DB에 따로 저장하지는 않음..

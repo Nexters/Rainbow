@@ -1,4 +1,4 @@
-package com.nexters.rainbow.rainbowcouple.auth;
+package com.nexters.rainbow.rainbowcouple.auth.signup;
 
 public class SignUpForm {
     private String userId;

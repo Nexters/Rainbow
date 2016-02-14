@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.view.Window;
 
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
+import com.nexters.rainbow.rainbowcouple.common.BaseDialogFragment;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText;
@@ -20,7 +20,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BillAddDialog extends DialogFragment {
+public class BillAddDialog extends BaseDialogFragment {
+
+    private static final String TAG_BILL_ADD_DIALOG = "bill_list_fragment";
 
     @Bind(R.id.editTextNewBillAmount) AppCompatEditText editTextBillAmount;
     @Bind(R.id.editTextNewBillCategory) AppCompatEditText editTextBillCategory;
@@ -35,7 +37,9 @@ public class BillAddDialog extends DialogFragment {
     }
 
     public static BillAddDialog newInstance() {
-        return new BillAddDialog();
+        BillAddDialog dialog = new BillAddDialog();
+        dialog.setFragmentTag(TAG_BILL_ADD_DIALOG);
+        return dialog;
     }
 
     @NonNull
@@ -56,6 +60,12 @@ public class BillAddDialog extends DialogFragment {
         setCancelable(true);
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     @OnClick(R.id.btnBillSave)
