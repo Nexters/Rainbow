@@ -15,9 +15,8 @@ import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
+import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
-import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
-import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
 
@@ -28,6 +27,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
 public class BillListFragment extends BaseFragment implements BillAddDialog.AddDialogDismissCallback {
@@ -56,27 +56,28 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
         setFragmentTag(TAG_BILL_LIST_FRAGMENT);
 
+        billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
+        billListView.setAdapter(billListAdapter);
+        billListView.setEmptyView(emptyTextView);
+
         BillApi billApi = NetworkManager.getApi(BillApi.class);
         Observable<List<Bill>> billObservable = billApi.viewBill(
                 "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_", "1", "2016", "2", "9"
         );
-        bind(billObservable).subscribe(new Action1<List<Bill>>() {
-            @Override
-            public void call(List<Bill> billList) {
-                DebugLog.d(billList.toString());
-                BillListFragment.this.billList.addAll(billList);
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                DialogManager.showAlertDialog(getActivity(), throwable.getMessage());
-                DebugLog.e(throwable.getMessage());
-            }
-        });
 
-        billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
-        billListView.setAdapter(billListAdapter);
-        billListView.setEmptyView(emptyTextView);
+        bind(billObservable)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<Bill>>() {
+                    @Override
+                    public void call(List<Bill> bills) {
+                        billListAdapter.addAllData(bills);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        new ExceptionHandler(getActivity()).handle(throwable);
+                    }
+                });
 
         return rootView;
     }

@@ -4,18 +4,18 @@ import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.group.Group;
 
 public class UserDto {
-    private String rs;
+    private String token;
     private String userId;
     private String userName;
     private String password;
     private Group group;
 
-    public String getRs() {
-        return rs;
+    public String getToken() {
+        return token;
     }
 
-    public void setRs(String rs) {
-        this.rs = rs;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getUserId() {
