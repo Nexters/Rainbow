@@ -6,230 +6,188 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:id="@+id/owner"
+        android:layout_height="50dp"
+        android:background="#000000">
+        <Button
+            android:id="@+id/btnOur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Our"/>
-        <TextView
+            android:layout_centerInParent="true"
+            android:text="Our"
+            android:textColor="#444444"
+            android:background="@null"/>
+        <Button
+            android:id="@+id/btnYou"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/owner"
-            android:textSize="24sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="January"/>
-
+            android:layout_toLeftOf="@id/btnOur"
+            android:text="You"
+            android:textColor="#444444"
+            android:background="@null"/>
+        <Button
+            android:id="@+id/btnMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btnOur"
+            android:text="Me"
+            android:textColor="#444444"
+            android:background="@null"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="2">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Sun"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Mon"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Tue"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Wed"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Thur"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Fri"
-                android:textSize="12sp"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Sat"
-                android:textSize="12sp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:background="#525252">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="24"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="25"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="26"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="27"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="28"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="29"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="30"/>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center_vertical"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:background="#666666">
-                <TextView
-                    android:id="@+id/today"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1/29 Fri"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:id="@+id/total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Today's Total"
-                    android:layout_below="@id/today"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="68,800"
-                    android:textColor="#FFFFFF"
-                    android:textSize="24sp"/>
-            </RelativeLayout>
-        </LinearLayout>
-
-
+        android:layout_height="wrap_content"
+        android:background="#6F789F"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/tvYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_margin="4dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_margin="4dp"/>
+        <TextView
+            android:id="@+id/tvMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_margin="4dp"/>
     </LinearLayout>
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="vertical">
-
-        <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
-            android:id="@+id/listViewBill"
+        android:layout_weight="1">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:dividerHeight="0dp"
-            android:divider="@color/color_transparent"/>
+            android:orientation="vertical">
+            <HorizontalScrollView
+                android:id="@+id/calendar"
+                android:layout_width="match_parent"
+                android:background="#6F789F"
+                android:layout_height="60dp">
 
-        <TextView
-            android:id="@+id/textViewBillEmpty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="#ffffffff"
-            android:gravity="center"
-            android:text="@string/string_empty_bill"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold"
-            android:visibility="invisible" />
+            </HorizontalScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:background="#F5F5F5">
+                    <TextView
+                        android:id="@+id/year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2016"
+                        android:textStyle="bold"
+                        android:textColor="#BABABA"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/yearText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="년 "
+                        android:layout_toRightOf="@id/year"
+                        android:textColor="#BABABA"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/yearText"
+                        android:text="12"
+                        android:textStyle="bold"
+                        android:textColor="#BABABA"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/monthText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="월"
+                        android:layout_toRightOf="@id/month"
+                        android:textColor="#BABABA"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/userCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="우리"
+                        android:textStyle="bold"
+                        android:layout_below="@id/year"
+                        android:textColor="#BABABA"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/userCategoryText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="가 사용한 금액"
+                        android:layout_below="@id/year"
+                        android:layout_toRightOf="@id/userCategory"
+                        android:textColor="#BABABA"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="W 68,800"
+                        android:textColor="#6F789F"
+                        android:textSize="28sp"/>
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+                    <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
+                        android:id="@+id/listViewBill"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:dividerHeight="0dp"
+                        android:divider="@color/color_transparent"/>
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/textViewBillEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:background="#ffffffff"
+                        android:gravity="center"
+                        android:text="@string/string_empty_bill"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </android.support.design.widget.CoordinatorLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#EFEFEF">
+        android:background="#FFFFFF">
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Today"
+            android:text="Setting"
             android:background="#EFEFEF"
             android:textSize="12sp"/>
         <Button
@@ -250,5 +208,4 @@
             android:textSize="12sp"/>
 
     </LinearLayout>
-
 </LinearLayout>
