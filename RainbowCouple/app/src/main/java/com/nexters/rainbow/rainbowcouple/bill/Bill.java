@@ -4,46 +4,81 @@ import java.util.Date;
 
 public class Bill {
 
-    private Long billId;
-    private Long budget;
+    private int year;
+    private int month;
+    private int day;
+    private String userSN;
+    private String userName;
     private String category;
+    private int amount;
     private String comment;
-    private Date createdAt;
 
-    public Bill(Long budget, String cateogry, String comment, Date createdAt) {
-        this.budget = budget;
-        this.category = cateogry;
-        this.comment = comment;
-        this.createdAt = createdAt;
-    }
-
-    public Bill(Long billId, Long budget, String category, String comment, Date createdAt) {
-        this.billId = billId;
-        this.budget = budget;
+    public Bill(int year, int month, int day, String userSN, String userName, String category, int amount, String comment) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.userSN = userSN;
+        this.userName = userName;
         this.category = category;
+        this.amount = amount;
         this.comment = comment;
-        this.createdAt = createdAt;
     }
 
-    public Long getBillId() {
-        return billId;
+    public int getYear() {
+        return year;
     }
 
-    public void setBillId(Long billId) {
-        this.billId = billId;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public Long getBudget() {
-        return budget;
+    public int getMonth() {
+        return month;
     }
 
-    public void setBudget(Long budget) {
-        this.budget = budget;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    public String getCategory() { return category; }
+    public int getDay() {
+        return day;
+    }
 
-    public void setCategory(String category) { this.category = category; }
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public String getUserSN() {
+        return userSN;
+    }
+
+    public void setUserSN(String userSN) {
+        this.userSN = userSN;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public String getComment() {
         return comment;
@@ -52,13 +87,4 @@ public class Bill {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
 }

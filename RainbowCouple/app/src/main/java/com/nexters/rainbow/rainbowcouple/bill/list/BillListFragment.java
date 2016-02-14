@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,9 +14,16 @@ import android.widget.TextView;
 
 import com.nexters.rainbow.rainbowcouple.MainActivity;
 import com.nexters.rainbow.rainbowcouple.R;
+import com.nexters.rainbow.rainbowcouple.auth.AuthApi;
+import com.nexters.rainbow.rainbowcouple.auth.UserDto;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
+import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
+import com.nexters.rainbow.rainbowcouple.common.Response;
+import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
+import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
+import com.nexters.rainbow.rainbowcouple.common.utils.NetworkManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
@@ -26,6 +34,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.functions.Action1;
 
 public class BillListFragment extends BaseFragment implements BillAddDialog.AddDialogDismissCallback {
 
@@ -52,16 +62,23 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
         setFragmentTag(TAG_BILL_LIST_FRAGMENT);
 
-        // TODO: 2016. 1. 16. db에서 데이터 읽어오기
-        billList.add(new Bill(1L, 5000L,"커피", "테스트용 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(2L, 100000L,"밥", "테스트용 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(3L, 5200L, "카테고리", "테스트용 너의 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(4L, 3200L, "카테고리", "테스트용 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(5L, 3200L, "카테고리", "테스트용 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(6L, 12300L, "카테고리", "테스트용 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(7L, 3240L, "카테고리", "테스트용 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(8L, 5200L, "카테고리", "테스트용 너의 데이터", TimeUtils.getToday()));
-        billList.add(new Bill(9L, 5200L, "카테고리", "테스트용 너의 데이터", TimeUtils.getToday()));
+        BillApi billApi = NetworkManager.getApi(BillApi.class);
+        Observable<Response<List<Bill>>> billObservable = billApi.viewBill(
+                "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_", "1", "2016", "2", "9"
+        );
+        bind(billObservable).subscribe(new Action1<Response<List<Bill>>>() {
+            @Override
+            public void call(Response<List<Bill>> listResponse) {
+                DebugLog.d(listResponse.getResult().toString());
+                billList.addAll(listResponse.getResult());
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                DialogManager.showAlertDialog(getActivity(), throwable.getMessage());
+                DebugLog.e(throwable.getMessage());
+            }
+        });
 
         billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
         billListView.setAdapter(billListAdapter);

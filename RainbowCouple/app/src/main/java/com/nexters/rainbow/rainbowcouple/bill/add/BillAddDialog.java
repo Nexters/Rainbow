@@ -67,10 +67,8 @@ public class BillAddDialog extends DialogFragment {
             return;
         }
 
-        dismissCallback.saveNewBill(new Bill(Long.parseLong(editTextBillAmount.getString()),
-                editTextBillCategory.getString(),
-                editTextBillComment.getString(),
-                TimeUtils.getToday()));
+        dismissCallback.saveNewBill(new Bill(2016, 2, 8, "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_",
+                "Soyoon", "Shopping", 26000, "TESTING"));
 
         dismiss();
     }

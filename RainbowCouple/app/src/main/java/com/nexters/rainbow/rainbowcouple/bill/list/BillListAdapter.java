@@ -34,7 +34,7 @@ public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemV
     public void loadView(View convertView, BillItemViewHolder viewHolder, Bill item, int position) {
         viewHolder.textViewBillCategory.setText(item.getCategory());
         viewHolder.textViewBillComment.setText(item.getComment());
-        viewHolder.textViewBillAmount.setText(String.format(FORMAT_BILL_BUDGET, item.getBudget()));
+        viewHolder.textViewBillAmount.setText(String.format(FORMAT_BILL_BUDGET, item.getAmount()));
     }
 
     class BillItemViewHolder {

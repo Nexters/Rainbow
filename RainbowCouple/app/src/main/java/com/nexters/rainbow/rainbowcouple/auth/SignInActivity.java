@@ -50,6 +50,7 @@ public class SignInActivity extends BaseActivity {
 
         AuthApi authApi = NetworkManager.getInstance().getAdapter().create(AuthApi.class);
         Observable<Response<UserDto>> authObservable = authApi.login(userId, password);
+
         bind(authObservable).subscribe(new Action1<Response<UserDto>>() {
             @Override
             public void call(Response<UserDto> response) {
