@@ -76,7 +76,7 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void processSignUp(SignUpForm signUpForm) {
-        AuthApi authApi = NetworkManager.getInstance().getAdapter().create(AuthApi.class);
+        AuthApi authApi = NetworkManager.getApi(AuthApi.class);
         Observable<Response> authObservable = authApi.signUp(signUpForm);
         bind(authObservable).subscribe(new Action1<Response>() {
             @Override
