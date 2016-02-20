@@ -23,6 +23,7 @@ public abstract class Messages {
     }
 
     public static abstract class NetworkError {
+        public static final String HTTP_SERVER_ERROR = "%s";
         public static final String NETWORK_ERROR = "서버와 통신 중 오류가 발생했습니다.\n에러내용 : %s";
         public static final String UNKNOWN_NETWORK_ERROR = "서버와 통신 중 알 수 없는 오류가 발생했습니다.\n에러내용 : %s";
     }

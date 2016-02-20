@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 
 public class BaseActivity extends FragmentActivity {
@@ -21,6 +22,7 @@ public class BaseActivity extends FragmentActivity {
 
     protected <T> Observable<T> bind(Observable<T> observable) {
         return observable
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
                     @Override
                     public void call() {

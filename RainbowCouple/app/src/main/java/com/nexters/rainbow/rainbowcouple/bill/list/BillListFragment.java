@@ -66,7 +66,6 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         );
 
         bind(billObservable)
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<Bill>>() {
                     @Override
                     public void call(List<Bill> bills) {
