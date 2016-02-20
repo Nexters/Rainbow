@@ -28,4 +28,12 @@ public abstract class Messages {
         public static final String UNKNOWN_NETWORK_ERROR = "서버와 통신 중 알 수 없는 오류가 발생했습니다.\n에러내용 : %s";
     }
 
+    public static abstract class BillError {
+        public static final String INVALID_INPUT = "올바르지 않은 입력입니다.\n다시 입력 해 주세요.";
+        public static final String BILL_AMOUNT_EMPTY = "지출 금액을 입력 해 주세요.";
+        public static final String BILL_COMMENT_EMPTY = "내용을 입력 해 주세요.";
+        public static final String BILL_CATEGORY_EMPTY = "카테고리를 선택 해 주세요.";
+
+    }
+
 }

@@ -22,10 +22,8 @@ public class InviteMemberFragment extends BaseFragment {
     private static final String ARG_INVITE_CODE = "invite_code";
 
     private View rootView;
-    private String inviteCode;
 
-    @Bind(R.id.btnCopyInviteCode)
-    Button btnCopyInviteCode;
+    @Bind(R.id.btnCopyInviteCode) Button btnCopyInviteCode;
 
     public static InviteMemberFragment newInstance(String inviteCode) {
         Bundle arguments = new Bundle();
@@ -38,18 +36,13 @@ public class InviteMemberFragment extends BaseFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        inviteCode = getInviteCodeArgument();
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_invite_member, container, false);
         ButterKnife.bind(this, rootView);
 
-        btnCopyInviteCode.setText(inviteCode);
+        //TODO : inivite code가 제대로 안 들어갔을 경우를 고려해야
+        btnCopyInviteCode.setText(getInviteCodeArgument());
+
         return rootView;
     }
 
@@ -65,6 +58,7 @@ public class InviteMemberFragment extends BaseFragment {
     }
 
     private String getInviteCodeArgument() {
+        String inviteCode = getArguments().getString(ARG_INVITE_CODE);
         return ObjectUtils.isEmpty(inviteCode) ? "" : inviteCode;
     }
 }

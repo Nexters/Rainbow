@@ -32,4 +32,16 @@ public abstract class TimeUtils {
     public static Date getDateAfterDays(int afterDays) {
         return LocalDate.now().plusDays(afterDays).toDate();
     }
+
+    public static int getYearOfToday() {
+        return LocalDate.now().getYear();
+    }
+
+    public static int getMonthOfToday() {
+        return LocalDate.now().getMonthOfYear();
+    }
+
+    public static int getDayOfToday() {
+        return LocalDate.now().getDayOfMonth();
+    }
 }
