@@ -15,8 +15,10 @@ import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
+import com.nexters.rainbow.rainbowcouple.common.Constants;
 import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
+import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
 
@@ -41,6 +43,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     @Bind(R.id.listViewBill) EndlessListView billListView;
     @Bind(R.id.textViewBillEmpty) TextView emptyTextView;
     @Bind(R.id.actionBtnAddBill) Button actionBtnAddBill;
+    @Bind(R.id.textViewBillTotalAmount) TextView billTotalAmount;
 
     public static BillListFragment newInstance() {
         BillListFragment fragment = new BillListFragment();
@@ -59,16 +62,18 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         billListView.setAdapter(billListAdapter);
         billListView.setEmptyView(emptyTextView);
 
-        BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<List<Bill>> billObservable = billApi.viewBill(
-                "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_", "1", "2016", "2", "9"
+        final BillApi billApi = NetworkManager.getApi(BillApi.class);
+        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
+                "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_", "1",
+                String.valueOf(TimeUtils.getYearOfToday()),
+                String.valueOf(TimeUtils.getMonthOfToday())
         );
 
         bind(billObservable)
                 .subscribe(new Action1<List<Bill>>() {
                     @Override
                     public void call(List<Bill> bills) {
-                        billListAdapter.addAllData(bills);
+                        setBillViewData(bills);
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -78,6 +83,21 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
                 });
 
         return rootView;
+    }
+
+
+    private void setBillViewData(List<Bill> bills) {
+        billTotalAmount.setText(String.format(Constants.FORMAT_BILL_BUDGET, getTotalAmount(bills)));
+        billListAdapter.addAllData(bills);
+    }
+
+    private int getTotalAmount(List<Bill> bills) {
+        //TODO : 아예 서버에서 total Amount를 받아오도록
+        int totalAmount = 0;
+        for (Bill bill : bills) {
+            totalAmount += bill.getAmount();
+        }
+        return totalAmount;
     }
 
     @Override
