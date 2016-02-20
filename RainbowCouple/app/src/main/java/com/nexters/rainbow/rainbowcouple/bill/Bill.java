@@ -1,7 +1,5 @@
 package com.nexters.rainbow.rainbowcouple.bill;
 
-import java.util.Date;
-
 public class Bill {
 
     private int year;
