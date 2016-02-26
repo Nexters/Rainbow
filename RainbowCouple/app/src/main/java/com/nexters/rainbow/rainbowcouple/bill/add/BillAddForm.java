@@ -13,10 +13,10 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 public class BillAddForm {
-    private int amount;
     private int year;
     private int month;
     private int day;
+    private int amount;
     private String category;
     private String hashtags;
     private String comment;

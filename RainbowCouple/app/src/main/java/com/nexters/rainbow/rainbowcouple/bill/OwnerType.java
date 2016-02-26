@@ -2,7 +2,7 @@ package com.nexters.rainbow.rainbowcouple.bill;
 
 import lombok.Getter;
 
-public enum BillOwner {
+public enum OwnerType {
     ALL("ALL"),
     MINE("MINE"),
     PARTNER("PARTNER");
@@ -10,7 +10,7 @@ public enum BillOwner {
     @Getter
     private String description;
 
-    BillOwner(String description) {
+    OwnerType(String description) {
         this.description = description;
     }
 

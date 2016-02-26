@@ -6,15 +6,16 @@ import android.view.Window;
 
 import com.nexters.rainbow.rainbowcouple.MainActivity;
 import com.nexters.rainbow.rainbowcouple.R;
+import com.nexters.rainbow.rainbowcouple.auth.signup.SignUpManageActivity;
 import com.nexters.rainbow.rainbowcouple.common.BaseActivity;
 import com.nexters.rainbow.rainbowcouple.common.Messages;
 import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
+import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText;
-import com.nexters.rainbow.rainbowcouple.auth.signup.SignUpManageActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,6 +31,8 @@ public class SignInActivity extends BaseActivity {
     @Bind(R.id.editTextUserPassword)
     AppCompatEditText editTextPassword;
 
+    private SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,8 @@ public class SignInActivity extends BaseActivity {
         DebugLog.DEBUG = DebugLog.isDebugMode(this);
 
         ButterKnife.bind(this);
+
+        sessionManager = SessionManager.getInstance(this);
     }
 
     @OnClick(R.id.btnSignIn)
@@ -57,7 +62,7 @@ public class SignInActivity extends BaseActivity {
             @Override
             public void call(UserDto userDto) {
                 DebugLog.d(userDto.toString());
-                processLogin();
+                processLogin(userDto);
             }
         }, new Action1<Throwable>() {
             @Override
@@ -67,7 +72,9 @@ public class SignInActivity extends BaseActivity {
         });
     }
 
-    private void processLogin() {
+    private void processLogin(UserDto userDto) {
+        sessionManager.createLoginSession(userDto);
+
         Intent mainActivity = new Intent(SignInActivity.this, MainActivity.class);
         startActivity(mainActivity);
     }

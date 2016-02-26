@@ -15,6 +15,7 @@ import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.common.BaseDialogFragment;
 import com.nexters.rainbow.rainbowcouple.common.Messages;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
+import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
@@ -34,10 +35,9 @@ public class BillAddDialog extends BaseDialogFragment {
     @Bind(R.id.editTextNewBillCategory) AppCompatEditText editTextBillCategory;
     @Bind(R.id.editTextNewBillComment) AppCompatEditText editTextBillComment;
 
-    private View rootView;
+    private SessionManager sessionManager;
 
-    private String SESSION_TOKEN = "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_";
-    private String SESSION_USER_NAME = "테스트_A";
+    private View rootView;
 
     private AddDialogDismissCallback dismissCallback = null;
 
@@ -69,6 +69,8 @@ public class BillAddDialog extends BaseDialogFragment {
 
         setCancelable(true);
 
+        sessionManager = SessionManager.getInstance(getActivity());
+
         return rootView;
     }
 
@@ -98,9 +100,9 @@ public class BillAddDialog extends BaseDialogFragment {
                 .build());
     }
 
-    private Bill saveNewBill(BillAddForm form) {
+    private void saveNewBill(BillAddForm form) {
         BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<Bill> billObservable = billApi.insertBill(SESSION_TOKEN, form);
+        Observable<Bill> billObservable = billApi.insertBill(sessionManager.getUserToken(), form);
 
         bind(billObservable)
                 .subscribe(new Action1<Bill>() {
@@ -116,17 +118,6 @@ public class BillAddDialog extends BaseDialogFragment {
                         dismiss();
                     }
                 });
-
-        return Bill.builder()
-                .year(TimeUtils.getYearOfToday())
-                .month(TimeUtils.getMonthOfToday())
-                .day(TimeUtils.getDayOfToday())
-                .userSN(SESSION_TOKEN)
-                .userName(SESSION_USER_NAME)
-                .category(editTextBillCategory.getString())
-                .amount(Integer.parseInt(editTextBillAmount.getString()))
-                .comment(editTextBillComment.getString())
-                .build();
     }
 
     @OnClick(R.id.btnBillCancel)

@@ -13,11 +13,13 @@ import android.widget.TextView;
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.BillApi;
+import com.nexters.rainbow.rainbowcouple.bill.OwnerType;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
 import com.nexters.rainbow.rainbowcouple.common.Constants;
 import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
+import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
@@ -37,9 +39,13 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
     private static final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
 
+    private SessionManager sessionManager;
+
     private View rootView;
     private List<Bill> billList = new ArrayList<>();
     private BillListAdapter billListAdapter;
+
+    private OwnerType ownerType;
 
     @Bind(R.id.listViewBill) EndlessListView billListView;
     @Bind(R.id.textViewBillEmpty) TextView emptyTextView;
@@ -59,13 +65,19 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
         setFragmentTag(TAG_BILL_LIST_FRAGMENT);
 
+        sessionManager = SessionManager.getInstance(getActivity());
+
         billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
         billListView.setAdapter(billListAdapter);
         billListView.setEmptyView(emptyTextView);
 
+        //TODO : 나 너 우리 일 경우 ownerType에 구분해서 넣어줄 것.
+        ownerType = OwnerType.ALL;
+
         final BillApi billApi = NetworkManager.getApi(BillApi.class);
         Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
-                "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_", "1",
+                sessionManager.getUserToken(),
+                ownerType,
                 String.valueOf(TimeUtils.getYearOfToday()),
                 String.valueOf(TimeUtils.getMonthOfToday())
         );
@@ -127,6 +139,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         if (ObjectUtils.isEmpty(bill)) {
             DialogManager.showAlertDialog(getActivity(), "지출 내역 저장 중 오류가 발생했습니다.");
         }
+
         billListAdapter.addData(0, bill);
         billListView.setSelection(0);
 

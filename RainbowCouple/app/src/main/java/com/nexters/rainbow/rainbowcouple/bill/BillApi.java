@@ -18,18 +18,18 @@ public interface BillApi {
 
     @GET("/rainbow/view_bills")
     Observable<List<Bill>> viewBills(@Header("token") String token,
-                                         @Query("groupSN") String groupSN,
-                                         @Query("year") String year);
+                                     @Query("ownerType") OwnerType ownerType,
+                                     @Query("year") String year);
 
     @GET("/rainbow/view_bills")
     Observable<List<Bill>> viewBillByMonth(@Header("token") String token,
-                                         @Query("groupSN") String groupSN,
-                                         @Query("year") String year,
-                                         @Query("month") String month);
+                                           @Query("ownerType") OwnerType ownerType,
+                                           @Query("year") String year,
+                                           @Query("month") String month);
 
     @GET("/rainbow/view_bills")
     Observable<List<Bill>> viewBillByDay(@Header("token") String token,
-                                         @Query("groupSN") String groupSN,
+                                         @Query("ownerType") OwnerType ownerType,
                                          @Query("year") String year,
                                          @Query("month") String month,
                                          @Query("day") String day);
