@@ -23,8 +23,6 @@ public class BillAddCategoryDialog extends BaseDialogFragment {
         view = inflater.inflate(R.layout.dialog_category_add, container, false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-        btnCreate = (Button) view.findViewById(R.id.btnCategoryCreate);
-        btnCancel = (Button)view.findViewById(R.id.btnCategoryCancel);
 
         return view;
     }

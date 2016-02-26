@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/login_bg">
 
     <TextView
         android:layout_width="match_parent"
@@ -36,6 +37,15 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1px"
+            android:layout_gravity="center"
+            android:background="#000000"
+            >
+        </View>
+
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,6 +64,13 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1px"
+            android:background="#000000"
+            >
+        </View>
+
     </LinearLayout>
 
     <LinearLayout
@@ -63,27 +80,29 @@
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_weight="0.15"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/color_bill_background"
-        android:text="Sign In"/>
+        android:background="@drawable/login_btn"
+        android:text="로그인"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.025"/>
 
-    <Button
+    <TextView
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_weight="0.05"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:gravity="center"
         android:background="@color/color_bill_background_tint"
-        android:text="Sign Up"/>
+        android:text="DOTUM 회원가입"/>
 
 </LinearLayout>

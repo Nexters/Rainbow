@@ -13,6 +13,9 @@ import android.widget.Button;
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.common.BaseDialogFragment;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by Leegain on 2016-02-17.
  */
@@ -26,29 +29,46 @@ public class BillSelectCategoryDialog extends BaseDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        activity = getActivity();
         view = inflater.inflate(R.layout.dialog_category_select, container,false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-        addCategoryBtn = (Button) view.findViewById(R.id.actionBtnAddCategory);
-
-        addCategoryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BillAddCategoryDialog addCategoryDialog = new BillAddCategoryDialog();
-                addCategoryDialog.show(getFragmentManager(),"CreateAddCategory");
-            }
-        });
+        ButterKnife.bind(this, view);
 
 
-
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, BillAddActivity.class);
-            }
-        };
 
         return view;
     }
+
+
+    @OnClick(R.id.actionBtnAddCategory)
+    public void onClickAddCategory(){
+        BillAddCategoryDialog addCategoryDialog = new BillAddCategoryDialog();
+        addCategoryDialog.show(getFragmentManager(), "CreateAddCategory");
+    }
+
+    @OnClick(R.id.btndrink)
+    public void onClickSelectDrink() {
+        Intent intent = new Intent(activity, BillAddActivity.class);
+    }
+
+    @OnClick(R.id.btneat)
+    public void onClickSelectEat() {
+        Intent intent = new Intent(activity, BillAddActivity.class);
+    }
+
+    @OnClick(R.id.btngame)
+    public void onClickSelectgame() {
+        Intent intent = new Intent(activity, BillAddActivity.class);
+    }
+
+    @OnClick(R.id.btnmovie)
+    public void onClickSelectMovie() {
+        Intent intent = new Intent(activity, BillAddActivity.class);
+    }
+
+    @OnClick(R.id.btnshoppig)
+    public void onClickSelectSopping() {
+        Intent intent = new Intent(activity, BillAddActivity.class);
+    }
+
 }

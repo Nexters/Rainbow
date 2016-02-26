@@ -16,6 +16,7 @@
             >
 
             <Button
+                android:id="@+id/btneat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -23,6 +24,7 @@
                 />
 
             <Button
+                android:id="@+id/btndrink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -30,6 +32,7 @@
                 />
 
             <Button
+                android:id="@+id/btnshoppig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -46,6 +49,7 @@
             >
 
             <Button
+                android:id="@+id/btnmovie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,6 +57,7 @@
                 />
 
             <Button
+                android:id="@+id/btngame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
