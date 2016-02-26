@@ -134,4 +134,19 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         Intent graphActivity = new Intent(getActivity(), GraphActivity.class);
         startActivity(graphActivity);
     }
+
+    @OnClick(R.id.btnOur)
+    void loadOurBill() {
+
+    }
+
+    @OnClick(R.id.btnMe)
+    void loadMyBill() {
+
+    }
+
+    @OnClick(R.id.btnYou)
+    void loadYourBill() {
+
+    }
 }
