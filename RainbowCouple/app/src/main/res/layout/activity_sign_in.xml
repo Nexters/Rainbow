@@ -1,108 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    android:paddingTop="96dp"
+    android:gravity="center_horizontal"
     android:background="@drawable/login_bg">
-
+    <ImageView
+        android:id="@+id/titleLogin"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/login_title01"/>
     <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/titleLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="30dp"
+        android:text="이메일 주소로 로그인해주세요"
+        android:textColor="#ACB0BB" />
+
+    <EditText
+        android:id="@+id/editTextUserId"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/app_name"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/label"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/color_bill_text_partner"
+        android:textSize="18sp"
+        android:hint="@string/activity_login_id"
+        />
 
-    <LinearLayout
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1px"
+        android:layout_below="@id/editTextUserId"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ACB0BB"/>
+
+
+    <EditText
+        android:id="@+id/editTextUserPassword"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.275"
-        android:orientation="vertical">
+        android:layout_height="60dp"
+        android:layout_below="@id/editTextUserId"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/color_bill_text_partner"
+        android:inputType="textPassword"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:hint="@string/activity_login_password"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1px"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ACB0BB"/>
 
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextUserId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:hint="@string/activity_login_id"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <View
-            android:layout_width="350dp"
-            android:layout_height="1px"
-            android:layout_gravity="center"
-            android:background="#000000"
-            >
-        </View>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextUserPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:password="true"
-                android:hint="@string/activity_login_password"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <View
-            android:layout_width="350dp"
-            android:layout_height="1px"
-            android:background="#000000"
-            >
-        </View>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"/>
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="300dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.15"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextUserPassword"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
         android:background="@drawable/login_btn"
-        android:text="로그인"
-        />
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:text="로그인"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.025"/>
-
-    <TextView
+    <Button
         android:id="@+id/btnSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
         android:gravity="center"
-        android:background="@color/color_bill_background_tint"
-        android:text="DOTUM 회원가입"/>
+        android:background="@null"
+        android:textSize="14sp"
+        android:textColor="#75787F"
+        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="DOTOOM 회원가입 >"/>
 
-</LinearLayout>
+</RelativeLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.auth.AuthApi;
@@ -30,9 +31,10 @@ public class SignUpFragment extends BaseFragment {
 
     private View rootView;
 
-    @Bind(R.id.editTextSignUpUserId) AppCompatEditText editTextUserId;
-    @Bind(R.id.editTextSignUpUserName) AppCompatEditText editTextUserName;
-    @Bind(R.id.editTextSignUpUserPassword) AppCompatEditText editTextUserPassword;
+    @Bind(R.id.editTextSignUpUserId)
+    EditText editTextUserId;
+    @Bind(R.id.editTextSignUpUserName) EditText editTextUserName;
+    @Bind(R.id.editTextSignUpUserPassword) EditText editTextUserPassword;
 
     public static SignUpFragment newInstance() {
         SignUpFragment fragment = new SignUpFragment();
@@ -61,24 +63,24 @@ public class SignUpFragment extends BaseFragment {
         }
 
         processSignUp(SignUpForm.builder()
-                .userId(editTextUserId.getString())
-                .userName(editTextUserName.getString())
-                .password(editTextUserPassword.getString())
+                .userId(editTextUserId.toString())
+                .userName(editTextUserName.toString())
+                .password(editTextUserPassword.toString())
                 .build());
     }
 
     private boolean hasEmptyField() {
-        if (StringUtils.isEmpty(editTextUserId.getString())) {
+        if (StringUtils.isEmpty(editTextUserId.toString())) {
             DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_ID);
             return true;
         }
 
-        if (StringUtils.isEmpty(editTextUserName.getString())) {
+        if (StringUtils.isEmpty(editTextUserName.toString())) {
             DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_NAME);
             return true;
         }
 
-        if (StringUtils.isEmpty(editTextUserPassword.getString())) {
+        if (StringUtils.isEmpty(editTextUserPassword.toString())) {
             DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_PASSWORD);
             return true;
         }

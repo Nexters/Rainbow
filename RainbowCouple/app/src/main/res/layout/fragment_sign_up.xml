@@ -1,92 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1">
-
+    android:paddingTop="20dp"
+    android:paddingLeft="20dp"
+    android:paddingBottom="20dp"
+    android:paddingRight="20dp"
+    android:background="@drawable/bg">
+    <ImageView
+        android:id="@+id/titleSignUp"
+        android:layout_width="214dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="52dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/login_img_title01"/>
     <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleSignUp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
+        android:text="SIGN IN"/>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="회원가입"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/label"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_card"
+        android:padding="5dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.45"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/editTextSignUpUserId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_bill_text_partner"
+            android:inputType="textWebEmailAddress"
+            android:hint="@string/activity_login_id"/>
 
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextSignUpUserId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:hint="@string/activity_login_id"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/editTextSignUpUserName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="42dp"
+            android:layout_below="@id/editTextSignUpUserId"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_bill_text_partner"
+            android:hint="이름"/>
 
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextSignUpUserName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:hint="이름"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/editTextSignUpUserPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="172dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_bill_text_partner"
+            android:inputType="textPassword"
+            android:hint="@string/activity_login_password"/>
+        <EditText
+            android:id="@+id/editTextSignUpUserPasswordCheck"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:layout_below="@id/editTextSignUpUserPassword"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_bill_text_partner"
+            android:inputType="textPassword"
+            android:hint="@string/activity_login_password_check"/>
 
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextSignUpUserPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:password="true"
-                android:hint="@string/activity_login_password"/>
+        <Button
+            android:id="@+id/btnSignUpApply"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_margin="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:background="@drawable/join_bt_bg"
+            android:text="가입하기"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
+    </RelativeLayout>
 
-        </android.support.design.widget.TextInputLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"/>
-
-    <Button
-        android:id="@+id/btnSignUpApply"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:background="@color/color_bill_background_tint"
-        android:text="Sign Up"/>
-
-</LinearLayout>
+</RelativeLayout>

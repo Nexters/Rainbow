@@ -30,7 +30,9 @@
             android:theme="@style/NoTitleTheme"/>
 
         <activity
-            android:name=".auth.signup.SignUpManageActivity"/>
+            android:name=".auth.signup.SignUpManageActivity"
+            android:label="@string/app_name"
+            android:theme="@style/NoTitleTheme"/>
 
         <activity
             android:name=".graph.GraphActivity"/>

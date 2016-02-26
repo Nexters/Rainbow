@@ -3,6 +3,7 @@ package com.nexters.rainbow.rainbowcouple.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
+import android.widget.EditText;
 
 import com.nexters.rainbow.rainbowcouple.MainActivity;
 import com.nexters.rainbow.rainbowcouple.R;
@@ -15,7 +16,6 @@ import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
-import com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,10 +26,10 @@ import rx.functions.Action1;
 public class SignInActivity extends BaseActivity {
 
     @Bind(R.id.editTextUserId)
-    AppCompatEditText editTextUserId;
+    EditText editTextUserId;
 
     @Bind(R.id.editTextUserPassword)
-    AppCompatEditText editTextPassword;
+    EditText editTextPassword;
 
     private SessionManager sessionManager;
 
@@ -53,8 +53,8 @@ public class SignInActivity extends BaseActivity {
             return;
         }
 
-        String userId = editTextUserId.getString();
-        String password = editTextPassword.getString();
+        String userId = editTextUserId.toString();
+        String password = editTextPassword.toString();
 
         AuthApi authApi = NetworkManager.getApi(AuthApi.class);
         Observable<UserDto> authObservable = authApi.login(userId, password);
@@ -80,12 +80,12 @@ public class SignInActivity extends BaseActivity {
     }
 
     private boolean hasEmptyField() {
-        if (StringUtils.isEmpty(editTextUserId.getString())) {
+        if (StringUtils.isEmpty(editTextUserId.toString())) {
             DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_ID);
             return true;
         }
 
-        if (StringUtils.isEmpty(editTextPassword.getString())) {
+        if (StringUtils.isEmpty(editTextPassword.toString())) {
             DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_PASSWORD);
             return true;
         }

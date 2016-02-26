@@ -13,5 +13,6 @@
     <string name="activity_sign_in">로그인</string>
     <string name="activity_sign_up">회원가입</string>
     <string name="activity_login_id">example@email.com</string>
-    <string name="activity_login_password">password</string>
+    <string name="activity_login_password">비밀번호</string>
+    <string name="activity_login_password_check">비밀번호 확인</string>
 </resources>
