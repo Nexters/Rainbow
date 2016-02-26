@@ -60,12 +60,11 @@ public class SignUpFragment extends BaseFragment {
             return;
         }
 
-        SignUpForm signUpForm = SignUpForm.builder()
+        processSignUp(SignUpForm.builder()
                 .userId(editTextUserId.getString())
                 .userName(editTextUserName.getString())
-                .password(editTextUserPassword.getString());
-
-        processSignUp(signUpForm);
+                .password(editTextUserPassword.getString())
+                .build());
     }
 
     private boolean hasEmptyField() {

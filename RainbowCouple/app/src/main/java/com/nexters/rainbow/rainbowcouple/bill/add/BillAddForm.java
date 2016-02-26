@@ -1,6 +1,4 @@
-package com.nexters.rainbow.rainbowcouple.group;
-
-import java.util.List;
+package com.nexters.rainbow.rainbowcouple.bill.add;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,9 +12,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-public class Group {
-    private int sn;
-    private List<String> member;
-    private String inviteCode;
-    private int active;
+public class BillAddForm {
+    private int amount;
+    private int year;
+    private int month;
+    private int day;
+    private String category;
+    private String hashtags;
+    private String comment;
 }
