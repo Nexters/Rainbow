@@ -10,10 +10,11 @@ import rx.Observable;
 
 public interface AuthApi {
 
-    @FormUrlEncoded
     @POST("/rainbow/login")
+    @FormUrlEncoded
     Observable<UserDto> login(@Field("user_id") String userId, @Field("password") String password);
 
-    @POST("/rainbow/join") Observable<UserDto> signUp(@Body SignUpForm signUpForm);
+    @POST("/rainbow/join")
+    Observable<UserDto> signUp(@Body SignUpForm signUpForm);
 
 }

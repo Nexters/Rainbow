@@ -11,9 +11,6 @@ import android.widget.Button;
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.common.BaseDialogFragment;
 
-/**
- * Created by Leegain on 2016-02-17.
- */
 public class BillAddCategoryDialog extends BaseDialogFragment {
 
     private View view;
@@ -28,8 +25,6 @@ public class BillAddCategoryDialog extends BaseDialogFragment {
 
         btnCreate = (Button) view.findViewById(R.id.btnCategoryCreate);
         btnCancel = (Button)view.findViewById(R.id.btnCategoryCancel);
-
-
 
         return view;
     }

@@ -18,6 +18,8 @@ import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
 import com.nexters.rainbow.rainbowcouple.common.Constants;
 import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
+import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
+import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
@@ -39,7 +41,6 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     private List<Bill> billList = new ArrayList<>();
     private BillListAdapter billListAdapter;
 
-    // TODO: 2016. 1. 16. listView loadNewData는 디비에 저장된 데이터 읽어오는 것으로
     @Bind(R.id.listViewBill) EndlessListView billListView;
     @Bind(R.id.textViewBillEmpty) TextView emptyTextView;
     @Bind(R.id.actionBtnAddBill) Button actionBtnAddBill;
@@ -122,12 +123,21 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     // TODO: 2016. 1. 16. api로 서버에 저장 할 것. DB에 따로 저장하지는 않음..
     // TODO: 2016. 1. 16. listView 자체 저장 하고 DB는 fragment 다시 불러올 때 서버와 동기화 한 후 가져올 것
     @Override
-    public void saveNewBill(Bill bill) {
+    public void notifySavedNewBill(Bill bill) {
+        if (ObjectUtils.isEmpty(bill)) {
+            DialogManager.showAlertDialog(getActivity(), "지출 내역 저장 중 오류가 발생했습니다.");
+        }
         billListAdapter.addData(0, bill);
         billListView.setSelection(0);
 
         Snackbar.make(actionBtnAddBill, "새로운 지출 내역이 저장되었습니다.", Snackbar.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void notifyError(Throwable throwable) {
+        new ExceptionHandler(getActivity()).handle(throwable);
+    }
+
 
     @OnClick(R.id.btnGraph)
     void openGraph() {
