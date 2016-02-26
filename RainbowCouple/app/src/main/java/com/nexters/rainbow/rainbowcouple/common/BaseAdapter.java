@@ -63,6 +63,10 @@ public abstract class BaseAdapter<D, H> extends android.widget.BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public List<D> getDataList() {
+        return dataList;
+    }
+
     @Override
     public int getCount() {
         return CollectionUtils.isEmpty(dataList) ? 0 : dataList.size();

@@ -57,7 +57,7 @@ public class ExceptionHandler {
             case HTTP:
                 Response response = error.getResponse();
                 DebugLog.e(getRetrofitErrorMessage(response));
-                return String.format(Messages.NetworkError.NETWORK_ERROR, getRetrofitErrorMessage(response));
+                return String.format(Messages.NetworkError.HTTP_SERVER_ERROR, getRetrofitErrorMessage(response));
 
             default:
                 return String.format(Messages.NetworkError.UNKNOWN_NETWORK_ERROR, error.getMessage());

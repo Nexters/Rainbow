@@ -12,6 +12,8 @@ import android.view.Window;
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.common.BaseDialogFragment;
+import com.nexters.rainbow.rainbowcouple.common.Messages;
+import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText;
@@ -29,6 +31,9 @@ public class BillAddDialog extends BaseDialogFragment {
     @Bind(R.id.editTextNewBillComment) AppCompatEditText editTextBillComment;
 
     private View rootView;
+
+    private String SESSION_TOKEN = "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_";
+    private String SESSION_USER_NAME = "테스트_A";
 
     private AddDialogDismissCallback dismissCallback = null;
 
@@ -73,13 +78,12 @@ public class BillAddDialog extends BaseDialogFragment {
         if (dismissCallback == null) {
             dismiss();
         }
+
         if (!isValidInput()) {
             return;
         }
 
-        dismissCallback.saveNewBill(new Bill(2016, 2, 8, "3ynZKDkeVEloO79JnocmI0OUUjyzRWIuKZcLpYCtFID5p1Pdys-1-RDhFShhiBn_",
-                "Soyoon", "Shopping", 26000, "TESTING"));
-
+        dismissCallback.saveNewBill(makeNewBill());
         dismiss();
     }
 
@@ -93,13 +97,35 @@ public class BillAddDialog extends BaseDialogFragment {
         this.dismissCallback = dismissCallback;
     }
 
+    private Bill makeNewBill() {
+        return new Bill(
+            TimeUtils.getYearOfToday(),
+            TimeUtils.getMonthOfToday(),
+            TimeUtils.getDayOfToday(),
+            SESSION_TOKEN,
+            SESSION_USER_NAME,
+            editTextBillCategory.getString(),
+            Integer.parseInt(editTextBillAmount.getString()),
+            editTextBillComment.getString()
+        );
+    }
+
     private boolean isValidInput() {
-        // TODO: 2016. 1. 16. 내용 입력이 반드시 필요한가?
-        if (StringUtils.isEmpty(editTextBillAmount.getString())
-                || StringUtils.isEmpty(editTextBillComment.getString())) {
-            // TODO: 2016. 1. 16. 입력 요청 이벤트 주고 return 할 것
+        if (StringUtils.isEmpty(editTextBillComment.getString())) {
+            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_COMMENT_EMPTY);
             return false;
         }
+
+        if (StringUtils.isEmpty(editTextBillAmount.getString())) {
+            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_AMOUNT_EMPTY);
+            return false;
+        }
+
+        if (StringUtils.isEmpty(editTextBillCategory.getString())) {
+            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_CATEGORY_EMPTY);
+            return false;
+        }
+
         return true;
     }
 }

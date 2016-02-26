@@ -207,6 +207,7 @@
                         android:textColor="#BABABA"
                         android:textSize="12sp"/>
                     <TextView
+                        android:id="@+id/textViewBillTotalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -243,8 +244,8 @@
             </LinearLayout>
         </LinearLayout>
 
-
     </android.support.design.widget.CoordinatorLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -274,4 +275,5 @@
             android:textSize="12sp"/>
 
     </LinearLayout>
+
 </LinearLayout>
