@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 
 public class BaseDialogFragment extends DialogFragment {
@@ -31,6 +32,7 @@ public class BaseDialogFragment extends DialogFragment {
 
     protected <T> Observable<T> bind(Observable<T> observable) {
         return observable
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
                     @Override
                     public void call() {
