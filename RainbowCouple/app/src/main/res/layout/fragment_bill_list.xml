@@ -6,7 +6,7 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="#000000">
         <Button
             android:id="@+id/btnOur"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnOur"
             android:text="You"
-            android:textColor="#444444"
+            android:textColor="#6F789F"
             android:background="@null"/>
         <Button
             android:id="@+id/btnMe"
@@ -45,12 +45,14 @@
             android:text="2016"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_margin="4dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:layout_margin="4dp"/>
         <TextView
@@ -58,9 +60,73 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:layout_margin="4dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6F789F"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="월"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="화"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="수"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="목"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="금"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="토"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="일"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
