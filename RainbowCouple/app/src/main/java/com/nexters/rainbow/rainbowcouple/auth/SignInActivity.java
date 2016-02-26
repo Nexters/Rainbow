@@ -53,8 +53,8 @@ public class SignInActivity extends BaseActivity {
             return;
         }
 
-        String userId = editTextUserId.toString();
-        String password = editTextPassword.toString();
+        String userId = editTextUserId.getText().toString();
+        String password = editTextPassword.getText().toString();
 
         AuthApi authApi = NetworkManager.getApi(AuthApi.class);
         Observable<UserDto> authObservable = authApi.login(userId, password);
@@ -80,12 +80,12 @@ public class SignInActivity extends BaseActivity {
     }
 
     private boolean hasEmptyField() {
-        if (StringUtils.isEmpty(editTextUserId.toString())) {
+        if (StringUtils.isEmpty(editTextUserId.getText().toString())) {
             DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_ID);
             return true;
         }
 
-        if (StringUtils.isEmpty(editTextPassword.toString())) {
+        if (StringUtils.isEmpty(editTextPassword.getText().toString())) {
             DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_PASSWORD);
             return true;
         }

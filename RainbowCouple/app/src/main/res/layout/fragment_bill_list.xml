@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -150,11 +149,11 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.2"
                     android:gravity="center_vertical"
                     android:paddingLeft="24dp"
                     android:paddingRight="24dp"
-                    android:background="#F5F5F5">
+                    android:background="@drawable/main_bg02">
                     <TextView
                         android:id="@+id/year"
                         android:layout_width="wrap_content"
@@ -211,14 +210,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="W 68,800"
                         android:textColor="#6F789F"
                         android:textSize="28sp"/>
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_weight="0.8"
                     android:orientation="vertical">
                     <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
                         android:id="@+id/listViewBill"
@@ -226,6 +224,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:dividerHeight="0dp"
+                        android:background="@drawable/main_bg02"
                         android:divider="@color/color_transparent"/>
 
                     <TextView
@@ -246,34 +245,36 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#FFFFFF">
+        android:layout_height="60dp"
+        android:background="@drawable/main_bg_tap01"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Setting"
-            android:background="#EFEFEF"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_refresh01"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:textSize="12sp"/>
         <Button
             android:id="@+id/actionBtnAddBill"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="INPUT"
-            android:background="#EFEFEF"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/btn_input01"
+            android:layout_centerInParent="true"
             android:textSize="12sp"/>
         <Button
             android:id="@+id/btnGraph"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Graph"
-            android:background="#EFEFEF"
-            android:textSize="12sp"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_graph01"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

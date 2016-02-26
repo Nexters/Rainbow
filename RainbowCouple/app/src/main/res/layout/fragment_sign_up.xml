@@ -24,7 +24,7 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"
-        android:text="SIGN IN"/>
+        android:text="SIGN UP"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +43,7 @@
             android:textSize="14sp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/color_bill_text_partner"
-            android:inputType="textWebEmailAddress"
+            android:inputType="textEmailAddress"
             android:hint="@string/activity_login_id"/>
 
         <EditText

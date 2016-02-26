@@ -63,24 +63,24 @@ public class SignUpFragment extends BaseFragment {
         }
 
         processSignUp(SignUpForm.builder()
-                .userId(editTextUserId.toString())
-                .userName(editTextUserName.toString())
-                .password(editTextUserPassword.toString())
+                .userId(editTextUserId.getText().toString())
+                .userName(editTextUserName.getText().toString())
+                .password(editTextUserPassword.getText().toString())
                 .build());
     }
 
     private boolean hasEmptyField() {
-        if (StringUtils.isEmpty(editTextUserId.toString())) {
+        if (StringUtils.isEmpty(editTextUserId.getText().toString())) {
             DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_ID);
             return true;
         }
 
-        if (StringUtils.isEmpty(editTextUserName.toString())) {
+        if (StringUtils.isEmpty(editTextUserName.getText().toString())) {
             DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_NAME);
             return true;
         }
 
-        if (StringUtils.isEmpty(editTextUserPassword.toString())) {
+        if (StringUtils.isEmpty(editTextUserPassword.getText().toString())) {
             DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_PASSWORD);
             return true;
         }

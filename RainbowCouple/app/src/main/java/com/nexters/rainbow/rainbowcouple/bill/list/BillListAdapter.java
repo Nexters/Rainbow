@@ -1,7 +1,9 @@
 package com.nexters.rainbow.rainbowcouple.bill.list;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nexters.rainbow.rainbowcouple.R;
@@ -27,6 +29,12 @@ public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemV
 
     @Override
     public void loadView(View convertView, BillItemViewHolder viewHolder, Bill item, int position) {
+        if(item.getCategory().equals("식사")) {
+            viewHolder.tvOwner.setBackgroundResource(R.drawable.ico_drink02);
+        } else if (item.getCategory().equals("맥주")){
+
+        }
+
         viewHolder.textViewBillCategory.setText(item.getCategory());
         viewHolder.textViewBillComment.setText(item.getComment());
         viewHolder.textViewBillAmount.setText(String.format(FORMAT_BILL_BUDGET, item.getAmount()));
@@ -37,6 +45,8 @@ public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemV
     }
 
     class BillItemViewHolder {
+        @Bind(R.id.tvOwner) TextView tvOwner;
+        @Bind(R.id.ivCategory) ImageView ivCategory;
         @Bind(R.id.textViewBillCategory) TextView textViewBillCategory;
         @Bind(R.id.textViewBillComment) TextView textViewBillComment;
         @Bind(R.id.textViewBillAmount) TextView textViewBillAmount;
