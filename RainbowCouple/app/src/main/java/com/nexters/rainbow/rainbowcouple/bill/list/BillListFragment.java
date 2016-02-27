@@ -234,7 +234,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         } else {
             textViewOwner.setText("우리가");
         }
-        
+
         billTotalAmount.setText(String.format(Constants.FORMAT_BILL_BUDGET, getTotalAmount(bills)));
         billListAdapter.addAllData(bills);
         billListAdapter.notifyDataSetChanged();
