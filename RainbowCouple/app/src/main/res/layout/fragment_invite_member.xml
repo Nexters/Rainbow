@@ -3,62 +3,122 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
-    <LinearLayout
+    android:background="@drawable/signup_bg01">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvOurGroupTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OUR GROUP"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="64dp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/label1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvOurGroupTitle"
+            android:text="@string/msg_signup_complete"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/label1"
+            android:text="@string/msg_guide_groupcode"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"/>
+        <RelativeLayout
+            android:id="@+id/card"
+            android:layout_width="310dp"
+            android:layout_height="250dp"
+            android:background="@drawable/bg_card"
+            android:padding="24dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:id="@+id/labelGroupCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="그룹 코드"
+                android:visibility="gone"/>
+            <EditText
+                android:id="@+id/etGroupCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/labelGroupCode"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:hint="그룹 코드를 입력하세요."
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/btnCopyInviteCode"
+                android:layout_width="240dp"
+                android:layout_height="48dp"
+                android:layout_margin="25dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:background="@drawable/join_bt_bg"
+                android:text="그룹코드 생성"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+            <Button
+                android:id="@+id/btnStartService"
+                android:layout_width="240dp"
+                android:layout_height="48dp"
+                android:layout_margin="25dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:background="@drawable/join_bt_bg"
+                android:text="입력하기"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:visibility="gone"/>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="회원가입을 축하합니다!"
-        android:textAppearance="?android:textAppearanceLarge" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="이제 파트너를 가계부로 초대 해 보세요"
-        android:textAppearance="?android:textAppearanceLarge" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"/>
-
-    <Button
-        android:id="@+id/btnCopyInviteCode"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:background="@color/color_bill_background"
-        android:text="초대코드"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.25"/>
-
-
-    <Button
-        android:id="@+id/btnStartService"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:background="@color/color_bill_background_tint"
-        android:text="시작하기"/>
-
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/llTabs"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_above="@id/card"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-16dp"
+            android:background="@drawable/group_code_left_select">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="그룹 만들기"
+                android:textColor="#000000"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:text="그룹 코드 입력하기"
+                android:gravity="center"
+                android:textColor="#787D8C"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/bg_sliced"/>
+    </RelativeLayout>
 
 </LinearLayout>

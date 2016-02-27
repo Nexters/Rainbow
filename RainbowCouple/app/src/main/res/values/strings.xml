@@ -15,4 +15,7 @@
     <string name="activity_login_id">example@email.com</string>
     <string name="activity_login_password">비밀번호</string>
     <string name="activity_login_password_check">비밀번호 확인</string>
+
+    <string name="msg_signup_complete">회원가입에 성공했습니다.</string>
+    <string name="msg_guide_groupcode">그룹을 만들거나 \n초대받은 그룹의 코드를 입력하여\n두툼을 이용해주세요.</string>
 </resources>
