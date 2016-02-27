@@ -1,6 +1,7 @@
 package com.nexters.rainbow.rainbowcouple.bill.list;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
@@ -51,7 +52,9 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     @Bind(R.id.textViewBillEmpty) TextView emptyTextView;
     @Bind(R.id.actionBtnAddBill) Button actionBtnAddBill;
     @Bind(R.id.textViewBillTotalAmount) TextView billTotalAmount;
-
+@Bind(R.id.btnOur) Button btnOur;
+    @Bind(R.id.btnMe) Button btnMe;
+    @Bind(R.id.btnYou) Button btnYou;
     public static BillListFragment newInstance() {
         BillListFragment fragment = new BillListFragment();
         fragment.setFragmentTag(TAG_BILL_LIST_FRAGMENT);
@@ -72,28 +75,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         billListView.setEmptyView(emptyTextView);
 
         //TODO : 나 너 우리 일 경우 ownerType에 구분해서 넣어줄 것.
-        ownerType = OwnerType.ALL;
-
-        final BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
-                sessionManager.getUserToken(),
-                ownerType,
-                String.valueOf(TimeUtils.getYearOfToday()),
-                String.valueOf(TimeUtils.getMonthOfToday())
-        );
-
-        bind(billObservable)
-                .subscribe(new Action1<List<Bill>>() {
-                    @Override
-                    public void call(List<Bill> bills) {
-                        setBillViewData(bills);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        new ExceptionHandler(getActivity()).handle(throwable);
-                    }
-                });
+        loadOurBill();
 
         return rootView;
     }
@@ -160,16 +142,94 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
     @OnClick(R.id.btnOur)
     void loadOurBill() {
+        ownerType = OwnerType.ALL;
+        resetOwnerButton();
+        btnOur.setTextColor(Color.parseColor("#6F789F"));
+        final BillApi billApi = NetworkManager.getApi(BillApi.class);
+        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
+                sessionManager.getUserToken(),
+                ownerType,
+                String.valueOf(TimeUtils.getYearOfToday()),
+                String.valueOf(TimeUtils.getMonthOfToday())
+        );
+
+        bind(billObservable)
+                .subscribe(new Action1<List<Bill>>() {
+                    @Override
+                    public void call(List<Bill> bills) {
+                        setBillViewData(bills);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        new ExceptionHandler(getActivity()).handle(throwable);
+                    }
+                });
 
     }
 
     @OnClick(R.id.btnMe)
     void loadMyBill() {
+        ownerType = OwnerType.MINE;
+        resetOwnerButton();
+        btnMe.setTextColor(Color.parseColor("#6F789F"));
+        final BillApi billApi = NetworkManager.getApi(BillApi.class);
+        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
+                sessionManager.getUserToken(),
+                ownerType,
+                String.valueOf(TimeUtils.getYearOfToday()),
+                String.valueOf(TimeUtils.getMonthOfToday())
+        );
+
+        bind(billObservable)
+                .subscribe(new Action1<List<Bill>>() {
+                    @Override
+                    public void call(List<Bill> bills) {
+                        setBillViewData(bills);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        new ExceptionHandler(getActivity()).handle(throwable);
+                    }
+                });
+
 
     }
 
     @OnClick(R.id.btnYou)
     void loadYourBill() {
+        ownerType = OwnerType.PARTNER;
+        resetOwnerButton();
+        btnYou.setTextColor(Color.parseColor("#6F789F"));
 
+        final BillApi billApi = NetworkManager.getApi(BillApi.class);
+        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
+                sessionManager.getUserToken(),
+                ownerType,
+                String.valueOf(TimeUtils.getYearOfToday()),
+                String.valueOf(TimeUtils.getMonthOfToday())
+        );
+
+        bind(billObservable)
+                .subscribe(new Action1<List<Bill>>() {
+                    @Override
+                    public void call(List<Bill> bills) {
+                        setBillViewData(bills);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        new ExceptionHandler(getActivity()).handle(throwable);
+                    }
+                });
+
+
+    }
+
+    private void resetOwnerButton() {
+        btnOur.setTextColor(Color.parseColor("#444444"));
+        btnYou.setTextColor(Color.parseColor("#444444"));
+        btnMe.setTextColor(Color.parseColor("#444444"));
     }
 }

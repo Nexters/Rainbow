@@ -34,8 +34,6 @@ public class BillSelectCategoryDialog extends BaseDialogFragment {
 
         ButterKnife.bind(this, view);
 
-
-
         return view;
     }
 

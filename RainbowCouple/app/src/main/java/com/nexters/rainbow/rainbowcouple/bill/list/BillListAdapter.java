@@ -29,10 +29,27 @@ public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemV
 
     @Override
     public void loadView(View convertView, BillItemViewHolder viewHolder, Bill item, int position) {
-        if(item.getCategory().equals("식사")) {
-            viewHolder.tvOwner.setBackgroundResource(R.drawable.ico_drink02);
-        } else if (item.getCategory().equals("맥주")){
-
+        switch(item.getCategory()) {
+            case "식사" :
+                viewHolder.tvOwner.setBackgroundResource(R.drawable.ico_meal01);
+                viewHolder.ivCategory.setImageResource(R.drawable.ico_meal02);
+                break;
+            case "음료" :
+                viewHolder.tvOwner.setBackgroundResource(R.drawable.ico_drink01);
+                viewHolder.ivCategory.setImageResource(R.drawable.ico_drink02);
+                break;
+            case "쇼핑" :
+                viewHolder.tvOwner.setBackgroundResource(R.drawable.icon_shopping01);
+                viewHolder.ivCategory.setImageResource(R.drawable.icon_shopping02);
+                break;
+            case "영화" :
+                viewHolder.tvOwner.setBackgroundResource(R.drawable.ico_movie01);
+                viewHolder.ivCategory.setImageResource(R.drawable.ico_movie02);
+                break;
+            case "오락" :
+                viewHolder.tvOwner.setBackgroundResource(R.drawable.ico_game01);
+                viewHolder.ivCategory.setImageResource(R.drawable.ico_game02);
+                break;
         }
 
         viewHolder.textViewBillCategory.setText(item.getCategory());
