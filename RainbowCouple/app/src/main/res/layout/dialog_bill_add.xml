@@ -23,55 +23,33 @@
             android:text="@string/string_bill_add_new_bill"
             android:gravity="center"/>
 
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/editTextNewBillAmount"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.25"
-            android:layout_marginTop="5dp">
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_bill_text_partner"
+            android:gravity="left|center_vertical"
+            android:digits="0123456789"
+            android:hint="사용 금액"/>
 
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextNewBillAmount"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:gravity="left|center_vertical"
-                android:digits="0123456789"
-                android:hint="사용 금액"/>
-
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/editTextNewBillCategory"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.25"
-            android:layout_marginTop="5dp">
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_bill_text_partner"
+            android:gravity="left|center_vertical"
+            android:hint="Category"/>
 
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextNewBillCategory"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:gravity="left|center_vertical"
-                android:hint="Category"/>
-
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/editTextNewBillComment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.25"
-            android:layout_marginTop="5dp">
-
-            <com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText
-                android:id="@+id/editTextNewBillComment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/color_bill_text_partner"
-                android:gravity="left|center_vertical"
-               android:hint="내용"/>
-
-        </android.support.design.widget.TextInputLayout>
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_bill_text_partner"
+            android:gravity="left|center_vertical"
+            android:hint="내용"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,8 +77,5 @@
                 android:background="@color/color_bill_background_tint"/>
 
         </LinearLayout>
-
     </LinearLayout>
-
-
 </LinearLayout>

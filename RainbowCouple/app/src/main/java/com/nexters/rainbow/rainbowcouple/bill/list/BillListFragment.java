@@ -169,7 +169,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     @OnClick(R.id.btnMe)
     void loadMyBill() {
         ownerType = OwnerType.MINE;
-        
+
         final BillApi billApi = NetworkManager.getApi(BillApi.class);
         Observable<List<Bill>> billObservable = billApi.viewBillByDay(
                 sessionManager.getUserToken(),
