@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nexters.rainbow.rainbowcouple.R;
@@ -52,9 +53,11 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     @Bind(R.id.textViewBillEmpty) TextView emptyTextView;
     @Bind(R.id.actionBtnAddBill) Button actionBtnAddBill;
     @Bind(R.id.textViewBillTotalAmount) TextView billTotalAmount;
-@Bind(R.id.btnOur) Button btnOur;
+    @Bind(R.id.btnOur) Button btnOur;
     @Bind(R.id.btnMe) Button btnMe;
     @Bind(R.id.btnYou) Button btnYou;
+    @Bind(R.id.llCalendarGroup)
+    LinearLayout llCanlendarGroup;
     public static BillListFragment newInstance() {
         BillListFragment fragment = new BillListFragment();
         fragment.setFragmentTag(TAG_BILL_LIST_FRAGMENT);
@@ -84,6 +87,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     private void setBillViewData(List<Bill> bills) {
         billTotalAmount.setText(String.format(Constants.FORMAT_BILL_BUDGET, getTotalAmount(bills)));
         billListAdapter.addAllData(bills);
+        billListAdapter.notifyDataSetChanged();
     }
 
     private int getTotalAmount(List<Bill> bills) {
@@ -122,7 +126,8 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
             DialogManager.showAlertDialog(getActivity(), "지출 내역 저장 중 오류가 발생했습니다.");
         }
 
-        billListAdapter.addData(0, bill);
+        //billListAdapter.addData(0, bill);
+        billListAdapter.notifyDataSetChanged();
         billListView.setSelection(0);
 
         Snackbar.make(actionBtnAddBill, "새로운 지출 내역이 저장되었습니다.", Snackbar.LENGTH_SHORT).show();
@@ -143,14 +148,14 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     @OnClick(R.id.btnOur)
     void loadOurBill() {
         ownerType = OwnerType.ALL;
-        resetOwnerButton();
-        btnOur.setTextColor(Color.parseColor("#6F789F"));
+
         final BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
+        Observable<List<Bill>> billObservable = billApi.viewBillByDay(
                 sessionManager.getUserToken(),
                 ownerType,
                 String.valueOf(TimeUtils.getYearOfToday()),
-                String.valueOf(TimeUtils.getMonthOfToday())
+                String.valueOf(TimeUtils.getMonthOfToday()),
+                String.valueOf(TimeUtils.getDayOfToday())
         );
 
         bind(billObservable)
@@ -165,22 +170,26 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
                         new ExceptionHandler(getActivity()).handle(throwable);
                     }
                 });
+        resetOwnerButton();
+        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_our01);
+        billTotalAmount.setTextColor(Color.parseColor("#9195B0"));
+        btnOur.setTextColor(Color.parseColor("#9195B0"));
 
     }
 
     @OnClick(R.id.btnMe)
     void loadMyBill() {
         ownerType = OwnerType.MINE;
-        resetOwnerButton();
-        btnMe.setTextColor(Color.parseColor("#6F789F"));
+
+        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_me01);
         final BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
+        Observable<List<Bill>> billObservable = billApi.viewBillByDay(
                 sessionManager.getUserToken(),
                 ownerType,
                 String.valueOf(TimeUtils.getYearOfToday()),
-                String.valueOf(TimeUtils.getMonthOfToday())
+                String.valueOf(TimeUtils.getMonthOfToday()),
+                String.valueOf(TimeUtils.getDayOfToday())
         );
-
         bind(billObservable)
                 .subscribe(new Action1<List<Bill>>() {
                     @Override
@@ -193,22 +202,23 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
                         new ExceptionHandler(getActivity()).handle(throwable);
                     }
                 });
-
+        resetOwnerButton();
+        btnMe.setTextColor(Color.parseColor("#95BEC9"));
+        billTotalAmount.setTextColor(Color.parseColor("#95BEC9"));
 
     }
 
     @OnClick(R.id.btnYou)
     void loadYourBill() {
         ownerType = OwnerType.PARTNER;
-        resetOwnerButton();
-        btnYou.setTextColor(Color.parseColor("#6F789F"));
 
         final BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<List<Bill>> billObservable = billApi.viewBillByMonth(
+        Observable<List<Bill>> billObservable = billApi.viewBillByDay(
                 sessionManager.getUserToken(),
                 ownerType,
                 String.valueOf(TimeUtils.getYearOfToday()),
-                String.valueOf(TimeUtils.getMonthOfToday())
+                String.valueOf(TimeUtils.getMonthOfToday()),
+                String.valueOf(TimeUtils.getDayOfToday())
         );
 
         bind(billObservable)
@@ -223,7 +233,10 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
                         new ExceptionHandler(getActivity()).handle(throwable);
                     }
                 });
-
+        resetOwnerButton();
+        btnYou.setTextColor(Color.parseColor("#D3Bf89"));
+        billTotalAmount.setTextColor(Color.parseColor("#D3Bf89"));
+        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_you01);
 
     }
 

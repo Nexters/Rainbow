@@ -58,7 +58,8 @@ public abstract class BaseAdapter<D, H> extends android.widget.BaseAdapter {
             }
             dataList = new ArrayList<>();
         }
-
+        //TODO clear 임시방편으로 넣어둠
+        dataList.clear();
         dataList.addAll(data);
         notifyDataSetChanged();
     }

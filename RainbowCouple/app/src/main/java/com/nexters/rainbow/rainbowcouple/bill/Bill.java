@@ -21,4 +21,5 @@ public class Bill {
     private String category;
     private int amount;
     private String comment;
+    private OwnerType ownerType;
 }
