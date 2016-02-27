@@ -223,11 +223,9 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
 
     private void setBillViewData(List<Bill> bills) {
-        Bill mainBill = bills.get(0);
-
-        textViewYear.setText(String.valueOf(mainBill.getYear()));
-        textViewMonth.setText(String.valueOf(mainBill.getMonth()));
-        textViewDay.setText(String.valueOf(mainBill.getDay()));
+        textViewYear.setText(String.valueOf(TimeUtils.getYearOfDate(viewDate)));
+        textViewMonth.setText(String.valueOf(TimeUtils.getMonthOfDate(viewDate)));
+        textViewDay.setText(String.valueOf(TimeUtils.getDayOfDate(viewDate)));
 
         if (OwnerType.MINE.equals(ownerType)) {
             textViewOwner.setText("내가");
@@ -236,8 +234,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         } else {
             textViewOwner.setText("우리가");
         }
-
-
+        
         billTotalAmount.setText(String.format(Constants.FORMAT_BILL_BUDGET, getTotalAmount(bills)));
         billListAdapter.addAllData(bills);
         billListAdapter.notifyDataSetChanged();
