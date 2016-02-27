@@ -11,13 +11,12 @@ import com.nexters.rainbow.rainbowcouple.auth.AuthApi;
 import com.nexters.rainbow.rainbowcouple.auth.UserDto;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
 import com.nexters.rainbow.rainbowcouple.common.Messages;
-import com.nexters.rainbow.rainbowcouple.common.utils.DebugLog;
-import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
+import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
+import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
-import com.nexters.rainbow.rainbowcouple.common.widget.AppCompatEditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,8 +30,9 @@ public class SignUpFragment extends BaseFragment {
 
     private View rootView;
 
-    @Bind(R.id.editTextSignUpUserId)
-    EditText editTextUserId;
+    private SessionManager sessionManager;
+
+    @Bind(R.id.editTextSignUpUserId) EditText editTextUserId;
     @Bind(R.id.editTextSignUpUserName) EditText editTextUserName;
     @Bind(R.id.editTextSignUpUserPassword) EditText editTextUserPassword;
 
@@ -46,6 +46,8 @@ public class SignUpFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, rootView);
+
+        sessionManager = SessionManager.getInstance(getActivity());
 
         return rootView;
     }
@@ -93,7 +95,7 @@ public class SignUpFragment extends BaseFragment {
         bind(authObservable).subscribe(new Action1<UserDto>() {
             @Override
             public void call(UserDto userDto) {
-                DebugLog.d(userDto.toString());
+                sessionManager.createLoginSession(userDto);
                 callInviteMemberFragment(userDto);
             }
         }, new Action1<Throwable>() {

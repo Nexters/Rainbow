@@ -25,11 +25,8 @@ import rx.functions.Action1;
 
 public class SignInActivity extends BaseActivity {
 
-    @Bind(R.id.editTextUserId)
-    EditText editTextUserId;
-
-    @Bind(R.id.editTextUserPassword)
-    EditText editTextPassword;
+    @Bind(R.id.editTextUserId) EditText editTextUserId;
+    @Bind(R.id.editTextUserPassword) EditText editTextPassword;
 
     private SessionManager sessionManager;
 
@@ -95,6 +92,7 @@ public class SignInActivity extends BaseActivity {
     @OnClick(R.id.btnSignUp)
     public void startSignUpActivity() {
         Intent signUpActivity = new Intent(SignInActivity.this, SignUpManageActivity.class);
+        signUpActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(signUpActivity);
     }
 }

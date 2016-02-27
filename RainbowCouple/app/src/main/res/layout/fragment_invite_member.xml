@@ -46,22 +46,19 @@
             android:padding="24dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true">
-            <TextView
-                android:id="@+id/labelGroupCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="그룹 코드"
-                android:visibility="gone"/>
+
             <EditText
-                android:id="@+id/etGroupCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/labelGroupCode"
-                android:layout_marginTop="8dp"
-                android:textSize="14sp"
-                android:hint="그룹 코드를 입력하세요."
-                android:visibility="gone"/>
+                android:id="@+id/editTextGroupCode"
+                android:layout_width="240dp"
+                android:layout_height="48dp"
+                android:layout_margin="25dp"
+                android:layout_centerInParent="true"
+                android:layout_below="@id/label"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/color_bill_text_partner"
+                android:textSize="18sp"
+                android:hint="그룹 코드를 입력 하세요." />
+
             <Button
                 android:id="@+id/btnCopyInviteCode"
                 android:layout_width="240dp"
@@ -74,22 +71,9 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"/>
-            <Button
-                android:id="@+id/btnStartService"
-                android:layout_width="240dp"
-                android:layout_height="48dp"
-                android:layout_margin="25dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:background="@drawable/join_bt_bg"
-                android:text="입력하기"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:visibility="gone"/>
 
         </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/llTabs"
             android:layout_width="300dp"
@@ -99,6 +83,7 @@
             android:layout_marginBottom="-16dp"
             android:background="@drawable/group_code_left_select">
             <TextView
+                android:id="@+id/textViewMakeGroup"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
                 android:layout_height="match_parent"
@@ -107,6 +92,7 @@
                 android:textColor="#000000"
                 />
             <TextView
+                android:id="@+id/textViewSignInGroup"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
                 android:text="그룹 코드 입력하기"
@@ -114,11 +100,26 @@
                 android:textColor="#787D8C"
                 android:layout_height="match_parent" />
         </LinearLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:src="@drawable/bg_sliced"/>
-    </RelativeLayout>
 
+        <Button
+            android:id="@+id/btnStartService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:gravity="center"
+            android:background="@null"
+            android:textSize="14sp"
+            android:textColor="#75787F"
+            android:layout_margin="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="시작하기 >"/>
+
+    </RelativeLayout>
 </LinearLayout>

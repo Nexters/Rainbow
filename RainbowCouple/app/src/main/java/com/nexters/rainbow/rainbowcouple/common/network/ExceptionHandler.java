@@ -28,7 +28,6 @@ public class ExceptionHandler {
     public void handle(Throwable throwable) {
         if (throwable instanceof Exception) {
             Log.e("EXCEPTION", throwable.getMessage(), throwable);
-            return;
         }
 
         showAlertDialog(getErrorMessage(throwable));
