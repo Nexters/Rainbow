@@ -229,7 +229,6 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     void loadMyBill() {
         ownerType = OwnerType.MINE;
 
-        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_me01);
         final BillApi billApi = NetworkManager.getApi(BillApi.class);
         Observable<List<Bill>> billObservable = billApi.viewBillByDay(
                 sessionManager.getUserToken(),
@@ -253,6 +252,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         resetOwnerButton();
         btnMe.setTextColor(Color.parseColor("#95BEC9"));
         billTotalAmount.setTextColor(Color.parseColor("#95BEC9"));
+        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_me01);
 
     }
 
