@@ -130,7 +130,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
             DialogManager.showAlertDialog(getActivity(), "지출 내역 저장 중 오류가 발생했습니다.");
         }
 
-        //billListAdapter.addData(0, bill);
+        billListAdapter.addData(0, bill);
         billListAdapter.notifyDataSetChanged();
         billListView.setSelection(0);
 
