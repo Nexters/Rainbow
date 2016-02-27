@@ -1,7 +1,6 @@
 package com.nexters.rainbow.rainbowcouple.bill.list;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,12 +59,13 @@ public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemV
                 viewHolder.ivCategory.setImageResource(R.drawable.ico_game02);
         }
 
-
         viewHolder.textViewBillCategory.setText(item.getCategory());
-        if(item.getOwnerType().getName().equals("MINE"))
+
+        if(item.getOwnerType().getName().equals("MINE")) {
             viewHolder.tvOwner.setText("M");
-        else
+        } else {
             viewHolder.tvOwner.setText("Y");
+        }
 
         viewHolder.textViewBillComment.setText(item.getComment());
         viewHolder.textViewBillAmount.setText(String.format(FORMAT_BILL_BUDGET, item.getAmount()));
@@ -81,6 +81,7 @@ public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemV
         @Bind(R.id.textViewBillCategory) TextView textViewBillCategory;
         @Bind(R.id.textViewBillComment) TextView textViewBillComment;
         @Bind(R.id.textViewBillAmount) TextView textViewBillAmount;
+
         BillItemViewHolder(View view) {
             ButterKnife.bind(this, view);
         }

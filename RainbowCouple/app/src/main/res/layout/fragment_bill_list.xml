@@ -49,109 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="115dp"/>
 
-        <!-- -->
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:padding="16dp">-->
-            <!--<TextView-->
-                <!--android:id="@+id/tvYear"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="2016"-->
-                <!--android:textColor="#FFFFFF"-->
-                <!--android:textSize="20sp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:layout_margin="4dp"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="/"-->
-                <!--android:textSize="20sp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textColor="#FFFFFF"-->
-                <!--android:layout_margin="4dp"/>-->
-            <!--<TextView-->
-                <!--android:id="@+id/tvMonth"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="12"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textColor="#FFFFFF"-->
-                <!--android:textSize="20sp"-->
-                <!--android:layout_margin="4dp"/>-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingLeft="4dp"-->
-            <!--android:paddingRight="4dp">-->
-            <!--<TextView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="월"-->
-                <!--android:textSize="12sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="#FFFFFF"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="화"-->
-                <!--android:textSize="12sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="#FFFFFF"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="수"-->
-                <!--android:textSize="12sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="#FFFFFF"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="목"-->
-                <!--android:textSize="12sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="#FFFFFF"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="금"-->
-                <!--android:textSize="12sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="#FFFFFF"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="토"-->
-                <!--android:textSize="12sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="#FFFFFF"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="일"-->
-                <!--android:textSize="12sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textColor="#FFFFFF"/>-->
-        <!--</LinearLayout>-->
-        <!--<HorizontalScrollView-->
-            <!--android:id="@+id/calendar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="60dp">-->
-
-        <!--</HorizontalScrollView>-->
-        <!-- -->
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -160,7 +57,7 @@
             android:paddingRight="24dp"
             android:background="@drawable/main_bg02">
             <TextView
-                android:id="@+id/year"
+                android:id="@+id/textViewYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2016"
@@ -168,46 +65,63 @@
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/yearText"
+                android:id="@+id/textViewYearComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="년 "
-                android:layout_toRightOf="@id/year"
+                android:layout_toRightOf="@id/textViewYear"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/month"
+                android:id="@+id/textViewMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/yearText"
+                android:layout_toRightOf="@id/textViewYearComment"
                 android:text="12"
                 android:textStyle="bold"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/monthText"
+                android:id="@+id/textViewMonthComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="월"
-                android:layout_toRightOf="@id/month"
+                android:text="월 "
+                android:layout_toRightOf="@id/textViewMonth"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/userCategory"
+                android:id="@+id/textViewDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textViewMonthComment"
+                android:text="12"
+                android:textStyle="bold"
+                android:textColor="#BABABA"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/textViewDayComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:layout_toRightOf="@id/textViewDay"
+                android:textColor="#BABABA"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/textViewOwner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="우리"
                 android:textStyle="bold"
-                android:layout_below="@id/year"
+                android:layout_below="@id/textViewYear"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/userCategoryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가 사용한 금액"
-                android:layout_below="@id/year"
-                android:layout_toRightOf="@id/userCategory"
+                android:text=" 사용한 금액"
+                android:layout_below="@id/textViewYear"
+                android:layout_toRightOf="@id/textViewOwner"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView

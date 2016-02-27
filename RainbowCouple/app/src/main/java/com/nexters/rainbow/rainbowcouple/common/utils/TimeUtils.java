@@ -44,4 +44,16 @@ public abstract class TimeUtils {
     public static int getDayOfToday() {
         return LocalDate.now().getDayOfMonth();
     }
+
+    public static int getYearOfDate(Date date) {
+        return LocalDate.fromDateFields(date).getYear();
+    }
+
+    public static int getMonthOfDate(Date date) {
+        return LocalDate.fromDateFields(date).getMonthOfYear();
+    }
+
+    public static int getDayOfDate(Date date) {
+        return LocalDate.fromDateFields(date).getDayOfMonth();
+    }
 }

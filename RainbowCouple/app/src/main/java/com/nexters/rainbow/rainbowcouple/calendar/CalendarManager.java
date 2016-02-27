@@ -1,6 +1,6 @@
 package com.nexters.rainbow.rainbowcouple.calendar;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +11,7 @@ public class CalendarManager {
     private static final int DAYS_OF_WEEK = 7;
 
     public static Date getFirstDayOfWeek() {
-        DateTime today = DateTime.now();
+        LocalDate today = LocalDate.now();
         int currentWeekDay = today.getDayOfWeek();
 
         int dayTerm = (0 - currentWeekDay);
@@ -20,11 +20,11 @@ public class CalendarManager {
     }
 
     public static WeeklyCalDate makeWeeklyCalDate(Date monday) {
-        DateTime dateTimeMon = new DateTime(monday);
+        LocalDate localDateMon = new LocalDate(monday);
 
         List<CalDate> dateList = new ArrayList<>();
         for (int i = 0; i < DAYS_OF_WEEK; i++) {
-            DateTime date = dateTimeMon.plusDays(i);
+            LocalDate date = localDateMon.plusDays(i);
             CalDate calDate = CalDate.builder()
                     .year(date.getYear())
                     .month(date.getMonthOfYear())
@@ -35,9 +35,9 @@ public class CalendarManager {
         }
 
         return WeeklyCalDate.builder()
-                .year(dateTimeMon.getYear())
-                .month(dateTimeMon.getMonthOfYear())
-                .numberOfWeek(dateTimeMon.getWeekOfWeekyear())
+                .year(localDateMon.getYear())
+                .month(localDateMon.getMonthOfYear())
+                .numberOfWeek(localDateMon.getWeekOfWeekyear())
                 .weeklyCalDate(dateList)
                 .build();
     }

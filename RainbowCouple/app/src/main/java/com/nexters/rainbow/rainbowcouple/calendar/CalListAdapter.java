@@ -5,15 +5,18 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nexters.rainbow.rainbowcouple.R;
+import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CalListAdapter extends PagerAdapter {
 
@@ -21,6 +24,12 @@ public class CalListAdapter extends PagerAdapter {
     private LayoutInflater inflater;
     private int layoutResource;
     private List<WeeklyCalDate> dataList;
+
+    private CalendarItemSelectedListener selectedListener = null;
+
+    public interface CalendarItemSelectedListener {
+        void selectDate(CalDate date);
+    }
 
     public CalListAdapter(Context context, int layoutResourceId) {
         this.context = context;
@@ -36,6 +45,11 @@ public class CalListAdapter extends PagerAdapter {
         this.inflater = LayoutInflater.from(context);
     }
 
+    public void setSelectedListener(CalendarItemSelectedListener listener) {
+        this.selectedListener = listener;
+    }
+
+
     /**
      * ViewPager가 현재 보여질 Item(View객체)를 생성할 필요가 있는 때 자동으로 호출
      * 쉽게 말해, 스크롤을 통해 현재 보여져야 하는 View를 만들어냄.
@@ -47,17 +61,26 @@ public class CalListAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
 
         WeeklyCalDate weeklyCalDate = dataList.get(position);
+        List<CalDate> calDateList = weeklyCalDate.getWeeklyCalDate();
 
         //새로운 View 객체를 Layoutinflater를 이용해서 생성
         //만들어질 View의 설계는 res폴더>>layout폴더>>viewpater_childview.xml 레이아웃 파일 사용
         View view = inflater.inflate(layoutResource, null);
 
         CalDateItemViewHolder viewHolder = bindView(view);
-
         viewHolder.textViewYear.setText(String.valueOf(weeklyCalDate.getYear()));
         viewHolder.textViewMonth.setText(String.valueOf(weeklyCalDate.getMonth()));
 
-        List<CalDate> calDateList = weeklyCalDate.getWeeklyCalDate();
+        setTextViewByCalDate(viewHolder, calDateList);
+
+        setLayoutTagByCalDate(viewHolder, calDateList);
+
+        container.addView(view);
+
+        return view;
+    }
+
+    private void setTextViewByCalDate(CalDateItemViewHolder viewHolder, List<CalDate> calDateList) {
         viewHolder.textViewMon.setText(String.valueOf(calDateList.get(0).getDay()));
         viewHolder.textViewTue.setText(String.valueOf(calDateList.get(1).getDay()));
         viewHolder.textViewWed.setText(String.valueOf(calDateList.get(2).getDay()));
@@ -65,10 +88,16 @@ public class CalListAdapter extends PagerAdapter {
         viewHolder.textViewFri.setText(String.valueOf(calDateList.get(4).getDay()));
         viewHolder.textViewSat.setText(String.valueOf(calDateList.get(5).getDay()));
         viewHolder.textViewSun.setText(String.valueOf(calDateList.get(6).getDay()));
+    }
 
-        container.addView(view);
-
-        return view;
+    private void setLayoutTagByCalDate(CalDateItemViewHolder viewHolder, List<CalDate> calDateList) {
+        viewHolder.layoutMon.setTag(calDateList.get(0));
+        viewHolder.layoutTue.setTag(calDateList.get(1));
+        viewHolder.layoutWed.setTag(calDateList.get(2));
+        viewHolder.layoutThur.setTag(calDateList.get(3));
+        viewHolder.layoutFri.setTag(calDateList.get(4));
+        viewHolder.layoutSat.setTag(calDateList.get(5));
+        viewHolder.layoutSun.setTag(calDateList.get(6));
     }
 
     /**
@@ -113,6 +142,25 @@ public class CalListAdapter extends PagerAdapter {
         @Bind(R.id.textViewThur) TextView textViewThur;
         @Bind(R.id.textViewFri) TextView textViewFri;
         @Bind(R.id.textViewSat) TextView textViewSat;
+
+        @Bind(R.id.layoutMon) RelativeLayout layoutMon;
+        @Bind(R.id.layoutTue) RelativeLayout layoutTue;
+        @Bind(R.id.layoutWed) RelativeLayout layoutWed;
+        @Bind(R.id.layoutThur) RelativeLayout layoutThur;
+        @Bind(R.id.layoutFri) RelativeLayout layoutFri;
+        @Bind(R.id.layoutSat) RelativeLayout layoutSat;
+        @Bind(R.id.layoutSun) RelativeLayout layoutSun;
+
+        @OnClick({R.id.layoutMon, R.id.layoutTue, R.id.layoutWed, R.id.layoutThur,
+                  R.id.layoutFri, R.id.layoutSat, R.id.layoutSun})
+        public void onClickDay(RelativeLayout layoutOfDay) {
+            if (ObjectUtils.isEmpty(selectedListener)) {
+                return;
+            }
+
+            CalDate calDate = (CalDate) layoutOfDay.getTag();
+            selectedListener.selectDate((CalDate) layoutOfDay.getTag());
+        }
 
         CalDateItemViewHolder(View view) {
             ButterKnife.bind(this, view);
