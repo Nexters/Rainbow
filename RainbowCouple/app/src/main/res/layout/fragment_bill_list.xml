@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -35,111 +36,122 @@
             android:textColor="#444444"
             android:background="@null"/>
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/llCalendarGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/top_bg_our01">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-            <TextView
-                android:id="@+id/tvYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2016"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_margin="4dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_margin="4dp"/>
-            <TextView
-                android:id="@+id/tvMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="12"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:layout_margin="4dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="월"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="화"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="수"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="목"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="금"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="토"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="일"
-                android:textSize="12sp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"/>
-        </LinearLayout>
-        <HorizontalScrollView
+
+        <android.support.v4.view.ViewPager
             android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="115dp"/>
 
-        </HorizontalScrollView>
+        <!-- -->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="16dp">-->
+            <!--<TextView-->
+                <!--android:id="@+id/tvYear"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="2016"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:textSize="20sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:layout_margin="4dp"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="/"-->
+                <!--android:textSize="20sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_margin="4dp"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/tvMonth"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="12"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:textSize="20sp"-->
+                <!--android:layout_margin="4dp"/>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="4dp"-->
+            <!--android:paddingRight="4dp">-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="월"-->
+                <!--android:textSize="12sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#FFFFFF"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="화"-->
+                <!--android:textSize="12sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#FFFFFF"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="수"-->
+                <!--android:textSize="12sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#FFFFFF"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="목"-->
+                <!--android:textSize="12sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#FFFFFF"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="금"-->
+                <!--android:textSize="12sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#FFFFFF"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="토"-->
+                <!--android:textSize="12sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#FFFFFF"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="일"-->
+                <!--android:textSize="12sp"-->
+                <!--android:gravity="center"-->
+                <!--android:textColor="#FFFFFF"/>-->
+        <!--</LinearLayout>-->
+        <!--<HorizontalScrollView-->
+            <!--android:id="@+id/calendar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp">-->
+
+        <!--</HorizontalScrollView>-->
+        <!-- -->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"

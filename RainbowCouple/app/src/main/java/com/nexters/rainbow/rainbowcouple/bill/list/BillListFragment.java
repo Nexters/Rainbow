@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,10 @@ import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.OwnerType;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
+import com.nexters.rainbow.rainbowcouple.calendar.CalDate;
+import com.nexters.rainbow.rainbowcouple.calendar.CalListAdapter;
+import com.nexters.rainbow.rainbowcouple.calendar.CalendarManager;
+import com.nexters.rainbow.rainbowcouple.calendar.WeeklyCalDate;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
 import com.nexters.rainbow.rainbowcouple.common.Constants;
 import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
@@ -27,6 +32,8 @@ import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +47,16 @@ import rx.functions.Action1;
 public class BillListFragment extends BaseFragment implements BillAddDialog.AddDialogDismissCallback {
 
     private static final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
+    private static final int VIEW_PAGER_MAX_ITEM = 61;
+    private static final int DEFAULT_VIEW_PAGER_PAGE_ITEM = (VIEW_PAGER_MAX_ITEM / 2) - 1;
 
     private SessionManager sessionManager;
 
     private View rootView;
     private List<Bill> billList = new ArrayList<>();
+    private List<CalDate> calDateList = new ArrayList<>();
     private BillListAdapter billListAdapter;
+    private CalListAdapter calListAdapter;
 
     private OwnerType ownerType;
 
@@ -56,8 +67,9 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
     @Bind(R.id.btnOur) Button btnOur;
     @Bind(R.id.btnMe) Button btnMe;
     @Bind(R.id.btnYou) Button btnYou;
-    @Bind(R.id.llCalendarGroup)
-    LinearLayout llCanlendarGroup;
+    @Bind(R.id.llCalendarGroup) LinearLayout llCanlendarGroup;
+    @Bind(R.id.calendar) ViewPager calendarView;
+
     public static BillListFragment newInstance() {
         BillListFragment fragment = new BillListFragment();
         fragment.setFragmentTag(TAG_BILL_LIST_FRAGMENT);
@@ -73,6 +85,8 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
         sessionManager = SessionManager.getInstance(getActivity());
 
+        loadCalendar();
+
         billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
         billListView.setAdapter(billListAdapter);
         billListView.setEmptyView(emptyTextView);
@@ -83,6 +97,40 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         return rootView;
     }
 
+    private void loadCalendar() {
+        List<WeeklyCalDate> calDateList = makeCalDateList();
+
+        calListAdapter = new CalListAdapter(getActivity(), R.layout.list_item_calendar, calDateList);
+        calendarView.setAdapter(calListAdapter);
+        calendarView.setCurrentItem(DEFAULT_VIEW_PAGER_PAGE_ITEM);
+
+    }
+
+    private List<WeeklyCalDate> makeCalDateList() {
+        List<WeeklyCalDate> calDateList = new ArrayList<>();
+
+        DateTime mondayOfWeek = new DateTime(CalendarManager.getFirstDayOfWeek());
+
+        /* 현재 날짜 부터 30주 전 까지 weekly date */
+        for (int weekCount = 30; weekCount > 0; weekCount--) {
+            DateTime pastMondayOfWeek = mondayOfWeek.minusWeeks(weekCount);
+            WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(pastMondayOfWeek.toDate());
+            calDateList.add(weeklyCalDate);
+        }
+
+        /* 현재 날짜가 들어간 주간 */
+        WeeklyCalDate currentWeeklyCalDate = CalendarManager.makeWeeklyCalDate(mondayOfWeek.toDate());
+        calDateList.add(currentWeeklyCalDate);
+
+        /* 현재 날짜 부터 30주 후 까지 weekly date */
+        for (int weekCount = 1; weekCount < 31; weekCount++) {
+            DateTime nextMondayOfWeek = mondayOfWeek.plusWeeks(weekCount);
+            WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(nextMondayOfWeek.toDate());
+            calDateList.add(weeklyCalDate);
+        }
+
+        return calDateList;
+    }
 
     private void setBillViewData(List<Bill> bills) {
         billTotalAmount.setText(String.format(Constants.FORMAT_BILL_BUDGET, getTotalAmount(bills)));
