@@ -1,12 +1,15 @@
 package com.nexters.rainbow.rainbowcouple.auth.signup;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.nexters.rainbow.rainbowcouple.MainActivity;
 import com.nexters.rainbow.rainbowcouple.R;
@@ -70,7 +73,20 @@ public class InviteMemberFragment extends BaseFragment {
 
     @OnClick(R.id.btnCopyInviteCode)
     public void copyInviteCode() {
-        //TODO 클립보드에 invitecode 복사 후 toast
+        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+            android.text.ClipboardManager clipboard =
+                    (android.text.ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(inviteCode);
+        } else {
+            android.content.ClipboardManager clipboard =
+                    (android.content.ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", inviteCode);
+            clipboard.setPrimaryClip(clip);
+        }
+
+        Toast toast = Toast.makeText(getActivity(), "초대코드가 클립보드에 복사 되었습니다.", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.BOTTOM, 0, 100);
+        toast.show();
     }
 
     @OnClick(R.id.btnStartService)
