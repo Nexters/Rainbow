@@ -14,7 +14,7 @@ public class CalendarManager {
         LocalDate today = LocalDate.now();
         int currentWeekDay = today.getDayOfWeek();
 
-        int dayTerm = (0 - currentWeekDay);
+        int dayTerm = Math.abs(1 - currentWeekDay);
 
         return today.minusDays(dayTerm).toDate();
     }
@@ -40,5 +40,31 @@ public class CalendarManager {
                 .numberOfWeek(localDateMon.getWeekOfWeekyear())
                 .weeklyCalDate(dateList)
                 .build();
+    }
+
+    public static List<WeeklyCalDate> makeCalDateList() {
+        List<WeeklyCalDate> calDateList = new ArrayList<>();
+
+        LocalDate mondayOfWeek = new LocalDate(CalendarManager.getFirstDayOfWeek());
+
+        /* 현재 날짜 부터 30주 전 까지 weekly date */
+        for (int weekCount = 30; weekCount > 0; weekCount--) {
+            LocalDate pastMondayOfWeek = mondayOfWeek.minusWeeks(weekCount);
+            WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(pastMondayOfWeek.toDate());
+            calDateList.add(weeklyCalDate);
+        }
+
+        /* 현재 날짜가 들어간 주간 */
+        WeeklyCalDate currentWeeklyCalDate = CalendarManager.makeWeeklyCalDate(mondayOfWeek.toDate());
+        calDateList.add(currentWeeklyCalDate);
+
+        /* 현재 날짜 부터 30주 후 까지 weekly date */
+        for (int weekCount = 1; weekCount < 31; weekCount++) {
+            LocalDate nextMondayOfWeek = mondayOfWeek.plusWeeks(weekCount);
+            WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(nextMondayOfWeek.toDate());
+            calDateList.add(weeklyCalDate);
+        }
+
+        return calDateList;
     }
 }
