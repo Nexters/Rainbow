@@ -43,6 +43,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".bill.add.BillAddActivity"/>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@ import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.OwnerType;
+import com.nexters.rainbow.rainbowcouple.bill.add.BillAddActivity;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.calendar.CalDate;
 import com.nexters.rainbow.rainbowcouple.calendar.CalListAdapter;
@@ -117,9 +118,12 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
     @OnClick(R.id.actionBtnAddBill)
     public void showBillAddDialog() {
-        BillAddDialog billAddDialog = BillAddDialog.newInstance();
-        billAddDialog.setDismissCallback(this);
-        billAddDialog.show(getFragmentManager(), billAddDialog.getFragmentTag());
+//        BillAddDialog billAddDialog = BillAddDialog.newInstance();
+//        billAddDialog.setDismissCallback(this);
+//        billAddDialog.show(getFragmentManager(), billAddDialog.getFragmentTag());
+        Intent billAddActivity = new Intent(getActivity(), BillAddActivity.class);
+        startActivity(billAddActivity);
+
     }
 
     // TODO: 2016. 1. 16. api로 서버에 저장 할 것. DB에 따로 저장하지는 않음..

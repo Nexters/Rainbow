@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
@@ -31,9 +35,14 @@ public class BillAddDialog extends BaseDialogFragment {
 
     private static final String TAG_BILL_ADD_DIALOG = "bill_list_fragment";
 
-    @Bind(R.id.editTextNewBillAmount) AppCompatEditText editTextBillAmount;
-    @Bind(R.id.editTextNewBillCategory) AppCompatEditText editTextBillCategory;
-    @Bind(R.id.editTextNewBillComment) AppCompatEditText editTextBillComment;
+    @Bind(R.id.tvNewBillDate) TextView tvBillDate;
+    @Bind(R.id.rlCategory) RelativeLayout rlBilCategory;
+    @Bind(R.id.ivCategoryIcon) ImageView ivBillCategoryIcon;
+    @Bind(R.id.tvNewBillCategory) TextView tvBillCategory;
+    @Bind(R.id.tvNewBillAmount) TextView tvBillAmount;
+    @Bind(R.id.tvNewBillComment) TextView tvBillComment;
+    @Bind(R.id.etNewBillAmount) EditText etBillAmount;
+    @Bind(R.id.etNewBillComment) EditText etBillComment;
 
     private SessionManager sessionManager;
 
@@ -66,18 +75,43 @@ public class BillAddDialog extends BaseDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.dialog_bill_add, container, false);
         ButterKnife.bind(this, rootView);
-
         setCancelable(true);
-
         sessionManager = SessionManager.getInstance(getActivity());
 
         return rootView;
+    }
+
+    private void initDialog() {
+        tvBillDate.setText(TimeUtils.getYearOfToday() + "/" + TimeUtils.getMonthOfToday() + "/" + TimeUtils.getDayOfToday());
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.rlCategory)
+    void inputCategory() {
+        tvBillComment.setVisibility(View.VISIBLE);
+        tvBillAmount.setVisibility(View.VISIBLE);
+        rlBilCategory.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.tvNewBillAmount)
+    void inputAmount() {
+        tvBillAmount.setVisibility(View.GONE);
+        tvBillComment.setVisibility(View.VISIBLE);
+        rlBilCategory.setVisibility(View.VISIBLE);
+
+    }
+
+    @OnClick(R.id.tvNewBillComment)
+    void inputComment() {
+        tvBillComment.setVisibility(View.GONE);
+        tvBillAmount.setVisibility(View.VISIBLE);
+        rlBilCategory.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.btnBillSave)
@@ -91,12 +125,12 @@ public class BillAddDialog extends BaseDialogFragment {
         }
 
         saveNewBill(BillAddForm.builder()
-                .amount(Integer.parseInt(editTextBillAmount.getString()))
+                .amount(Integer.parseInt(etBillAmount.getText().toString()))
                 .year(TimeUtils.getYearOfToday())
                 .month(TimeUtils.getMonthOfToday())
                 .day(TimeUtils.getDayOfToday())
-                .category(editTextBillCategory.getString())
-                .comment(editTextBillComment.getString())
+                .category(tvBillCategory.getText().toString())
+                .comment(etBillComment.getText().toString())
                 .build());
     }
 
@@ -131,20 +165,20 @@ public class BillAddDialog extends BaseDialogFragment {
     }
 
     private boolean isValidInput() {
-        if (StringUtils.isEmpty(editTextBillComment.getString())) {
-            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_COMMENT_EMPTY);
-            return false;
-        }
+//        if (StringUtils.isEmpty(etBillComment.getText().toString())) {
+//            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_COMMENT_EMPTY);
+//            return false;
+//        }
 
-        if (StringUtils.isEmpty(editTextBillAmount.getString())) {
+        if (StringUtils.isEmpty(etBillAmount.getText().toString())) {
             DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_AMOUNT_EMPTY);
             return false;
         }
 
-        if (StringUtils.isEmpty(editTextBillCategory.getString())) {
-            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_CATEGORY_EMPTY);
-            return false;
-        }
+//        if (StringUtils.isEmpty(tvBillCategory.getText().toString())) {
+//            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_CATEGORY_EMPTY);
+//            return false;
+//        }
 
         return true;
     }

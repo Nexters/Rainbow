@@ -4,8 +4,10 @@
     <string name="action_settings">Settings</string>
 
     <string name="dialog_Save">저장</string>
-    <string name="dialog_Cancel">취소</string>
-    <string name="dialog_OK">확인</string>
+    <string name="dialog_Cancel">입력취소</string>
+    <string name="dialog_OK">입력완료</string>
+    <string name="input_amount">사용 금액을 입력해주세요.</string>
+    <string name="input_comment">추가 설명을 입력해주세요.</string>
 
     <string name="string_empty_bill">지출 내역이 없습니다.</string>
     <string name="string_bill_add_new_bill">새로운 기록 입력</string>
@@ -18,4 +20,11 @@
 
     <string name="msg_signup_complete">회원가입에 성공했습니다.</string>
     <string name="msg_guide_groupcode">그룹을 만들거나 \n초대받은 그룹의 코드를 입력하여\n두툼을 이용해주세요.</string>
+
+    <string name="string_drink">음료</string>
+    <string name="string_meal">식사</string>
+    <string name="string_shopping">쇼핑</string>
+    <string name="string_movie">영화</string>
+    <string name="string_game">오락</string>
+
 </resources>
