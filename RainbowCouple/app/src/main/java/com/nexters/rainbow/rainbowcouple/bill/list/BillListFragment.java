@@ -34,8 +34,6 @@ import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
 
-import org.joda.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +43,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observable;
 import rx.functions.Action1;
+
+import static com.nexters.rainbow.rainbowcouple.bill.OwnerType.*;
 
 public class BillListFragment extends BaseFragment implements BillAddDialog.AddDialogDismissCallback, CalListAdapter.CalendarItemSelectedListener {
 
@@ -93,13 +93,16 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
         loadCalendar();
 
-        viewDate = new Date();
-
         billListAdapter = new BillListAdapter(getActivity(), R.layout.list_item_bill, billList);
         billListView.setAdapter(billListAdapter);
         billListView.setEmptyView(emptyTextView);
 
-        loadOurBill();
+        ownerType = OwnerType.ALL;
+        viewDate = new Date();
+
+        requestBills();
+
+        changeViewByOwnerType();
 
         return rootView;
     }
@@ -110,7 +113,11 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         ButterKnife.unbind(this);
     }
 
-    // TODO: 2016. 1. 16. option Menu에 동기화 버튼을 둬서 수동 동기화 하는 것은 어떨까 ?
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
@@ -126,8 +133,6 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
     }
 
-    // TODO: 2016. 1. 16. api로 서버에 저장 할 것. DB에 따로 저장하지는 않음..
-    // TODO: 2016. 1. 16. listView 자체 저장 하고 DB는 fragment 다시 불러올 때 서버와 동기화 한 후 가져올 것
     @Override
     public void notifySavedNewBill(Bill bill) {
         if (ObjectUtils.isEmpty(bill)) {
@@ -158,68 +163,52 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         startActivity(graphActivity);
     }
 
-    @OnClick(R.id.btnOur)
-    void loadOurBill() {
-        ownerType = OwnerType.ALL;
+    @OnClick(R.id.actionBtnRefresh)
+    public void refreshBillList() {
+        requestBills();
+    }
+
+    @OnClick({R.id.btnOur, R.id.btnMe, R.id.btnYou})
+    void loadBillListByButtonClick(Button button) {
+        switch (button.getId()) {
+            case R.id.btnOur:
+                ownerType = OwnerType.ALL;
+                break;
+            case R.id.btnMe:
+                ownerType = OwnerType.MINE;
+                break;
+            case R.id.btnYou:
+                ownerType = OwnerType.PARTNER;
+                break;
+        }
 
         requestBills();
 
-        resetOwnerButton();
-        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_our01);
-        billTotalAmount.setTextColor(Color.parseColor("#9195B0"));
-        btnOur.setTextColor(Color.parseColor("#9195B0"));
+        changeViewByOwnerType();
     }
 
-    @OnClick(R.id.btnMe)
-    void loadMyBill() {
-        ownerType = OwnerType.MINE;
-
-        final BillApi billApi = NetworkManager.getApi(BillApi.class);
-        Observable<List<Bill>> billObservable = billApi.viewBillByDay(
-                sessionManager.getUserToken(),
-                ownerType,
-                String.valueOf(TimeUtils.getYearOfToday()),
-                String.valueOf(TimeUtils.getMonthOfToday()),
-                String.valueOf(TimeUtils.getDayOfToday())
-        );
-        bind(billObservable)
-                .subscribe(new Action1<List<Bill>>() {
-                    @Override
-                    public void call(List<Bill> bills) {
-                        setBillViewData(bills);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        new ExceptionHandler(getActivity()).handle(throwable);
-                    }
-                });
-
-        requestBills();
-        resetOwnerButton();
-        btnMe.setTextColor(Color.parseColor("#95BEC9"));
-        billTotalAmount.setTextColor(Color.parseColor("#95BEC9"));
-        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_me01);
-
-    }
-
-    @OnClick(R.id.btnYou)
-    void loadYourBill() {
-        ownerType = OwnerType.PARTNER;
-
-        requestBills();
-
-        resetOwnerButton();
-        btnYou.setTextColor(Color.parseColor("#D3Bf89"));
-        billTotalAmount.setTextColor(Color.parseColor("#D3Bf89"));
-        llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_you01);
-
-    }
-
-    private void resetOwnerButton() {
+    private void changeViewByOwnerType() {
         btnOur.setTextColor(Color.parseColor("#444444"));
         btnYou.setTextColor(Color.parseColor("#444444"));
         btnMe.setTextColor(Color.parseColor("#444444"));
+
+        switch (ownerType) {
+            case ALL:
+                llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_our01);
+                billTotalAmount.setTextColor(Color.parseColor("#9195B0"));
+                btnOur.setTextColor(Color.parseColor("#9195B0"));
+                break;
+            case MINE:
+                btnMe.setTextColor(Color.parseColor("#95BEC9"));
+                billTotalAmount.setTextColor(Color.parseColor("#95BEC9"));
+                llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_me01);
+                break;
+            case PARTNER:
+                btnYou.setTextColor(Color.parseColor("#D3Bf89"));
+                billTotalAmount.setTextColor(Color.parseColor("#D3Bf89"));
+                llCanlendarGroup.setBackgroundResource(R.drawable.top_bg_you01);
+                break;
+        }
     }
 
     private void requestBills() {
@@ -252,9 +241,9 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         textViewMonth.setText(String.valueOf(TimeUtils.getMonthOfDate(viewDate)));
         textViewDay.setText(String.valueOf(TimeUtils.getDayOfDate(viewDate)));
 
-        if (OwnerType.MINE.equals(ownerType)) {
+        if (MINE.equals(ownerType)) {
             textViewOwner.setText("내가");
-        } else if (OwnerType.PARTNER.equals(ownerType)) {
+        } else if (PARTNER.equals(ownerType)) {
             textViewOwner.setText("파트너가");
         } else {
             textViewOwner.setText("우리가");
@@ -264,7 +253,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         billListAdapter.addAllData(bills);
         billListAdapter.notifyDataSetChanged();
     }
-    
+
     private void loadCalendar() {
         List<WeeklyCalDate> calDateList = CalendarManager.makeCalDateList();
 

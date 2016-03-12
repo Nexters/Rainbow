@@ -169,6 +169,7 @@
         android:paddingTop="4dp"
         android:paddingBottom="4dp">
         <Button
+            android:id="@+id/actionBtnRefresh"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/btn_refresh01"
