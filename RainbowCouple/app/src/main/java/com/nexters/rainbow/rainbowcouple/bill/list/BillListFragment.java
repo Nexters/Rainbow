@@ -1,9 +1,9 @@
 package com.nexters.rainbow.rainbowcouple.bill.list;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,7 +18,6 @@ import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.OwnerType;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddActivity;
-import com.nexters.rainbow.rainbowcouple.bill.add.BillAddDialog;
 import com.nexters.rainbow.rainbowcouple.calendar.CalDate;
 import com.nexters.rainbow.rainbowcouple.calendar.CalListAdapter;
 import com.nexters.rainbow.rainbowcouple.calendar.CalendarManager;
@@ -28,8 +27,6 @@ import com.nexters.rainbow.rainbowcouple.common.Constants;
 import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
 import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
-import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
-import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
 import com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView;
 import com.nexters.rainbow.rainbowcouple.graph.GraphActivity;
@@ -46,9 +43,10 @@ import rx.functions.Action1;
 
 import static com.nexters.rainbow.rainbowcouple.bill.OwnerType.*;
 
-public class BillListFragment extends BaseFragment implements BillAddDialog.AddDialogDismissCallback, CalListAdapter.CalendarItemSelectedListener {
+public class BillListFragment extends BaseFragment implements CalListAdapter.CalendarItemSelectedListener {
 
     private static final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
+    private static final int ADD_BILL_ACTIVITY = 1;
     private static final int VIEW_PAGER_MAX_ITEM = 61;
     private static final int DEFAULT_VIEW_PAGER_PAGE_ITEM = (VIEW_PAGER_MAX_ITEM / 2);
 
@@ -125,32 +123,9 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
     @OnClick(R.id.actionBtnAddBill)
     public void showBillAddDialog() {
-//        BillAddDialog billAddDialog = BillAddDialog.newInstance();
-//        billAddDialog.setDismissCallback(this);
-//        billAddDialog.show(getFragmentManager(), billAddDialog.getFragmentTag());
         Intent billAddActivity = new Intent(getActivity(), BillAddActivity.class);
-        startActivity(billAddActivity);
-
+        startActivityForResult(billAddActivity, ADD_BILL_ACTIVITY);
     }
-
-    @Override
-    public void notifySavedNewBill(Bill bill) {
-        if (ObjectUtils.isEmpty(bill)) {
-            DialogManager.showAlertDialog(getActivity(), "지출 내역 저장 중 오류가 발생했습니다.");
-        }
-
-        billListAdapter.addData(0, bill);
-        billListAdapter.notifyDataSetChanged();
-        billListView.setSelection(0);
-
-        Snackbar.make(actionBtnAddBill, "새로운 지출 내역이 저장되었습니다.", Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void notifyError(Throwable throwable) {
-        new ExceptionHandler(getActivity()).handle(throwable);
-    }
-
     @Override
     public void selectDate(CalDate date) {
         viewDate = date.getDate();
@@ -273,4 +248,10 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         return totalAmount;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ADD_BILL_ACTIVITY) {
+            requestBills();
+        }
+    }
 }

@@ -1,12 +1,7 @@
 package com.nexters.rainbow.rainbowcouple.bill.add;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -41,38 +36,25 @@ public class BillAddActivity extends BaseActivity {
     @Bind(R.id.etNewBillAmount)EditText etBillAmount;
     @Bind(R.id.etNewBillComment) EditText etBillComment;
     @Bind(R.id.rlInputCategory) RelativeLayout rlInputCategory;
-    @Bind(R.id.iconDrink)
-    ImageButton iconDrink;
-    @Bind(R.id.iconMeal)
-    ImageButton iconMeal;
-    @Bind(R.id.iconShopping)
-    ImageButton iconShopping;
-    @Bind(R.id.iconMovie)
-    ImageButton iconMovie;
-    @Bind(R.id.iconGame)
-    ImageButton iconGame;
-    @Bind(R.id.iconUserCategory)
-    ImageButton iconUserCategory;
-    @Bind(R.id.textDrink)
-    TextView textDrink;
-    @Bind(R.id.textMeal)
-    TextView textMeal;
-    @Bind(R.id.textShopping)
-    TextView textShopping;
-    @Bind(R.id.textMovie)
-    TextView textMovie;
-    @Bind(R.id.textGame)
-    TextView textGame;
-    @Bind(R.id.textUserCategory)
-    TextView textUserCategory;
+    @Bind(R.id.iconDrink) ImageButton iconDrink;
+    @Bind(R.id.iconMeal) ImageButton iconMeal;
+    @Bind(R.id.iconShopping) ImageButton iconShopping;
+    @Bind(R.id.iconMovie) ImageButton iconMovie;
+    @Bind(R.id.iconGame) ImageButton iconGame;
+    @Bind(R.id.iconUserCategory) ImageButton iconUserCategory;
+    @Bind(R.id.textDrink) TextView textDrink;
+    @Bind(R.id.textMeal) TextView textMeal;
+    @Bind(R.id.textShopping) TextView textShopping;
+    @Bind(R.id.textMovie) TextView textMovie;
+    @Bind(R.id.textGame) TextView textGame;
+    @Bind(R.id.textUserCategory) TextView textUserCategory;
 
     private SessionManager sessionManager;
-//    private AddDialogDismissCallback dismissCallback = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_bill_add);
+        setContentView(R.layout.activity_bill_add);
         ButterKnife.bind(this);
         sessionManager = SessionManager.getInstance(this);
         initDate();
@@ -83,11 +65,6 @@ public class BillAddActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.unbind(this);
     }
-
-//    public interface AddDialogDismissCallback {
-//        void notifySavedNewBill(Bill bill);
-//        void notifyError(Throwable throwable);
-//    }
 
     @OnClick(R.id.rlCategory)
     void inputCategory() {
@@ -181,6 +158,7 @@ public class BillAddActivity extends BaseActivity {
     }
 
     private void saveNewBill(BillAddForm form) {
+
         BillApi billApi = NetworkManager.getApi(BillApi.class);
         Observable<Bill> billObservable = billApi.insertBill(sessionManager.getUserToken(), form);
 
@@ -188,11 +166,13 @@ public class BillAddActivity extends BaseActivity {
                 .subscribe(new Action1<Bill>() {
                     @Override
                     public void call(Bill bill) {
-                        exitActivity();
+//                        dismissCallback.notifySavedNewBill(bill);
+                        finish();
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+//                        dismissCallback.notifyError(throwable);
                         exitActivity();
                     }
                 });
