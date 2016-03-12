@@ -64,7 +64,7 @@ public class CalListAdapter extends PagerAdapter {
         List<CalDate> calDateList = weeklyCalDate.getWeeklyCalDate();
 
         //새로운 View 객체를 Layoutinflater를 이용해서 생성
-        //만들어질 View의 설계는 res폴더>>layout폴더>>viewpater_childview.xml 레이아웃 파일 사용
+        //만들어질 view는 layoutResource로 외부에서 주입 받아 사용
         View view = inflater.inflate(layoutResource, null);
 
         CalDateItemViewHolder viewHolder = bindView(view);

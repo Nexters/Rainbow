@@ -49,7 +49,7 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
 
     private static final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
     private static final int VIEW_PAGER_MAX_ITEM = 61;
-    private static final int DEFAULT_VIEW_PAGER_PAGE_ITEM = (VIEW_PAGER_MAX_ITEM / 2) - 1;
+    private static final int DEFAULT_VIEW_PAGER_PAGE_ITEM = (VIEW_PAGER_MAX_ITEM / 2);
 
     private SessionManager sessionManager;
 
@@ -260,42 +260,15 @@ public class BillListFragment extends BaseFragment implements BillAddDialog.AddD
         billListAdapter.addAllData(bills);
         billListAdapter.notifyDataSetChanged();
     }
-
-
+    
     private void loadCalendar() {
-        List<WeeklyCalDate> calDateList = makeCalDateList();
+        List<WeeklyCalDate> calDateList = CalendarManager.makeCalDateList();
 
         calListAdapter = new CalListAdapter(getActivity(), R.layout.list_item_calendar, calDateList);
         calendarView.setAdapter(calListAdapter);
         calendarView.setCurrentItem(DEFAULT_VIEW_PAGER_PAGE_ITEM);
         calListAdapter.setSelectedListener(this);
 
-    }
-
-    private List<WeeklyCalDate> makeCalDateList() {
-        List<WeeklyCalDate> calDateList = new ArrayList<>();
-
-        LocalDate mondayOfWeek = new LocalDate(CalendarManager.getFirstDayOfWeek());
-
-        /* 현재 날짜 부터 30주 전 까지 weekly date */
-        for (int weekCount = 30; weekCount > 0; weekCount--) {
-            LocalDate pastMondayOfWeek = mondayOfWeek.minusWeeks(weekCount);
-            WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(pastMondayOfWeek.toDate());
-            calDateList.add(weeklyCalDate);
-        }
-
-        /* 현재 날짜가 들어간 주간 */
-        WeeklyCalDate currentWeeklyCalDate = CalendarManager.makeWeeklyCalDate(mondayOfWeek.toDate());
-        calDateList.add(currentWeeklyCalDate);
-
-        /* 현재 날짜 부터 30주 후 까지 weekly date */
-        for (int weekCount = 1; weekCount < 31; weekCount++) {
-            LocalDate nextMondayOfWeek = mondayOfWeek.plusWeeks(weekCount);
-            WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(nextMondayOfWeek.toDate());
-            calDateList.add(weeklyCalDate);
-        }
-
-        return calDateList;
     }
 
     private int getTotalAmount(List<Bill> bills) {
