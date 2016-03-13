@@ -19,9 +19,9 @@
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/color_white"
         android:layout_centerHorizontal="true"
-        android:text="SIGN UP"/>
+        android:text="@string/ac_sign_up_label"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,7 +54,7 @@
             android:textSize="14sp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/color_bill_text_partner"
-            android:hint="이름"/>
+            android:hint="@string/ac_sign_up_user_name"/>
 
         <EditText
             android:id="@+id/editTextSignUpUserPassword"
@@ -91,10 +91,10 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:background="@drawable/join_bt_bg"
-            android:text="가입하기"
+            android:text="@string/ac_sign_up_sign_up_btn"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/color_white"/>
     </RelativeLayout>
 
 </RelativeLayout>

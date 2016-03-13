@@ -11,4 +11,11 @@
     <color name="color_bill_text_white">#FFFFFFFF</color>
     <color name="color_bill_text_my">#FFF58676</color>
     <color name="color_bill_text_partner">#FF32689B</color>
+    <color name="color_bill_category_drink">#FEBF02</color>
+    <color name="color_bill_category_meal">#FF7D63</color>
+    <color name="color_bill_category_shopping">#50C086</color>
+    <color name="color_bill_category_movie">#1AC5FA</color>
+    <color name="color_bill_category_game">#B174B1</color>
+    <color name="color_black">#000000</color>
+    <color name="color_white">#FFFFFF</color>
 </resources>

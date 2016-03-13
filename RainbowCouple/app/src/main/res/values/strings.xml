@@ -27,4 +27,11 @@
     <string name="string_movie">영화</string>
     <string name="string_game">오락</string>
 
+    <string name="ac_sign_in_guide">이메일 주소로 로그인해주세요</string>
+    <string name="ac_sign_in_login_btn">로그인</string>
+    <string name="ac_sign_in_sign_up_btn">DOTOOM 회원가입 ></string>
+
+    <string name="ac_sign_up_label">SIGN UP</string>
+    <string name="ac_sign_up_user_name">이름</string>
+    <string name="ac_sign_up_sign_up_btn">가입하기</string>
 </resources>

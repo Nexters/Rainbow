@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="30dp"
-        android:text="이메일 주소로 로그인해주세요"
+        android:text="@string/ac_sign_in_guide"
         android:textColor="#ACB0BB" />
 
     <EditText
@@ -80,7 +80,7 @@
         android:background="@drawable/login_btn"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:text="로그인"/>
+        android:text="@string/ac_sign_in_login_btn"/>
 
     <Button
         android:id="@+id/btnSignUp"
@@ -94,6 +94,6 @@
         android:layout_margin="5dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="DOTOOM 회원가입 >"/>
+        android:text="@string/ac_sign_in_sign_up_btn"/>
 
 </RelativeLayout>

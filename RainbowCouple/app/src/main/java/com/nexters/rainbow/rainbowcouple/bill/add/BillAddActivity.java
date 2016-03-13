@@ -1,6 +1,5 @@
 package com.nexters.rainbow.rainbowcouple.bill.add;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -166,13 +165,11 @@ public class BillAddActivity extends BaseActivity {
                 .subscribe(new Action1<Bill>() {
                     @Override
                     public void call(Bill bill) {
-//                        dismissCallback.notifySavedNewBill(bill);
                         finish();
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-//                        dismissCallback.notifyError(throwable);
                         exitActivity();
                     }
                 });
@@ -184,20 +181,11 @@ public class BillAddActivity extends BaseActivity {
     }
 
     private boolean isValidInput() {
-//        if (StringUtils.isEmpty(etBillComment.getText().toString())) {
-//            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_COMMENT_EMPTY);
-//            return false;
-//        }
 
         if (StringUtils.isEmpty(etBillAmount.getText().toString())) {
             DialogManager.showAlertDialog(this, Messages.BillError.BILL_AMOUNT_EMPTY);
             return false;
         }
-
-//        if (StringUtils.isEmpty(tvBillCategory.getText().toString())) {
-//            DialogManager.showAlertDialog(getActivity(), Messages.BillError.BILL_CATEGORY_EMPTY);
-//            return false;
-//        }
 
         return true;
     }
@@ -209,18 +197,18 @@ public class BillAddActivity extends BaseActivity {
         iconMovie.setBackgroundResource(R.drawable.input_ico_movie01);
         iconGame.setBackgroundResource(R.drawable.input_ico_game01);
 
-        textDrink.setTextColor(Color.parseColor("#000000"));
-        textMeal.setTextColor(Color.parseColor("#000000"));
-        textShopping.setTextColor(Color.parseColor("#000000"));
-        textMovie.setTextColor(Color.parseColor("#000000"));
-        textGame.setTextColor(Color.parseColor("#000000"));
+        textDrink.setTextColor(getResources().getColor(R.color.color_black));
+        textMeal.setTextColor(getResources().getColor(R.color.color_black));
+        textShopping.setTextColor(getResources().getColor(R.color.color_black));
+        textMovie.setTextColor(getResources().getColor(R.color.color_black));
+        textGame.setTextColor(getResources().getColor(R.color.color_black));
     }
 
     @OnClick(R.id.iconDrink)
     void selectDrink() {
         resetCategory();
         iconDrink.setBackgroundResource(R.drawable.input_ico_drink01_press);
-        textDrink.setTextColor(Color.parseColor("#FEBF02"));
+        textDrink.setTextColor(getResources().getColor(R.color.color_bill_category_drink));
         ivBillCategoryIcon.setImageResource(R.drawable.ico_drink02);
         tvBillCategory.setText(R.string.string_drink);
     }
@@ -230,10 +218,7 @@ public class BillAddActivity extends BaseActivity {
     void selectMeal() {
         resetCategory();
         iconMeal.setBackgroundResource(R.drawable.input_ico_meal01_press);
-//        SpannableString spanString = new SpannableString("식사");
-//        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-//        textMeal.setText(spanString);
-        textMeal.setTextColor(Color.parseColor("#FF7D63"));
+        textMeal.setTextColor(getResources().getColor(R.color.color_bill_category_meal));
         ivBillCategoryIcon.setImageResource(R.drawable.ico_meal02);
         tvBillCategory.setText(R.string.string_meal);
     }
@@ -242,7 +227,7 @@ public class BillAddActivity extends BaseActivity {
     void selectShopping() {
         resetCategory();
         iconShopping.setBackgroundResource(R.drawable.input_ico_shopping01_press);
-        textShopping.setTextColor(Color.parseColor("#50C086"));
+        textShopping.setTextColor(getResources().getColor(R.color.color_bill_category_shopping));
         ivBillCategoryIcon.setImageResource(R.drawable.ico_shopping02);
         tvBillCategory.setText(R.string.string_shopping);
     }
@@ -251,7 +236,7 @@ public class BillAddActivity extends BaseActivity {
     void selectMovie() {
         resetCategory();
         iconMovie.setBackgroundResource(R.drawable.input_ico_movie01_press);
-        textMovie.setTextColor(Color.parseColor("#1AC5FA"));
+        textMovie.setTextColor(getResources().getColor(R.color.color_bill_category_movie));
         ivBillCategoryIcon.setImageResource(R.drawable.ico_movie02);
         tvBillCategory.setText(R.string.string_movie);
     }
@@ -260,7 +245,7 @@ public class BillAddActivity extends BaseActivity {
     void selectGame() {
         resetCategory();
         iconGame.setBackgroundResource(R.drawable.input_ico_game01_press);
-        textGame.setTextColor(Color.parseColor("#B174B1"));
+        textGame.setTextColor(getResources().getColor(R.color.color_bill_category_game));
         ivBillCategoryIcon.setImageResource(R.drawable.ico_game02);
         tvBillCategory.setText(R.string.string_game);
     }
