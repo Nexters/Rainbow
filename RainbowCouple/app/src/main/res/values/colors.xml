@@ -18,4 +18,5 @@
     <color name="color_bill_category_game">#B174B1</color>
     <color name="color_black">#000000</color>
     <color name="color_white">#FFFFFF</color>
+    <color name="color_graph_bg">#323334</color>
 </resources>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -42,6 +43,8 @@ import butterknife.OnClick;
 public class GraphActivity extends DemoBase {
 
     @Bind(R.id.chart1) PieChart mChart;
+    @Bind(R.id.calendar) ViewPager calendarView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,23 +63,23 @@ public class GraphActivity extends DemoBase {
         mChart.setDescription("");
         mChart.setExtraOffsets(1, 1, 1, 1);
 
-        mChart.setDragDecelerationFrictionCoef(0.95f);
+        mChart.setDragDecelerationFrictionCoef(0);
         mChart.setDrawHoleEnabled(true);
+        mChart.setHoleColor(getResources().getColor(R.color.color_graph_bg));
         mChart.setHoleColorTransparent(true);
-
-        mChart.setTransparentCircleColor(Color.WHITE);
-        mChart.setTransparentCircleAlpha(110);
-
-        mChart.setHoleRadius(20f);
-        mChart.setTransparentCircleRadius(31f);
+        mChart.setHoleRadius(65f);
 
         mChart.setDrawCenterText(true);
+        String amount = "1,356,300";
+        mChart.setCenterText("우리의 지출 총액\n"+amount);
+        mChart.setCenterTextColor(getResources().getColor(R.color.color_white));
 
         mChart.setRotationAngle(0);
         // enable rotation of the chart by touch
         mChart.setRotationEnabled(true);
         mChart.setHighlightPerTapEnabled(true);
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+
 
     }
 
@@ -95,39 +98,49 @@ public class GraphActivity extends DemoBase {
 
         ArrayList<String> xVals = new ArrayList<String>();
 
-        for (int i = 0; i < count + 1; i++)
+        for (int i = 0; i < count + 1; i++) {
             xVals.add(mParties[i % mParties.length]);
 
-        PieDataSet dataSet = new PieDataSet(yVals1, "");
-        dataSet.setSliceSpace(10f);
-        dataSet.setSelectionShift(6f);
+        }
+
 
         // add a lot of colors
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
-        colors.add(Color.WHITE);
-        colors.add(Color.WHITE);
-        colors.add(Color.WHITE);
-        colors.add(Color.WHITE);
+        colors.add(getResources().getColor(R.color.color_bill_category_drink));
+        colors.add(getResources().getColor(R.color.color_bill_category_meal));
+        colors.add(getResources().getColor(R.color.color_bill_category_game));
+        colors.add(getResources().getColor(R.color.color_bill_category_shopping));
 
+
+        PieDataSet dataSet = new PieDataSet(yVals1, "");
+        dataSet.setSliceSpace(0f);
+        dataSet.setSelectionShift(0f);
         dataSet.setColors(colors);
+        dataSet.setValueTextSize(10f);
+        dataSet.setDrawValues(false);
+
+
+//        dataSet.setColors(colors);
 
         PieData data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(5f);
+        data.setValueTextSize(10f);
         data.setValueTextColor(Color.WHITE);
+        data.setDrawValues(false);
+
+        mChart.setNoDataText("입력된 금액이 없습니다.");
         mChart.setData(data);
+        mChart.setDrawSliceText(false);
+
+        Legend l = mChart.getLegend();
+        l.setEnabled(false);
 
         // undo all highlights
         mChart.highlightValues(null);
 
         mChart.invalidate();
-    }
-
-    @OnClick(R.id.btnExit)
-    void exitGraph() {
-        this.onBackPressed();
     }
 
 }

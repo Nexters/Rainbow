@@ -1,187 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:id="@+id/owner"
+        android:layout_height="36dp"
+        android:background="#000000">
+        <Button
+            android:id="@+id/btnOur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Our"/>
-        <TextView
+            android:layout_centerInParent="true"
+            android:text="Our"
+            android:textSize="12sp"
+            android:textColor="#6F789F"
+            android:background="@null"/>
+        <Button
+            android:id="@+id/btnYou"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/owner"
-            android:textSize="24sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="January"/>
-
+            android:layout_toLeftOf="@id/btnOur"
+            android:text="You"
+            android:textSize="12sp"
+            android:textColor="#444444"
+            android:background="@null"/>
+        <Button
+            android:id="@+id/btnMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btnOur"
+            android:text="Me"
+            android:textSize="12sp"
+            android:textColor="#444444"
+            android:background="@null"/>
     </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/llGraphGroup"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_weight="3">
-        <LinearLayout
+        android:background="@drawable/graph_bg01">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:background="@drawable/top_bg_our01"/>
+
+        <RelativeLayout
+            android:id="@+id/rlGraph"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:background="#525252">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="1"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="2"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="3"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="4"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"
-                    android:layout_height="wrap_content"
-                    android:text="5"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:background="#666666"
-                android:padding="12dp">
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/chart1"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="bottom">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#FFFFFF"
-                        android:text="Total"
-                        android:layout_margin="1dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        android:textColor="#FFFFFF"
-                        android:text="198,800"
-                        android:layout_margin="1dp"/>
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
-
-        <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
-            android:id="@+id/listViewGraph"
+            android:gravity="center_vertical"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@drawable/graph_bg01">
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chart1"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginLeft="36dp"/>
+            <TextView
+                android:id="@+id/tvRankedFirstCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_bill_category_drink"
+                android:text="@string/string_drink"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@id/chart1"/>
+            <TextView
+                android:id="@+id/tvRankedFirstAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_white"
+                android:text="120,000"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/chart1"
+                android:layout_below="@id/tvRankedFirstCategory"/>
+            <TextView
+                android:id="@+id/tvRankedSecondCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_bill_category_shopping"
+                android:text="@string/string_shopping"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@id/chart1"
+                android:layout_below="@id/tvRankedFirstAmount"/>
+            <TextView
+                android:id="@+id/tvRankedSecondmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_white"
+                android:text="80,000"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/chart1"
+                android:layout_below="@id/tvRankedSecondCategory"/>
+        </RelativeLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:dividerHeight="0dp"
-            android:divider="@color/color_transparent"/>
-
-        <TextView
-            android:id="@+id/textViewBillEmpty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="#ffffffff"
-            android:gravity="center"
-            android:text="@string/string_empty_bill"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold"
-            android:visibility="invisible" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#EFEFEF">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Today"
-            android:background="#EFEFEF"
+            android:orientation="vertical">
+            <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
+                android:id="@+id/listViewBill"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:dividerHeight="0dp"
+                android:background="@drawable/graph_bg02"
+                android:divider="@color/color_transparent"/>
+
+            <TextView
+                android:id="@+id/textViewBillEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="#ffffffff"
+                android:gravity="center"
+                android:text="@string/string_empty_bill"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/graph_bg_tap01"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+        <Button
+            android:id="@+id/actionBtnRefresh"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_refresh01"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:textSize="12sp"/>
         <Button
             android:id="@+id/actionBtnAddBill"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="INPUT"
-            android:background="#EFEFEF"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/btn_input01"
+            android:layout_centerInParent="true"
             android:textSize="12sp"/>
         <Button
-            android:id="@+id/btnExit"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="X"
-            android:background="#EFEFEF"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
-
+            android:id="@+id/btnGraph"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_graph01"/>
+    </RelativeLayout>
 </LinearLayout>
