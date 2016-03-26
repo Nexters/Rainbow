@@ -142,7 +142,7 @@
             android:divider="@color/color_transparent"/>
 
         <TextView
-            android:id="@+id/textViewBillEmpty"
+            android:id="@+id/billListTvEmpty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"

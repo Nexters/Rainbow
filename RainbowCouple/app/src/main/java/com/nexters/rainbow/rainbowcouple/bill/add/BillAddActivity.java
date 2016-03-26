@@ -183,7 +183,7 @@ public class BillAddActivity extends BaseActivity {
     private boolean isValidInput() {
 
         if (StringUtils.isEmpty(etBillAmount.getText().toString())) {
-            DialogManager.showAlertDialog(this, Messages.BillError.BILL_AMOUNT_EMPTY);
+            DialogManager.showAlertDialog(this, Messages.BILL_AMOUNT_EMPTY);
             return false;
         }
 

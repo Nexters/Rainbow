@@ -9,7 +9,7 @@
         android:layout_height="36dp"
         android:background="#000000">
         <Button
-            android:id="@+id/btnOur"
+            android:id="@+id/billListBtnOur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -18,19 +18,19 @@
             android:textColor="#6F789F"
             android:background="@null"/>
         <Button
-            android:id="@+id/btnYou"
+            android:id="@+id/billListBtnYou"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/btnOur"
+            android:layout_toLeftOf="@id/billListBtnOur"
             android:text="You"
             android:textSize="12sp"
             android:textColor="#444444"
             android:background="@null"/>
         <Button
-            android:id="@+id/btnMe"
+            android:id="@+id/billListBtnMe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/btnOur"
+            android:layout_toRightOf="@id/billListBtnOur"
             android:text="Me"
             android:textSize="12sp"
             android:textColor="#444444"
@@ -57,7 +57,7 @@
             android:paddingRight="24dp"
             android:background="@drawable/main_bg02">
             <TextView
-                android:id="@+id/textViewYear"
+                android:id="@+id/billListTvYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2016"
@@ -69,11 +69,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="년 "
-                android:layout_toRightOf="@id/textViewYear"
+                android:layout_toRightOf="@id/billListTvYear"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/textViewMonth"
+                android:id="@+id/billListTvMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/textViewYearComment"
@@ -86,11 +86,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="월 "
-                android:layout_toRightOf="@id/textViewMonth"
+                android:layout_toRightOf="@id/billListTvMonth"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/textViewDay"
+                android:id="@+id/billListTvDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/textViewMonthComment"
@@ -103,16 +103,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="일"
-                android:layout_toRightOf="@id/textViewDay"
+                android:layout_toRightOf="@id/billListTvDay"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/textViewOwner"
+                android:id="@+id/billListTvOwner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="우리"
                 android:textStyle="bold"
-                android:layout_below="@id/textViewYear"
+                android:layout_below="@id/billListTvYear"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
@@ -120,12 +120,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" 사용한 금액"
-                android:layout_below="@id/textViewYear"
-                android:layout_toRightOf="@id/textViewOwner"
+                android:layout_below="@id/billListTvYear"
+                android:layout_toRightOf="@id/billListTvOwner"
                 android:textColor="#BABABA"
                 android:textSize="12sp"/>
             <TextView
-                android:id="@+id/textViewBillTotalAmount"
+                android:id="@+id/billListTvAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -140,7 +140,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
         <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
-            android:id="@+id/listViewBill"
+            android:id="@+id/billListLvBill"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
@@ -149,7 +149,7 @@
             android:divider="@color/color_transparent"/>
 
         <TextView
-            android:id="@+id/textViewBillEmpty"
+            android:id="@+id/billListTvEmpty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"

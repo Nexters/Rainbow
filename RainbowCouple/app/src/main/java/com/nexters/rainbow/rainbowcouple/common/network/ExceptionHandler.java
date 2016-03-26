@@ -52,15 +52,15 @@ public class ExceptionHandler {
     private String getRetrofitError(RetrofitError error) {
         switch (error.getKind()) {
             case NETWORK:
-                return String.format(Messages.NetworkError.NETWORK_ERROR, error.getMessage());
+                return String.format(Messages.NETWORK_ERROR, error.getMessage());
 
             case HTTP:
                 Response response = error.getResponse();
                 DebugLog.e(getRetrofitErrorMessage(response));
-                return String.format(Messages.NetworkError.HTTP_SERVER_ERROR, getRetrofitErrorMessage(response));
+                return String.format(Messages.HTTP_SERVER_ERROR, getRetrofitErrorMessage(response));
 
             default:
-                return String.format(Messages.NetworkError.UNKNOWN_NETWORK_ERROR, error.getMessage());
+                return String.format(Messages.UNKNOWN_NETWORK_ERROR, error.getMessage());
         }
     }
 

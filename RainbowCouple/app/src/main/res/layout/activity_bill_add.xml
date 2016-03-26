@@ -95,7 +95,7 @@
                 android:background="@drawable/input_ico_meal01"/>
 
             <TextView
-                android:id="@+id/textMeal"
+                android:id="@+id/tvMeal"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="@string/string_meal"
@@ -113,14 +113,14 @@
                 android:layout_toRightOf="@id/iconMeal"
                 android:background="@drawable/input_ico_drink01"/>
             <TextView
-                android:id="@+id/textDrink"
+                android:id="@+id/tvDrink"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="@string/string_drink"
                 android:gravity="center"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_toRightOf="@id/textMeal"
+                android:layout_toRightOf="@id/tvMeal"
                 android:layout_below="@id/iconDrink"/>
 
             <ImageButton
@@ -133,11 +133,11 @@
                 android:layout_toRightOf="@id/iconDrink"
                 android:background="@drawable/input_ico_shopping01"/>
             <TextView
-                android:id="@+id/textShopping"
+                android:id="@+id/tvShopping"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="@string/string_shopping"
-                android:layout_toRightOf="@id/textDrink"
+                android:layout_toRightOf="@id/tvDrink"
                 android:gravity="center"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -149,10 +149,10 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_below="@id/textDrink"
+                android:layout_below="@id/tvDrink"
                 android:background="@drawable/input_ico_movie01"/>
             <TextView
-                android:id="@+id/textMovie"
+                android:id="@+id/tvMovie"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -168,17 +168,17 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toRightOf="@id/iconMovie"
-                android:layout_below="@id/textDrink"
+                android:layout_below="@id/tvDrink"
                 android:background="@drawable/input_ico_game01"/>
             <TextView
-                android:id="@+id/textGame"
+                android:id="@+id/tvGame"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:text="@string/string_game"
                 android:gravity="center"
-                android:layout_toRightOf="@id/textMovie"
+                android:layout_toRightOf="@id/tvMovie"
                 android:layout_below="@id/iconGame"/>
             <ImageButton
                 android:id="@+id/iconUserCategory"
@@ -188,16 +188,16 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toRightOf="@id/iconGame"
-                android:layout_below="@id/textDrink"
+                android:layout_below="@id/tvDrink"
                 android:background="@drawable/input_ico_plus01"/>
             <TextView
-                android:id="@+id/textUserCategory"
+                android:id="@+id/tvUserCategory"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:gravity="center"
-                android:layout_toRightOf="@id/textGame"
+                android:layout_toRightOf="@id/tvGame"
                 android:layout_below="@id/iconUserCategory"/>
         </RelativeLayout>
         <EditText

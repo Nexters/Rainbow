@@ -15,7 +15,7 @@
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/textViewYear"
+            android:id="@+id/billListTvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2016"
@@ -32,7 +32,7 @@
             android:textColor="#FFFFFF"
             android:layout_margin="4dp"/>
         <TextView
-            android:id="@+id/textViewMonth"
+            android:id="@+id/billListTvMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12"
