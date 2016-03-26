@@ -18,7 +18,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CalListAdapter extends PagerAdapter {
+public class CalendarListAdapter extends PagerAdapter {
+
+    private static final int MAX_CALENDAR_PAGE_COUNT = 61;
+    private static final int DEFAULT_CALENDAR_PAGE_ITEM = (MAX_CALENDAR_PAGE_COUNT / 2);
 
     private Context context;
     private LayoutInflater inflater;
@@ -31,14 +34,14 @@ public class CalListAdapter extends PagerAdapter {
         void selectDate(CalDate date);
     }
 
-    public CalListAdapter(Context context, int layoutResourceId) {
+    public CalendarListAdapter(Context context, int layoutResourceId) {
         this.context = context;
         this.layoutResource = layoutResourceId;
         this.inflater = LayoutInflater.from(context);
         this.dataList = new ArrayList<>();
     }
 
-    public CalListAdapter(Context context, int layoutResourceId, List<WeeklyCalDate> dataList) {
+    public CalendarListAdapter(Context context, int layoutResourceId, List<WeeklyCalDate> dataList) {
         this.context = context;
         this.layoutResource = layoutResourceId;
         this.dataList = dataList;
@@ -59,7 +62,6 @@ public class CalListAdapter extends PagerAdapter {
      */
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-
         WeeklyCalDate weeklyCalDate = dataList.get(position);
         List<CalDate> calDateList = weeklyCalDate.getWeeklyCalDate();
 
@@ -116,16 +118,13 @@ public class CalListAdapter extends PagerAdapter {
         return new CalDateItemViewHolder(parentView);
     }
 
-    /**
-     * view 100개를 생성한 뒤 무한 스크롤 효과
-     */
     @Override
     public int getCount() {
-        return 60;
+        return MAX_CALENDAR_PAGE_COUNT;
     }
 
     /**
-     * instantiateItem() 메소드에서 리턴된 Ojbect가 View가  맞는지 확인하는 메소드
+     * instantiateItem() 메소드에서 리턴된 Ojbect가 View가  맞는지 확인
      */
     @Override
     public boolean isViewFromObject(View view, Object object) {
@@ -133,8 +132,9 @@ public class CalListAdapter extends PagerAdapter {
     }
 
     class CalDateItemViewHolder {
-        @Bind(R.id.textViewYear) TextView textViewYear;
-        @Bind(R.id.textViewMonth) TextView textViewMonth;
+        @Bind(R.id.billListTvYear) TextView textViewYear;
+        @Bind(R.id.billListTvMonth) TextView textViewMonth;
+
         @Bind(R.id.textViewSun) TextView textViewSun;
         @Bind(R.id.textViewMon) TextView textViewMon;
         @Bind(R.id.textViewTue) TextView textViewTue;

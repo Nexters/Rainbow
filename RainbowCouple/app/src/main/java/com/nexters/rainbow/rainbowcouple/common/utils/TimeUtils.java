@@ -3,6 +3,7 @@ package com.nexters.rainbow.rainbowcouple.common.utils;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -10,6 +11,8 @@ import java.util.Date;
  * Joda Time 사용
  */
 public abstract class TimeUtils {
+
+    private static final String DEFAULT_DATE_FORMAT = "yyyy/MM/dd";
 
     public static Long getDateTime(Date date) {
         return date.getTime();
@@ -55,5 +58,17 @@ public abstract class TimeUtils {
 
     public static int getDayOfDate(Date date) {
         return LocalDate.fromDateFields(date).getDayOfMonth();
+    }
+
+    public static String getTodayToString() {
+        return new SimpleDateFormat(DEFAULT_DATE_FORMAT).format(getToday());
+    }
+
+    public static String getDateToString(Date date) {
+        return new SimpleDateFormat(DEFAULT_DATE_FORMAT).format(date);
+    }
+
+    public static Date getDateFromMillis(Long millisecond) {
+        return new LocalDateTime(millisecond).toDate();
     }
 }

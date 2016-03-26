@@ -1,6 +1,5 @@
 package com.nexters.rainbow.rainbowcouple.bill.list;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,7 +18,7 @@ import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.OwnerType;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddActivity;
 import com.nexters.rainbow.rainbowcouple.calendar.CalDate;
-import com.nexters.rainbow.rainbowcouple.calendar.CalListAdapter;
+import com.nexters.rainbow.rainbowcouple.calendar.CalendarListAdapter;
 import com.nexters.rainbow.rainbowcouple.calendar.CalendarManager;
 import com.nexters.rainbow.rainbowcouple.calendar.WeeklyCalDate;
 import com.nexters.rainbow.rainbowcouple.common.BaseFragment;
@@ -43,35 +42,32 @@ import rx.functions.Action1;
 
 import static com.nexters.rainbow.rainbowcouple.bill.OwnerType.*;
 
-public class BillListFragment extends BaseFragment implements CalListAdapter.CalendarItemSelectedListener {
+public class BillListFragment extends BaseFragment implements CalendarListAdapter.CalendarItemSelectedListener {
 
     private static final String TAG_BILL_LIST_FRAGMENT = "bill_list_fragment";
     private static final int ADD_BILL_ACTIVITY = 1;
-    private static final int VIEW_PAGER_MAX_ITEM = 61;
-    private static final int DEFAULT_VIEW_PAGER_PAGE_ITEM = (VIEW_PAGER_MAX_ITEM / 2);
 
     private SessionManager sessionManager;
 
     private View rootView;
     private List<Bill> billList = new ArrayList<>();
     private BillListAdapter billListAdapter;
-    private CalListAdapter calListAdapter;
+    private CalendarListAdapter calendarListAdapter;
 
     private OwnerType ownerType;
     private Date viewDate;
 
     @Bind(R.id.calendar) ViewPager calendarView;
-    @Bind(R.id.listViewBill) EndlessListView billListView;
-    @Bind(R.id.actionBtnAddBill) Button actionBtnAddBill;
-    @Bind(R.id.btnOur) Button btnOur;
-    @Bind(R.id.btnMe) Button btnMe;
-    @Bind(R.id.btnYou) Button btnYou;
-    @Bind(R.id.textViewBillEmpty) TextView emptyTextView;
-    @Bind(R.id.textViewBillTotalAmount) TextView billTotalAmount;
-    @Bind(R.id.textViewYear) TextView textViewYear;
-    @Bind(R.id.textViewMonth) TextView textViewMonth;
-    @Bind(R.id.textViewDay) TextView textViewDay;
-    @Bind(R.id.textViewOwner) TextView textViewOwner;
+    @Bind(R.id.billListLvBill) EndlessListView billListView;
+    @Bind(R.id.billListBtnOur) Button btnOur;
+    @Bind(R.id.billListBtnMe) Button btnMe;
+    @Bind(R.id.billListBtnYou) Button btnYou;
+    @Bind(R.id.billListTvEmpty) TextView emptyTextView;
+    @Bind(R.id.billListTvAmount) TextView billTotalAmount;
+    @Bind(R.id.billListTvYear) TextView textViewYear;
+    @Bind(R.id.billListTvMonth) TextView textViewMonth;
+    @Bind(R.id.billListTvDay) TextView textViewDay;
+    @Bind(R.id.billListTvOwner) TextView textViewOwner;
     @Bind(R.id.llCalendarGroup) LinearLayout llCanlendarGroup;
 
     public static BillListFragment newInstance() {
@@ -124,8 +120,10 @@ public class BillListFragment extends BaseFragment implements CalListAdapter.Cal
     @OnClick(R.id.actionBtnAddBill)
     public void showBillAddDialog() {
         Intent billAddActivity = new Intent(getActivity(), BillAddActivity.class);
+        billAddActivity.putExtra("date", viewDate.getTime());
         startActivityForResult(billAddActivity, ADD_BILL_ACTIVITY);
     }
+
     @Override
     public void selectDate(CalDate date) {
         viewDate = date.getDate();
@@ -143,16 +141,16 @@ public class BillListFragment extends BaseFragment implements CalListAdapter.Cal
         requestBills();
     }
 
-    @OnClick({R.id.btnOur, R.id.btnMe, R.id.btnYou})
+    @OnClick({R.id.billListBtnOur, R.id.billListBtnMe, R.id.billListBtnYou})
     void loadBillListByButtonClick(Button button) {
         switch (button.getId()) {
-            case R.id.btnOur:
+            case R.id.billListBtnOur:
                 ownerType = OwnerType.ALL;
                 break;
-            case R.id.btnMe:
+            case R.id.billListBtnMe:
                 ownerType = OwnerType.MINE;
                 break;
-            case R.id.btnYou:
+            case R.id.billListBtnYou:
                 ownerType = OwnerType.PARTNER;
                 break;
         }
@@ -232,15 +230,16 @@ public class BillListFragment extends BaseFragment implements CalListAdapter.Cal
     private void loadCalendar() {
         List<WeeklyCalDate> calDateList = CalendarManager.makeCalDateList();
 
-        calListAdapter = new CalListAdapter(getActivity(), R.layout.list_item_calendar, calDateList);
-        calendarView.setAdapter(calListAdapter);
-        calendarView.setCurrentItem(DEFAULT_VIEW_PAGER_PAGE_ITEM);
-        calListAdapter.setSelectedListener(this);
+        calendarListAdapter = new CalendarListAdapter(getActivity(), R.layout.list_item_calendar, calDateList);
+        int defaultItemPosition = calendarListAdapter.getCount() / 2;
+
+        calendarView.setAdapter(calendarListAdapter);
+        calendarView.setCurrentItem(defaultItemPosition);
+        calendarListAdapter.setSelectedListener(this);
 
     }
 
     private int getTotalAmount(List<Bill> bills) {
-        //TODO : 아예 서버에서 total Amount를 받아오도록
         int totalAmount = 0;
         for (Bill bill : bills) {
             totalAmount += bill.getAmount();

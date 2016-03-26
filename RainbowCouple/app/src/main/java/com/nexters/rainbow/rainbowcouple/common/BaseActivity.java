@@ -47,7 +47,6 @@ public class BaseActivity extends FragmentActivity {
             super.onBackPressed();
         }
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

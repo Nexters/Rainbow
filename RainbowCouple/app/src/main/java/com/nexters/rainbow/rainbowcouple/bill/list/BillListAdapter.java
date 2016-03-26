@@ -9,10 +9,7 @@ import com.nexters.rainbow.rainbowcouple.R;
 import com.nexters.rainbow.rainbowcouple.bill.Bill;
 import com.nexters.rainbow.rainbowcouple.common.BaseAdapter;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,7 +17,6 @@ import butterknife.ButterKnife;
 public class BillListAdapter extends BaseAdapter<Bill, BillListAdapter.BillItemViewHolder> {
 
     private final String FORMAT_BILL_BUDGET = "₩%,d";
-    private final DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
 
     public BillListAdapter(Context context, int layoutResourceId, List<Bill> dataList) {
         super(context, layoutResourceId, dataList);
