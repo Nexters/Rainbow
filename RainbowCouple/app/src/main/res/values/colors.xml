@@ -19,4 +19,11 @@
     <color name="color_black">#000000</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_graph_bg">#323334</color>
+    <color name="color_graph_text">#444444</color>
+
+
+    <color name="color_our">#9195B0</color>
+    <color name="color_me">#95BEC9</color>
+    <color name="color_you">#D3Bf89</color>
+    <color name="owner_default">#444444</color>
 </resources>

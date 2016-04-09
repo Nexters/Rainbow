@@ -219,7 +219,7 @@ public class BillListFragment extends BaseFragment implements CalListAdapter.Cal
         if (MINE.equals(ownerType)) {
             textViewOwner.setText("내가");
         } else if (PARTNER.equals(ownerType)) {
-            textViewOwner.setText("파트너가");
+            textViewOwner.setText("너가");
         } else {
             textViewOwner.setText("우리가");
         }

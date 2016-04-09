@@ -24,7 +24,7 @@
             android:layout_toLeftOf="@id/btnOur"
             android:text="You"
             android:textSize="12sp"
-            android:textColor="#444444"
+            android:textColor="@color/owner_default"
             android:background="@null"/>
         <Button
             android:id="@+id/btnMe"
@@ -33,40 +33,103 @@
             android:layout_toRightOf="@id/btnOur"
             android:text="Me"
             android:textSize="12sp"
-            android:textColor="#444444"
+            android:textColor="@color/owner_default"
             android:background="@null"/>
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/llGraphGroup"
+    <RelativeLayout
+        android:id="@+id/rlGraphGroup"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="@drawable/graph_bg01">
+        android:layout_weight="0.25"
+        android:background="@drawable/top_bg_our01">
+        <TextView
+            android:id="@+id/tvYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="2016"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/color_white"/>
+        <TextView
+            android:id="@+id/tvMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="/ 3"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@id/tvYear"
+            android:textColor="@color/color_white"/>
+        <TextView
+            android:id="@+id/tvBtnWeekly"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:text="Weekly"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="18dp"
+            android:textColor="@color/color_graph_text"/>
+        <View
+            android:id="@+id/line"
+            android:layout_width="1.5dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="22dp"
+            android:layout_toLeftOf="@id/tvBtnWeekly"
+            android:layout_marginRight="6dp"
+            android:background="@color/owner_default"/>
+        <TextView
+            android:id="@+id/tvBtnMonthly"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:text="Monthly"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:layout_toLeftOf="@id/line"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="6dp"
+            android:textColor="@color/color_white"
+            android:background="@drawable/graph_bg_btn"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="115dp"
-            android:background="@drawable/top_bg_our01"/>
-
+            android:layout_height="60dp"
+            android:layout_below="@id/tvYear"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlGraph"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/graph_bg01">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart1"
+            android:layout_width="188dp"
+            android:layout_height="188dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"/>
         <RelativeLayout
-            android:id="@+id/rlGraph"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:gravity="center_vertical"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:background="@drawable/graph_bg01">
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/chart1"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_marginLeft="36dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/chart1"
+            android:layout_centerVertical="true">
+            <TextView
+                android:id="@+id/tvFirst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/color_white"
+                android:text="1st"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="13dp"/>
             <TextView
                 android:id="@+id/tvRankedFirstCategory"
                 android:layout_width="wrap_content"
@@ -75,9 +138,9 @@
                 android:textColor="@color/color_bill_category_drink"
                 android:text="@string/string_drink"
                 android:textStyle="bold"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="12dp"
-                android:layout_toRightOf="@id/chart1"/>
+                android:layout_toRightOf="@id/tvFirst"/>
             <TextView
                 android:id="@+id/tvRankedFirstAmount"
                 android:layout_width="wrap_content"
@@ -85,10 +148,20 @@
                 android:textSize="15sp"
                 android:textColor="@color/color_white"
                 android:text="120,000"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
-                android:layout_toRightOf="@id/chart1"
+                android:layout_toRightOf="@id/tvFirst"
                 android:layout_below="@id/tvRankedFirstCategory"/>
+            <TextView
+                android:id="@+id/tvSecond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/color_white"
+                android:text="2nd"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_below="@id/tvRankedFirstAmount" />
             <TextView
                 android:id="@+id/tvRankedSecondCategory"
                 android:layout_width="wrap_content"
@@ -97,51 +170,82 @@
                 android:textColor="@color/color_bill_category_shopping"
                 android:text="@string/string_shopping"
                 android:textStyle="bold"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="12dp"
-                android:layout_toRightOf="@id/chart1"
-                android:layout_below="@id/tvRankedFirstAmount"/>
+                android:layout_toRightOf="@id/tvSecond"
+                android:layout_below="@id/tvRankedFirstAmount" />
             <TextView
-                android:id="@+id/tvRankedSecondmount"
+                android:id="@+id/tvRankedSecondAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:textColor="@color/color_white"
                 android:text="80,000"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
-                android:layout_toRightOf="@id/chart1"
+                android:layout_toRightOf="@id/tvSecond"
                 android:layout_below="@id/tvRankedSecondCategory"/>
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
-                android:id="@+id/listViewBill"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:dividerHeight="0dp"
-                android:background="@drawable/graph_bg02"
-                android:divider="@color/color_transparent"/>
-
             <TextView
-                android:id="@+id/textViewBillEmpty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:background="#ffffffff"
-                android:gravity="center"
-                android:text="@string/string_empty_bill"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvThird"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/color_white"
+                android:text="3rd"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_below="@id/tvRankedSecondAmount" />
+            <TextView
+                android:id="@+id/tvRankedThirdCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_bill_category_game"
+                android:text="@string/string_game"
                 android:textStyle="bold"
-                android:visibility="invisible" />
-        </LinearLayout>
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@id/tvThird"
+                android:layout_below="@id/tvRankedSecondAmount"/>
+            <TextView
+                android:id="@+id/tvRankedThirdAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/color_white"
+                android:text="30,000"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/tvThird"
+                android:layout_below="@id/tvRankedThirdCategory"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:orientation="vertical">
+        <com.nexters.rainbow.rainbowcouple.common.widget.EndlessListView
+            android:id="@+id/listViewBill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:dividerHeight="0dp"
+            android:background="@drawable/graph_bg02"
+            android:divider="@color/color_transparent"/>
+
+        <TextView
+            android:id="@+id/textViewBillEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="#ffffffff"
+            android:gravity="center"
+            android:text="@string/string_empty_bill"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:visibility="invisible" />
     </LinearLayout>
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -166,11 +270,11 @@
             android:layout_centerInParent="true"
             android:textSize="12sp"/>
         <Button
-            android:id="@+id/btnGraph"
+            android:id="@+id/btnMain"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/btn_graph01"/>
+            android:background="@drawable/btn_main01"/>
     </RelativeLayout>
 </LinearLayout>
