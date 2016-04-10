@@ -9,6 +9,7 @@ import java.util.List;
 public class CalendarManager {
 
     private static final int DAYS_OF_WEEK = 7;
+    private static final int MAX_CALENDAR_PAGE_COUNT = 61; // must be odd
 
     public static Date getFirstDayOfWeek() {
         LocalDate today = LocalDate.now();
@@ -47,19 +48,21 @@ public class CalendarManager {
 
         LocalDate mondayOfWeek = new LocalDate(CalendarManager.getFirstDayOfWeek());
 
-        /* 현재 날짜 부터 30주 전 까지 weekly date */
-        for (int weekCount = 30; weekCount > 0; weekCount--) {
+        /* 오늘 날짜 부터 30주 전 까지 weekly date */
+        int beforeWeeks = (MAX_CALENDAR_PAGE_COUNT - 1) / 2;
+        for (int weekCount = beforeWeeks; weekCount > 0; weekCount--) {
             LocalDate pastMondayOfWeek = mondayOfWeek.minusWeeks(weekCount);
             WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(pastMondayOfWeek.toDate());
             calDateList.add(weeklyCalDate);
         }
 
-        /* 현재 날짜가 들어간 주간 */
+        /* 오늘 날짜가 들어간 주간 */
         WeeklyCalDate currentWeeklyCalDate = CalendarManager.makeWeeklyCalDate(mondayOfWeek.toDate());
         calDateList.add(currentWeeklyCalDate);
 
-        /* 현재 날짜 부터 30주 후 까지 weekly date */
-        for (int weekCount = 1; weekCount < 31; weekCount++) {
+        /* 오늘 날짜 부터 30주 후 까지 weekly date */
+        int afterWeeks = (MAX_CALENDAR_PAGE_COUNT) / 2;
+        for (int weekCount = 1; weekCount < afterWeeks; weekCount++) {
             LocalDate nextMondayOfWeek = mondayOfWeek.plusWeeks(weekCount);
             WeeklyCalDate weeklyCalDate = CalendarManager.makeWeeklyCalDate(nextMondayOfWeek.toDate());
             calDateList.add(weeklyCalDate);

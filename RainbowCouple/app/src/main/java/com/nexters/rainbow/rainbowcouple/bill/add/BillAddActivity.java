@@ -16,8 +16,11 @@ import com.nexters.rainbow.rainbowcouple.common.Messages;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
 import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.DialogManager;
+import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.StringUtils;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
+
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,37 +29,43 @@ import rx.Observable;
 import rx.functions.Action1;
 
 public class BillAddActivity extends BaseActivity {
-    @Bind(R.id.tvNewBillDate)TextView tvBillDate;
-    @Bind(R.id.rlCategory)RelativeLayout rlBilCategory;
-    @Bind(R.id.ivCategoryIcon)ImageView ivBillCategoryIcon;
+
+    @Bind(R.id.rlCategory) RelativeLayout rlBilCategory;
+    @Bind(R.id.rlInputCategory) RelativeLayout rlInputCategory;
+    @Bind(R.id.etNewBillAmount) EditText etBillAmount;
+    @Bind(R.id.etNewBillComment) EditText etBillComment;
+    @Bind(R.id.tvNewBillDate) TextView tvBillDate;
+    @Bind(R.id.ivCategoryIcon) ImageView ivBillCategoryIcon;
     @Bind(R.id.tvNewBillCategory) TextView tvBillCategory;
     @Bind(R.id.tvNewBillAmount) TextView tvBillAmount;
     @Bind(R.id.tvNewBillComment) TextView tvBillComment;
-    @Bind(R.id.etNewBillAmount)EditText etBillAmount;
-    @Bind(R.id.etNewBillComment) EditText etBillComment;
-    @Bind(R.id.rlInputCategory) RelativeLayout rlInputCategory;
+    @Bind(R.id.tvDrink) TextView textDrink;
+    @Bind(R.id.tvMeal) TextView textMeal;
+    @Bind(R.id.tvShopping) TextView textShopping;
+    @Bind(R.id.tvMovie) TextView textMovie;
+    @Bind(R.id.tvGame) TextView textGame;
+    @Bind(R.id.tvUserCategory) TextView textUserCategory;
     @Bind(R.id.iconDrink) ImageButton iconDrink;
     @Bind(R.id.iconMeal) ImageButton iconMeal;
     @Bind(R.id.iconShopping) ImageButton iconShopping;
     @Bind(R.id.iconMovie) ImageButton iconMovie;
     @Bind(R.id.iconGame) ImageButton iconGame;
     @Bind(R.id.iconUserCategory) ImageButton iconUserCategory;
-    @Bind(R.id.textDrink) TextView textDrink;
-    @Bind(R.id.textMeal) TextView textMeal;
-    @Bind(R.id.textShopping) TextView textShopping;
-    @Bind(R.id.textMovie) TextView textMovie;
-    @Bind(R.id.textGame) TextView textGame;
-    @Bind(R.id.textUserCategory) TextView textUserCategory;
 
     private SessionManager sessionManager;
+    private Date viewDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_add);
+
         ButterKnife.bind(this);
+
         sessionManager = SessionManager.getInstance(this);
-        initDate();
+
+        Long milliDate = getIntent().getLongExtra("date", 0L);
+        initDate(milliDate);
     }
 
     @Override
@@ -103,7 +112,7 @@ public class BillAddActivity extends BaseActivity {
 
     private void typeComment() {
         String comment = etBillComment.getText().toString();
-        if(comment.isEmpty()) {
+        if (comment.isEmpty()) {
             comment = "추가 설명을 입력하세요.";
         }
         tvBillComment.setText(comment);
@@ -111,7 +120,7 @@ public class BillAddActivity extends BaseActivity {
 
     private void typeAmount() {
         String amount = etBillAmount.getText().toString();
-        if(amount.isEmpty()) {
+        if (amount.isEmpty()) {
             amount = "사용 금액을 입력하세요.";
         }
         tvBillAmount.setText(amount);
@@ -119,7 +128,6 @@ public class BillAddActivity extends BaseActivity {
 
     @OnClick(R.id.tvNewBillComment)
     void inputComment() {
-
         tvBillComment.setVisibility(View.GONE);
         tvBillAmount.setVisibility(View.VISIBLE);
         rlBilCategory.setVisibility(View.VISIBLE);
@@ -136,28 +144,30 @@ public class BillAddActivity extends BaseActivity {
 
     @OnClick(R.id.btnBillSave)
     void onClickConfirmButton() {
-
         if (!isValidInput()) {
             return;
         }
 
         saveNewBill(BillAddForm.builder()
                 .amount(Integer.parseInt(etBillAmount.getText().toString()))
-                .year(TimeUtils.getYearOfToday())
-                .month(TimeUtils.getMonthOfToday())
-                .day(TimeUtils.getDayOfToday())
+                .year(TimeUtils.getYearOfDate(viewDate))
+                .month(TimeUtils.getMonthOfDate(viewDate))
+                .day(TimeUtils.getDayOfDate(viewDate))
                 .category(tvBillCategory.getText().toString())
                 .comment(etBillComment.getText().toString())
                 .build());
     }
 
-    private void initDate() {
-        tvBillDate.setText(TimeUtils.getYearOfToday() + "/" + TimeUtils.getMonthOfToday() + "/" + TimeUtils.getDayOfToday());
-
+    private void initDate(Long milliDate) {
+        if (ObjectUtils.isEmpty(milliDate)) {
+            viewDate = TimeUtils.getToday();
+        } else {
+            viewDate = TimeUtils.getDateFromMillis(milliDate);
+        }
+        tvBillDate.setText(TimeUtils.getDateToString(viewDate));
     }
 
     private void saveNewBill(BillAddForm form) {
-
         BillApi billApi = NetworkManager.getApi(BillApi.class);
         Observable<Bill> billObservable = billApi.insertBill(sessionManager.getUserToken(), form);
 
@@ -183,7 +193,7 @@ public class BillAddActivity extends BaseActivity {
     private boolean isValidInput() {
 
         if (StringUtils.isEmpty(etBillAmount.getText().toString())) {
-            DialogManager.showAlertDialog(this, Messages.BillError.BILL_AMOUNT_EMPTY);
+            DialogManager.showAlertDialog(this, Messages.BILL_AMOUNT_EMPTY);
             return false;
         }
 
@@ -249,6 +259,5 @@ public class BillAddActivity extends BaseActivity {
         ivBillCategoryIcon.setImageResource(R.drawable.ico_game02);
         tvBillCategory.setText(R.string.string_game);
     }
-
 
 }

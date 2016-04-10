@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nexters.rainbow.rainbowcouple.common.utils.CollectionUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +56,7 @@ public abstract class BaseAdapter<D, H> extends android.widget.BaseAdapter {
             }
             dataList = new ArrayList<>();
         }
-        //TODO clear 임시방편으로 넣어둠
+
         dataList.clear();
         dataList.addAll(data);
         notifyDataSetChanged();
@@ -70,12 +68,12 @@ public abstract class BaseAdapter<D, H> extends android.widget.BaseAdapter {
 
     @Override
     public int getCount() {
-        return CollectionUtils.isEmpty(dataList) ? 0 : dataList.size();
+        return (dataList == null) ? 0 : dataList.size();
     }
 
     @Override
     public D getItem(int position) {
-        if (CollectionUtils.isEmpty(dataList) || position > dataList.size())
+        if (dataList == null || position > dataList.size())
             return null;
         return dataList.get(position);
     }

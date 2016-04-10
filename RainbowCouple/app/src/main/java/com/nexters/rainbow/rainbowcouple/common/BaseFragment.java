@@ -10,9 +10,6 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 
-/**
- * fragment tag 관리용으로 만든 BaseFragment
- */
 public class BaseFragment extends Fragment {
 
     protected ProgressDialog progressDialog;

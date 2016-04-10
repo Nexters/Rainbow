@@ -78,12 +78,12 @@ public class SignInActivity extends BaseActivity {
 
     private boolean hasEmptyField() {
         if (StringUtils.isEmpty(editTextUserId.getText().toString())) {
-            DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_ID);
+            DialogManager.showAlertDialog(this, Messages.EMPTY_LOGIN_ID);
             return true;
         }
 
         if (StringUtils.isEmpty(editTextPassword.getText().toString())) {
-            DialogManager.showAlertDialog(this, Messages.LoginError.EMPTY_LOGIN_PASSWORD);
+            DialogManager.showAlertDialog(this, Messages.EMPTY_LOGIN_PASSWORD);
             return true;
         }
         return false;

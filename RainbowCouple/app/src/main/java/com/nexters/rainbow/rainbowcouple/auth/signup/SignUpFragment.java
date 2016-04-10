@@ -73,17 +73,17 @@ public class SignUpFragment extends BaseFragment {
 
     private boolean hasEmptyField() {
         if (StringUtils.isEmpty(editTextUserId.getText().toString())) {
-            DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_ID);
+            DialogManager.showAlertDialog(getActivity(), Messages.EMPTY_USER_ID);
             return true;
         }
 
         if (StringUtils.isEmpty(editTextUserName.getText().toString())) {
-            DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_NAME);
+            DialogManager.showAlertDialog(getActivity(), Messages.EMPTY_USER_NAME);
             return true;
         }
 
         if (StringUtils.isEmpty(editTextUserPassword.getText().toString())) {
-            DialogManager.showAlertDialog(getActivity(), Messages.SignUpError.EMPTY_USER_PASSWORD);
+            DialogManager.showAlertDialog(getActivity(), Messages.EMPTY_USER_PASSWORD);
             return true;
         }
         return false;

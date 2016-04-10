@@ -11,8 +11,8 @@ import com.nexters.rainbow.rainbowcouple.common.utils.ObjectUtils;
 import java.util.HashMap;
 
 public class SessionManager {
-    public static final String KEY_SESSION_TOKEN = "session_token";
 
+    public static final String KEY_SESSION_TOKEN = "session_token";
     public static final String KEY_SESSION_USER_ID = "session_userId";
 
     // Sharedpref file name
@@ -26,7 +26,7 @@ public class SessionManager {
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
 
-    private Context _context;
+    private Context context;
 
     private int PRIVATE_MODE = 0;
 
@@ -38,8 +38,8 @@ public class SessionManager {
     }
 
     private SessionManager(Context context) {
-        this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        this.context = context;
+        pref = this.context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
@@ -76,7 +76,7 @@ public class SessionManager {
         editor.commit();
 
         // After logout redirect user to Loing Activity
-        Intent intent = new Intent(_context, SignInActivity.class);
+        Intent intent = new Intent(context, SignInActivity.class);
 
         // Closing all the Activities
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -85,7 +85,7 @@ public class SessionManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Staring Login Activity
-        _context.startActivity(intent);
+        context.startActivity(intent);
     }
 
     /**
