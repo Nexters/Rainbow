@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Our"
+            android:text="@string/str_our"
             android:textSize="12sp"
             android:textColor="#6F789F"
             android:background="@null"/>
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/btnOur"
-            android:text="You"
+            android:text="@string/str_your"
             android:textSize="12sp"
             android:textColor="#444444"
             android:background="@null"/>
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/btnOur"
-            android:text="Me"
+            android:text="@string/str_my"
             android:textSize="12sp"
             android:textColor="#444444"
             android:background="@null"/>

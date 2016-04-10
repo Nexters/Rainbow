@@ -11,19 +11,19 @@
     <color name="color_bill_text_white">#FFFFFFFF</color>
     <color name="color_bill_text_my">#FFF58676</color>
     <color name="color_bill_text_partner">#FF32689B</color>
-    <color name="color_bill_category_drink">#FEBF02</color>
-    <color name="color_bill_category_meal">#FF7D63</color>
-    <color name="color_bill_category_shopping">#50C086</color>
-    <color name="color_bill_category_movie">#1AC5FA</color>
-    <color name="color_bill_category_game">#B174B1</color>
+    <color name="color_bill_category_drink">#fec442</color>
+    <color name="color_bill_category_meal">#fc7d67</color>
+    <color name="color_bill_category_shopping">#56bf88</color>
+    <color name="color_bill_category_movie">#38c6f9</color>
+    <color name="color_bill_category_game">#b076b0</color>
     <color name="color_black">#000000</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_graph_bg">#323334</color>
     <color name="color_graph_text">#444444</color>
 
 
-    <color name="color_our">#9195B0</color>
-    <color name="color_me">#95BEC9</color>
-    <color name="color_you">#D3Bf89</color>
+    <color name="color_our">#9196af</color>
+    <color name="color_me">#96bec8</color>
+    <color name="color_you">#d2be8c</color>
     <color name="owner_default">#444444</color>
 </resources>

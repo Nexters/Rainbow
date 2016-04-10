@@ -34,4 +34,8 @@
     <string name="ac_sign_up_label">SIGN UP</string>
     <string name="ac_sign_up_user_name">이름</string>
     <string name="ac_sign_up_sign_up_btn">가입하기</string>
+
+    <string name="str_our">OUR</string>
+    <string name="str_my">MY</string>
+    <string name="str_your">YOUR</string>
 </resources>
