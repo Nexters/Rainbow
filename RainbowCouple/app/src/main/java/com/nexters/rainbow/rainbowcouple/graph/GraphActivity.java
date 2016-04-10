@@ -234,27 +234,21 @@ public class GraphActivity extends BaseActivity {
             xVals.add(category);
             totalAmount += billStatics.getAmount();
 
-            if(category.equals("식사"))
-                colors.add(getResources().getColor(R.color.color_bill_category_meal));
-            else if(category.equals("음료"))
-                colors.add(getResources().getColor(R.color.color_bill_category_drink));
-            else if(category.equals("영화"))
-                colors.add(getResources().getColor(R.color.color_bill_category_movie));
-            else if(category.equals("쇼핑"))
-                colors.add(getResources().getColor(R.color.color_bill_category_shopping));
-            else if(category.equals("오락"))
-                colors.add(getResources().getColor(R.color.color_bill_category_game));
+            colors.add(getCategoryColor(category));
 
             String strAmount = Integer.toString(billStatics.getAmount());
             if(i==0) {
                 tvRankedFirstCategory.setText(category);
                 tvRankedFirstAmount.setText(strAmount);
+                tvRankedFirstCategory.setTextColor(getCategoryColor(category));
             } else if ( i==1) {
                 tvRankedSecondCategory.setText(category);
                 tvRankedSecondAmount.setText(strAmount);
+                tvRankedSecondCategory.setTextColor(getCategoryColor(category));
             } else if (i==2) {
                 tvRankedThirdCategory.setText(category);
                 tvRankedThirdAmount.setText(strAmount);
+                tvRankedThirdCategory.setTextColor(getCategoryColor(category));
             }
 
         }
@@ -295,6 +289,23 @@ public class GraphActivity extends BaseActivity {
         mChart.setCenterText(year+"년 " + month + "월\n"+owner+"의 지출 총액\n"+totalAmount);
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         mChart.invalidate();
+    }
+
+    private int getCategoryColor(String category) {
+        switch(category) {
+            case "식사" :
+                return getResources().getColor(R.color.color_bill_category_meal);
+            case "음료" :
+                return getResources().getColor(R.color.color_bill_category_drink);
+            case "영화":
+                return getResources().getColor(R.color.color_bill_category_movie);
+            case "쇼핑" :
+                return getResources().getColor(R.color.color_bill_category_shopping);
+            case "오락":
+                return getResources().getColor(R.color.color_bill_category_game);
+            default :
+                return getResources().getColor(R.color.color_white);
+        }
     }
 
     @OnClick(R.id.tvBtnWeekly)
