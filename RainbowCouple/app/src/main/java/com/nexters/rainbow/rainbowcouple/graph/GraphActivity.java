@@ -3,7 +3,6 @@ package com.nexters.rainbow.rainbowcouple.graph;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -22,12 +21,9 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.nexters.rainbow.rainbowcouple.R;
-import com.nexters.rainbow.rainbowcouple.bill.Bill;
-import com.nexters.rainbow.rainbowcouple.bill.BillApi;
 import com.nexters.rainbow.rainbowcouple.bill.OwnerType;
 import com.nexters.rainbow.rainbowcouple.bill.add.BillAddActivity;
 import com.nexters.rainbow.rainbowcouple.common.BaseActivity;
-import com.nexters.rainbow.rainbowcouple.common.network.ExceptionHandler;
 import com.nexters.rainbow.rainbowcouple.common.network.NetworkManager;
 import com.nexters.rainbow.rainbowcouple.common.network.SessionManager;
 import com.nexters.rainbow.rainbowcouple.common.utils.TimeUtils;
@@ -53,24 +49,21 @@ public class GraphActivity extends BaseActivity {
 
     @Bind(R.id.pieChart) PieChart mChart;
     @Bind(R.id.lineChart) LineChart lineChart;
-//    @Bind(R.id.calendar) ViewPager calendarView;
     @Bind(R.id.tvBtnMonthly) TextView btnMonthly;
     @Bind(R.id.tvBtnWeekly) TextView btnWeekly;
     @Bind(R.id.btnMe) Button btnMe;
     @Bind(R.id.btnYou) Button btnYou;
     @Bind(R.id.btnOur) Button btnOur;
     @Bind(R.id.rlGraphGroup) RelativeLayout rlGraphGoup;
+    @Bind(R.id.tvRankedFirstCategory) TextView tvRankedFirstCategory;
+    @Bind(R.id.tvRankedSecondCategory) TextView tvRankedSecondCategory;
+    @Bind(R.id.tvRankedThirdCategory) TextView tvRankedThirdCategory;
+    @Bind(R.id.tvRankedFirstAmount) TextView tvRankedFirstAmount;
+    @Bind(R.id.tvRankedSecondAmount) TextView tvRankedSecondAmount;
+    @Bind(R.id.tvRankedThirdAmount) TextView tvRankedThirdAmount;
     private OwnerType ownerType;
     private SessionManager sessionManager;
     private Date viewDate;
-
-    protected String[] months = new String[] {
-            "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"
-    };
-
-    protected String[] categories = new String[] {
-            "음료", "식사", "오락", "영화", "쇼핑", "기타"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +72,7 @@ public class GraphActivity extends BaseActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_graph);
         sessionManager = SessionManager.getInstance(this);
+        ownerType = OwnerType.ALL;
         viewDate = new Date();
         ButterKnife.bind(this);
         setPieChart();
@@ -88,8 +82,6 @@ public class GraphActivity extends BaseActivity {
     }
 
     private void setLineChart() {
-//        lineChart.setOnChartGestureListener(this);
-//        lineChart.setOnChartValueSelectedListener(this);
         lineChart.setDrawGridBackground(false);
 
         // no description text
@@ -102,70 +94,17 @@ public class GraphActivity extends BaseActivity {
         // enable scaling and dragging
         lineChart.setDragEnabled(false);
         lineChart.setScaleEnabled(false);
-        // mChart.setScaleXEnabled(true);
-        // mChart.setScaleYEnabled(true);
 
         // if disabled, scaling can be done on x- and y-axis separately
         lineChart.setPinchZoom(false);
         lineChart.setDrawBorders(false);
 
         lineChart.setBorderColor(R.color.color_our);
-
-        // set an alternative background color
-        // mChart.setBackgroundColor(Color.GRAY);
-
-        // x-axis limit line
-//        LimitLine llXAxis = new LimitLine(10f, "Index 10");
-//        llXAxis.setLineWidth(2f);
-//        llXAxis.enableDashedLine(5f, 5f, 0f);
-//        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-//        llXAxis.setTextSize(10f);
-
-//        XAxis xAxis = lineChart.getXAxis();
-        //xAxis.setValueFormatter(new MyCustomXAxisValueFormatter());
-        //xAxis.addLimitLine(llXAxis); // add x-axis limit line
-
-//        Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-
-//        LimitLine ll1 = new LimitLine(130f, "Upper Limit");
-//        ll1.setLineWidth(2f);
-//        ll1.enableDashedLine(5f, 5f, 0f);
-//        ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-//        ll1.setTextSize(10f);
-//        ll1.setTypeface(tf);
-
-//        LimitLine ll2 = new LimitLine(-30f, "Lower Limit");
-//        ll2.setLineWidth(4f);
-//        ll2.enableDashedLine(10f, 10f, 0f);
-//        ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-//        ll2.setTextSize(10f);
-//        ll2.setTypeface(tf);
-
-//        YAxis leftAxis = lineChart.getAxisLeft();
-//        leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
-//        leftAxis.addLimitLine(ll1);
-//        leftAxis.addLimitLine(ll2);
-//        leftAxis.setAxisMaxValue(220f);
-//        leftAxis.setAxisMinValue(0f);
-//        leftAxis.setStartAtZero(false);
-        //leftAxis.setYOffset(20f);
-//        leftAxis.enableGridDashedLine(10f, 10f, 0f);
-
-//        leftAxis.disableGridDashedLine();
-        // limit lines are drawn behind data (and not on top)
-//        leftAxis.setDrawLimitLinesBehindData(true);
         lineChart.getAxisLeft().setEnabled(false);
         lineChart.getAxisRight().setEnabled(false);
 
-        //mChart.getViewPortHandler().setMaximumScaleY(2f);
-        //mChart.getViewPortHandler().setMaximumScaleX(2f);
-
         // add data
         setLineData(6, 100);
-
-//        mChart.setVisibleXRange(20);
-//        mChart.setVisibleYRange(20f, AxisDependency.LEFT);
-//        mChart.centerViewTo(20, 50, AxisDependency.LEFT);
 
         lineChart.animateX(2500, Easing.EasingOption.EaseInOutQuart);
 //        mChart.invalidate();
@@ -173,9 +112,6 @@ public class GraphActivity extends BaseActivity {
         // get the legend (only possible after setting data)
         Legend l = lineChart.getLegend();
         l.setEnabled(false);
-        // modify the legend ...
-        // l.setPosition(LegendPosition.LEFT_OF_CHART);
-//        l.setForm(Legend.LegendForm.LINE);
     }
 
     private void requestStaticsData() {
@@ -227,21 +163,13 @@ public class GraphActivity extends BaseActivity {
 
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(yVals, "");
-        // set1.setFillAlpha(110);
-        // set1.setFillColor(Color.RED);
-
-        // set the line to be drawn like this "- - - - - -"
-//        set1.enableDashedLine(30f, 5f, 0f);
         set1.disableDashedLine();
-//        set1.enableDashedHighlightLine(15f, 5f, 0f);
         set1.setColor(Color.BLACK);
         set1.setCircleColor(Color.BLACK);
         set1.setLineWidth(1f);
         set1.setCircleRadius(4f);
         set1.setDrawCircleHole(false);
         set1.setValueTextSize(9f);
-//        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_red);
-//        set1.setFillDrawable(drawable);
         set1.setDrawFilled(false);
         set1.setDrawValues(false);
 
@@ -289,7 +217,8 @@ public class GraphActivity extends BaseActivity {
     private void setPieData(List<BillStatics> billStaticsList) {
 
 //        long mult = amount;
-
+        //TODO 아래 코드 리팩토링 필요 by soyoon
+        int totalAmount = 0;
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<Integer> colors = new ArrayList<Integer>();
@@ -299,27 +228,44 @@ public class GraphActivity extends BaseActivity {
         // drawn above each other.
 
         for(int i=0; i< billStaticsList.size(); i++) {
-            yVals1.add(new Entry(billStaticsList.get(i).getAmount(), i));
-            xVals.add(billStaticsList.get(i).getCategory());
+            BillStatics billStatics = billStaticsList.get(i);
+            String category = billStatics.getCategory();
+            yVals1.add(new Entry(billStatics.getPercentage(), i));
+            xVals.add(category);
+            totalAmount += billStatics.getAmount();
+
+            if(category.equals("식사"))
+                colors.add(getResources().getColor(R.color.color_bill_category_meal));
+            else if(category.equals("음료"))
+                colors.add(getResources().getColor(R.color.color_bill_category_drink));
+            else if(category.equals("영화"))
+                colors.add(getResources().getColor(R.color.color_bill_category_movie));
+            else if(category.equals("쇼핑"))
+                colors.add(getResources().getColor(R.color.color_bill_category_shopping));
+            else if(category.equals("오락"))
+                colors.add(getResources().getColor(R.color.color_bill_category_game));
+
+            String strAmount = Integer.toString(billStatics.getAmount());
+            if(i==0) {
+                tvRankedFirstCategory.setText(category);
+                tvRankedFirstAmount.setText(strAmount);
+            } else if ( i==1) {
+                tvRankedSecondCategory.setText(category);
+                tvRankedSecondAmount.setText(strAmount);
+            } else if (i==2) {
+                tvRankedThirdCategory.setText(category);
+                tvRankedThirdAmount.setText(strAmount);
+            }
+
         }
-
-        // add a lot of colors
-
-        colors.add(getResources().getColor(R.color.color_bill_category_drink));
-        colors.add(getResources().getColor(R.color.color_bill_category_meal));
-        colors.add(getResources().getColor(R.color.color_bill_category_game));
-        colors.add(getResources().getColor(R.color.color_bill_category_shopping));
-
 
         PieDataSet dataSet = new PieDataSet(yVals1, "");
         dataSet.setSliceSpace(0f);
         dataSet.setSelectionShift(0f);
+        dataSet.resetColors();
         dataSet.setColors(colors);
         dataSet.setValueTextSize(10f);
         dataSet.setDrawValues(false);
-
-
-//        dataSet.setColors(colors);
 
         PieData data = new PieData(xVals, dataSet);
         data.setValueFormatter(new PercentFormatter());
@@ -331,12 +277,23 @@ public class GraphActivity extends BaseActivity {
         mChart.setData(data);
         mChart.setDrawSliceText(false);
 
-        String totalAmount = "1,356,300";
         int year = 2016;
         int month = 4;
         int week = 0;
-        mChart.setCenterText("2016년 4월\n우리의 지출 총액\n"+totalAmount);
-
+        String owner = "";
+        switch(ownerType) {
+            case ALL:
+                owner = "우리";
+                break;
+            case MINE:
+                owner = "나";
+                break;
+            case PARTNER:
+                owner = "너";
+                break;
+        }
+        mChart.setCenterText(year+"년 " + month + "월\n"+owner+"의 지출 총액\n"+totalAmount);
+        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         mChart.invalidate();
     }
 
@@ -372,7 +329,7 @@ public class GraphActivity extends BaseActivity {
         }
 
 //        requestBills();
-
+        requestStaticsData();
         changeViewByOwnerType();
     }
 
